@@ -29,10 +29,15 @@ jobs:
             - windows/packages
 
   # Application build
-  build-Debug-x64:
-    executor:
-      name: windows/default
-      shell: powershell.exe
+  build-Application-Configuration-Platform:
+    parameters:
+      configuration:
+        type: enum
+        enum: ["debug", "release"]
+      platform:      
+        type: enum
+        enum: ["ARM64", "x64", "ARM", "Win32"]
+    executor: windows/default
     steps:
       - checkout
       - restore_cache:
@@ -41,50 +46,7 @@ jobs:
             - v1-deps-
       - run:
           name: "Build the application for Windows OS"
-          command: npx react-native run-windows --arch x64 --no-deploy --no-launch --no-packager --no-autolink --logging
-
-  build-Release-x64:
-    executor:
-      name: windows/default
-      shell: powershell.exe
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
-            - v1-deps-
-      - run:
-          name: "Build the application for Windows OS"
-          command: npx react-native run-windows --arch x64 --no-deploy --no-launch --no-packager --no-autolink --logging --release
-
-  build-Debug-ARM64:
-    executor:
-      name: windows/default
-      shell: powershell.exe
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
-            - v1-deps-
-      - run:
-          name: "Build the application for Windows OS"
-          command: npx react-native run-windows --arch ARM64 --no-deploy --no-launch --no-packager --no-autolink --logging
-
-  build-Release-ARM64:
-    executor:
-      name: windows/default
-      shell: powershell.exe
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
-            - v1-deps-
-      - run:
-          name: "Build the application for Windows OS"
-          command: npx react-native run-windows --arch ARM64 --no-deploy --no-launch --no-packager --no-autolink --logging --release
-
+          command: npx react-native run-windows --arch << parameters.platform >> --no-deploy --no-launch --no-packager --no-autolink --logging -- << parameters.configuration >>
 
 
 workflows:
@@ -92,18 +54,30 @@ workflows:
   build-x64:
     jobs:
       - install
-      - build-Release-x64:
+      - build-Application-Configuration-Platform:
+          name: build-Application-Release-x64
+          configuration: "release"
+          platform: "x64"
           requires:
             - install
-      - build-Debug-x64:
+      - build-Application-Configuration-Platform:
+          name: build-Application-Debug-x64
+          configuration: "debug"
+          platform: "x64"
           requires:
             - install
   build-ARM64:
     jobs:
       - install
-      - build-Release-ARM64:
+      - build-Application-Configuration-Platform:
+          name: build-Application-Release-ARM64
+          configuration: "release"
+          platform: "ARM64"
           requires:
             - install
-      - build-Debug-ARM64:
+      - build-Application-Configuration-Platform:
+          name: build-Application-Debug-ARM64
+          configuration: "debug"
+          platform: "ARM64"
           requires:
             - install
