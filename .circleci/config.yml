@@ -1,0 +1,109 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.4.0
+
+jobs:
+  install:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - run:
+          name: "Display environment information"
+          command: npx envinfo
+      - run:
+          name: "Install library dependencies with Yarn"
+          command: yarn install --frozen-lockfile
+      - run:
+          name: "Restore NuGet packages for Components"
+          command: nuget restore .\windows\ReactNativeNotes.sln
+      - run:
+          name: "Restore .NET dependencies"
+          command: msbuild -t:restore .\windows\ReactNativeNotes.sln
+      - save_cache:
+          key: v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+          paths:
+            - node_modules
+            - windows/packages
+
+  # Application build
+  build-Debug-x64:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-
+      - run:
+          name: "Build the application for Windows OS"
+          command: npx react-native run-windows --arch x64 --no-deploy --no-launch --no-packager --no-autolink --logging
+
+  build-Release-x64:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-
+      - run:
+          name: "Build the application for Windows OS"
+          command: npx react-native run-windows --arch x64 --no-deploy --no-launch --no-packager --no-autolink --logging --release
+
+  build-Debug-ARM64:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-
+      - run:
+          name: "Build the application for Windows OS"
+          command: npx react-native run-windows --arch ARM64 --no-deploy --no-launch --no-packager --no-autolink --logging
+
+  build-Release-ARM64:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-
+      - run:
+          name: "Build the application for Windows OS"
+          command: npx react-native run-windows --arch ARM64 --no-deploy --no-launch --no-packager --no-autolink --logging --release
+
+
+
+workflows:
+  version: 2.1
+  build-x64:
+    jobs:
+      - install
+      - build-Release-x64:
+          requires:
+            - install
+      - build-Debug-x64:
+          requires:
+            - install
+  build-ARM64:
+    jobs:
+      - install
+      - build-Release-ARM64:
+          requires:
+            - install
+      - build-Debug-ARM64:
+          requires:
+            - install
