@@ -1,0 +1,8 @@
+namespace ReactNativeNotes
+{
+    [default_interface]
+    runtimeclass UserAccountPage : Windows.UI.Xaml.Controls.Page
+    {
+        UserAccountPage();
+    }
+}

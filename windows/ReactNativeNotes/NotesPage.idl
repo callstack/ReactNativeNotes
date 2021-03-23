@@ -1,0 +1,8 @@
+namespace ReactNativeNotes
+{
+    [default_interface]
+    runtimeclass NotesPage : Windows.UI.Xaml.Controls.Page
+    {
+        NotesPage();
+    }
+}
