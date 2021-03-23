@@ -28,6 +28,6 @@ const styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent("NotesMainPanel", NotesMainPanel);
+AppRegistry.registerComponent("NotesMainPanel", () => NotesMainPanel);
 
 export default NotesMainPanel;

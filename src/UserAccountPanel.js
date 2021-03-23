@@ -39,6 +39,6 @@ const styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent("UserAccountPanel", UserAccountPanel);
+AppRegistry.registerComponent("UserAccountPanel", () => UserAccountPanel);
 
 export default UserAccountPanel;
