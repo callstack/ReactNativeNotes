@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import NotesMainPanel from './src/NotesMainPanel';
-import LeftOptionsPanel from './src/LeftOptionsPanel';
 import UserAccountPanel from './src/UserAccountPanel';
 
 
@@ -21,7 +20,6 @@ class App extends React.Component {
       <>
         <UserAccountPanel />
         <View style={styles.mainLayout}>
-          <LeftOptionsPanel/>
           <NotesMainPanel/>
         </View>
       </>

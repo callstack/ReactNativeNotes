@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 
 
-class LeftOptionsPanel extends React.Component {
+class ApplicationSettingsPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -63,6 +63,6 @@ const styles = StyleSheet.create({
 });
 
 
-AppRegistry.registerComponent("LeftOptionsPanel", LeftOptionsPanel);
+AppRegistry.registerComponent("ApplicationSettingsPanel", () => ApplicationSettingsPanel);
 
-export default LeftOptionsPanel;
+export default ApplicationSettingsPanel;
