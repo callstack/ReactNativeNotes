@@ -19,7 +19,7 @@ class App extends React.Component {
   render() {
     return (
       <>
-      <UserAccountPanel/>
+        <UserAccountPanel />
         <View style={styles.mainLayout}>
           <LeftOptionsPanel/>
           <NotesMainPanel/>

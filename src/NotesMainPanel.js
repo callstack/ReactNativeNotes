@@ -17,7 +17,7 @@ class NotesMainPanel extends React.Component {
   render() {
     return(
       <View>
-        <Text>Placeholder</Text>
+        <Text>NotesMainPanel</Text>
       </View>
     );
   }

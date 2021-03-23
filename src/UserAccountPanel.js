@@ -16,8 +16,10 @@ class UserAccountPanel extends React.Component {
 
   render() {
     return(
-      <View>
-        <Text>Placeholder</Text>
+      <View style={styles.panel}>
+        <View style={styles.panelContent}>
+          <Text>UserAccountPanel</Text>
+        </View>
       </View>
     );
   }
@@ -25,6 +27,15 @@ class UserAccountPanel extends React.Component {
 
 
 const styles = StyleSheet.create({
+  panel: {
+    height: 75,
+    borderColor: "black",
+    borderWidth: 1,
+  },
+  panelContent: {
+    flex: 1,
+    flexDirection: "column",
+  }
 });
 
 
