@@ -7,10 +7,13 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <react:ReactRootView 
-        x:Name="ReactRootView"
-        ComponentName="ReactNativeNotes"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        MinHeight="400"/>
+    Background="Transparent">
+    <NavigationView x:Name="TopNavigationPanel" PaneDisplayMode="Top" ItemInvoked="TopNavigationPanel_ItemInvoked" BackRequested="TopNavigationPanel_BackRequested">
+        <NavigationView.MenuItems>
+            <NavigationViewItem  Content="Account" Tag="UserAccountPage" />
+            <NavigationViewItem  Content="Settings" Tag="ApplicationSettingsPage" />
+            <NavigationViewItem  Content="Notes" Tag="NotesPage" />
+        </NavigationView.MenuItems>
+        <Frame x:Name="ApplicationContentFrame"/>
+    </NavigationView>
 </Page>
