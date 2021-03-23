@@ -9,13 +9,22 @@ import {
   View,
 } from 'react-native';
 
+import NotesMainPanel from './src/NotesMainPanel';
+import LeftOptionsPanel from './src/LeftOptionsPanel';
+import UserAccountPanel from './src/UserAccountPanel';
+
 
 class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.mainLayout}>
-      </View>
+      <>
+      <UserAccountPanel/>
+        <View style={styles.mainLayout}>
+          <LeftOptionsPanel/>
+          <NotesMainPanel/>
+        </View>
+      </>
     );
   }
 };
