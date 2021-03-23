@@ -9,9 +9,6 @@ import {
   View,
 } from 'react-native';
 
-import NotesMainPanel from './src/NotesMainPanel';
-import UserAccountPanel from './src/UserAccountPanel';
-
 
 class App extends React.Component {
 
