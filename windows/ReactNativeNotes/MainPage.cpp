@@ -32,16 +32,18 @@ namespace winrt::ReactNativeNotes::implementation
 
     void MainPage::TopNavigationPanel_BackRequested( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args )
     {
-
     }
 
     void MainPage::Navigate( winrt::hstring pageName ) noexcept
     {
-        ApplicationContentFrame().Navigate( Windows::UI::Xaml::Interop::TypeName
-            {
-                to_hstring( L"ReactNativeNotes." + pageName ),
-                Windows::UI::Xaml::Interop::TypeKind::Custom
-            } );
+        auto pageToNavigateTo = Windows::UI::Xaml::Interop::TypeName
+        {
+            to_hstring( L"ReactNativeNotes." + pageName ),
+            Windows::UI::Xaml::Interop::TypeKind::Custom
+        };
+        auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo();
+        navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromLeft );
+        ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
     }
 } 
 
