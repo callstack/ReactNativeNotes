@@ -16,7 +16,7 @@ import NoteWidget from './Widgets/NoteWidget';
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 
-const noteWidgetWidth = 400;
+const noteWidgetWidth = 300;
 
 
 class NotesMainPanel extends React.Component {
@@ -25,12 +25,16 @@ class NotesMainPanel extends React.Component {
     this.state = {
       notes: [{key: "1"}, {key: "2"}, {key: "3"}, {key: "4"}, {key: "5"}, {key: "6"}, {key: "7"}, {key: "8"}, {key: "9"}],
       dimensions: {window, screen},
-      columns: 1,
+      columns: this.calculateColumnWidth(window),
     }
   };
 
+  calculateColumnWidth = (window) => {
+    return Math.floor(window.width / noteWidgetWidth);
+  };
+
   onChange = ({ window, screen }) => {
-    this.setState({ dimensions: { window, screen }, columns: Math.floor(window.width / noteWidgetWidth) });
+    this.setState({ dimensions: { window, screen }, columns: this.calculateColumnWidth(window) });
   };
 
   componentDidMount() {
