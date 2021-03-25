@@ -10,6 +10,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  NativeModules,
 } from 'react-native';
 
 
@@ -23,6 +24,7 @@ class NoteWidget extends React.Component {
   };
 
   enterNote = () => {
+    NativeModules.NoteWidgetClickHandler.openWidget(this.state.ID);
   };
 
   render() {
