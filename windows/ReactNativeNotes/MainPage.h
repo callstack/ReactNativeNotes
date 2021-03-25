@@ -14,7 +14,7 @@ namespace winrt::ReactNativeNotes::implementation
         void TopNavigationPanel_BackRequested( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args );
 
     private:
-        void Navigate( winrt::hstring pageName ) noexcept;
+        void Navigate( winrt::hstring pageName, const bool hasAnimation = true ) noexcept;
     };
 }
 

@@ -15,7 +15,7 @@ namespace winrt::ReactNativeNotes::implementation
     {
         InitializeComponent();
         auto app = Application::Current().as<App>();
-        Navigate( L"NotesPage" );
+        Navigate( L"NotesPage", false );
     }
 
     void MainPage::TopNavigationPanel_ItemInvoked( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )
@@ -35,16 +35,25 @@ namespace winrt::ReactNativeNotes::implementation
     {
     }
 
-    void MainPage::Navigate( winrt::hstring pageName ) noexcept
+    void MainPage::Navigate( winrt::hstring pageName, const bool hasAnimation ) noexcept
     {
         auto pageToNavigateTo = Windows::UI::Xaml::Interop::TypeName
         {
             to_hstring( L"ReactNativeNotes." + pageName ),
             Windows::UI::Xaml::Interop::TypeKind::Custom
         };
-        auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo();
-        navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromLeft );
-        ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
+        if( hasAnimation )
+        {
+            auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo();
+            navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromLeft );
+            ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
+        }
+        else
+        {
+            auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SuppressNavigationTransitionInfo();
+            ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
+        }
+
     }
 } 
 
