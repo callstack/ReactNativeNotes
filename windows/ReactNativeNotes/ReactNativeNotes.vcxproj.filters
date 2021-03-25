@@ -18,6 +18,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="AutolinkedNativeModules.g.h" />
+    <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -62,5 +63,6 @@
     <Page Include="NotesPage.xaml" />
     <Page Include="UserAccountPage.xaml" />
     <Page Include="ApplicationSettingsPage.xaml" />
+    <Page Include="NoteWidgetDetailsPage.xaml" />
   </ItemGroup>
 </Project>
