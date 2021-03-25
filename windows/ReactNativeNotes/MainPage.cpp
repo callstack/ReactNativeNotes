@@ -15,6 +15,7 @@ namespace winrt::ReactNativeNotes::implementation
     {
         InitializeComponent();
         auto app = Application::Current().as<App>();
+        Navigate( L"NotesPage" );
     }
 
     void MainPage::TopNavigationPanel_ItemInvoked( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )

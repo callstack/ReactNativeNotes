@@ -15,22 +15,22 @@ namespace ReactNativeNotes
         REACT_METHOD( OpenWidget, L"openWidget" );
         void OpenWidget( const unsigned int ID ) noexcept
         {
-            auto pageToNavigateTo = winrt::Windows::UI::Xaml::Interop::TypeName
-            {
-                winrt::to_hstring( L"ReactNativeNotes.NoteWidgetDetailsPage" ),
-                winrt::Windows::UI::Xaml::Interop::TypeKind::Custom
-            };
-            auto navigationAnimation = winrt::Windows::UI::Xaml::Media::Animation::DrillInNavigationTransitionInfo();
-            auto& rootFrame = winrt::Windows::UI::Xaml::Window::Current().Content().as<winrt::Windows::UI::Xaml::Controls::Frame>();
-            rootFrame.Navigate( pageToNavigateTo, nullptr, navigationAnimation );
+            NavigateViaMainFrame( L"ReactNativeNotes.NoteWidgetDetailsPage" );
         }
 
         REACT_METHOD( GoToNotesScreen, L"goToNotesScreen" );
         void GoToNotesScreen() noexcept
         {
+            NavigateViaMainFrame( L"ReactNativeNotes.MainPage" );
+        }
+
+
+    private:
+        void NavigateViaMainFrame( const winrt::hstring pageName )
+        {
             auto pageToNavigateTo = winrt::Windows::UI::Xaml::Interop::TypeName
             {
-                winrt::to_hstring( L"ReactNativeNotes.NotesPage" ),
+                pageName,
                 winrt::Windows::UI::Xaml::Interop::TypeKind::Custom
             };
             auto navigationAnimation = winrt::Windows::UI::Xaml::Media::Animation::DrillInNavigationTransitionInfo();
