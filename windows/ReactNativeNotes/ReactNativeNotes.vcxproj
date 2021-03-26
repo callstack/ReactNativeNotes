@@ -109,6 +109,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
+    <ClInclude Include="NoteWidgetDetailsPage.h">
+      <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="NotesPage.h">
       <DependentUpon>NotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -152,6 +157,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="NoteWidgetDetailsPage.cpp">
+      <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="NotesPage.cpp">
       <DependentUpon>NotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -182,6 +191,10 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="NoteWidgetDetailsPage.idl">
+      <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="NotesPage.idl">
       <DependentUpon>NotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -204,6 +217,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="NoteWidgetDetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NotesPage.xaml">

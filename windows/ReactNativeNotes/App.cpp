@@ -53,7 +53,7 @@ void App::OnLaunched(activation::LaunchActivatedEventArgs const& e)
     super::OnLaunched(e);
 
     Frame rootFrame = Window::Current().Content().as<Frame>();
-    rootFrame.Navigate(xaml_typename<ReactNativeNotes::MainPage>(), box_value(e.Arguments()));
+    rootFrame.Navigate(xaml_typename<ReactNativeNotes::NotesPage>(), box_value(e.Arguments()));
 }
 
 /// <summary>
