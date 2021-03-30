@@ -109,6 +109,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="NativeModules\DatabaseHandler.hpp" />
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
     <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
