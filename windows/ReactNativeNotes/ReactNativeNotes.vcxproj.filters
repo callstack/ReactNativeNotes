@@ -69,5 +69,6 @@
     <Page Include="UserAccountPage.xaml" />
     <Page Include="ApplicationSettingsPage.xaml" />
     <Page Include="NoteWidgetDetailsPage.xaml" />
+    <Page Include="CreateNotePage.xaml" />
   </ItemGroup>
 </Project>
