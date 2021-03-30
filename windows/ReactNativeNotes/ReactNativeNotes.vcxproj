@@ -110,6 +110,8 @@
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
+    <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
+    <ClInclude Include="NativeModules\Repository\Repository.hpp" />
     <ClInclude Include="NoteWidgetDetailsPage.h">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -157,6 +159,8 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="NativeModules\Repository\NoteModel.cpp" />
+    <ClCompile Include="NativeModules\Repository\Repository.cpp" />
     <ClCompile Include="NoteWidgetDetailsPage.cpp">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
