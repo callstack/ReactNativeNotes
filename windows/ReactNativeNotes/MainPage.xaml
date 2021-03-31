@@ -11,7 +11,7 @@
     <NavigationView x:Name="TopNavigationPanel" PaneDisplayMode="Top" ItemInvoked="TopNavigationPanel_ItemInvoked" BackRequested="TopNavigationPanel_BackRequested">
         <NavigationView.MenuItems>
             <NavigationViewItem  Content="Account" Tag="UserAccountPage" />
-            <NavigationViewItem  Content="Settings" Tag="ApplicationSettingsPage" />
+            <NavigationViewItem  Content="Create" Tag="CreateNotePage" />
             <NavigationViewItem  Content="Notes" Tag="NotesPage" />
         </NavigationView.MenuItems>
         <Frame x:Name="ApplicationContentFrame"/>
