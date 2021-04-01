@@ -24,6 +24,8 @@ namespace winrt::ReactNativeNotes::implementation
 
         void Delete( const unsigned int ID ) noexcept;
 
+        unsigned int Size() const noexcept;
+
     private:
         std::vector<NoteModel> notes;
     };

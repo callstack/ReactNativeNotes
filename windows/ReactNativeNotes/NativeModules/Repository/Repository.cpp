@@ -35,4 +35,9 @@ namespace winrt::ReactNativeNotes::implementation
         auto it = std::find( notes.cbegin(), notes.cend(), Read(ID) );
         notes.erase( it );
     }
+
+    unsigned int Repository::Size() const noexcept
+    {
+        return notes.size();
+    }
 }
