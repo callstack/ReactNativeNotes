@@ -9,18 +9,12 @@ namespace winrt::ReactNativeNotes::implementation
     class Repository
     {
     public:
+        Repository() = default;
+
         Repository( const Repository& ) = delete;
         Repository( Repository&& ) = delete;
         void operator=( const Repository& ) = delete;
 
-        static Repository* Get()
-        {
-            if( instance == nullptr )
-            {
-                instance = new Repository();
-            }
-            return instance;
-        }
 
         void Create( NoteModel& note ) noexcept;
 
@@ -30,11 +24,9 @@ namespace winrt::ReactNativeNotes::implementation
 
         void Delete( const unsigned int ID ) noexcept;
 
+        unsigned int Size() const noexcept;
+
     private:
-        Repository() = default;
-
         std::vector<NoteModel> notes;
-
-        static Repository* instance;
     };
 }

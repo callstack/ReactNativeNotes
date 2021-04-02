@@ -4,8 +4,6 @@
 
 namespace winrt::ReactNativeNotes::implementation
 {
-    Repository* Repository::instance = nullptr;
-
     void Repository::Create( NoteModel& note ) noexcept
     {
         note.ID( static_cast<unsigned int>(notes.size() + 1) );
@@ -36,5 +34,10 @@ namespace winrt::ReactNativeNotes::implementation
     {
         auto it = std::find( notes.cbegin(), notes.cend(), Read(ID) );
         notes.erase( it );
+    }
+
+    unsigned int Repository::Size() const noexcept
+    {
+        return notes.size();
     }
 }
