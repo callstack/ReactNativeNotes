@@ -5,9 +5,11 @@
 
 import React from 'react';
 import {
+  Alert,
   AppRegistry,
   Dimensions,
   FlatList,
+  NativeModules,
   StyleSheet,
   View,
 } from 'react-native';
@@ -23,14 +25,14 @@ class NotesMainPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      notes: [{key: "1"}, {key: "2"}, {key: "3"}, {key: "4"}, {key: "5"}, {key: "6"}, {key: "7"}, {key: "8"}, {key: "9"}],
+      notes: [],
       dimensions: {window, screen},
       columns: this.calculateColumnWidth(window),
     }
   };
 
   calculateColumnWidth = (window) => {
-    return Math.floor(window.width / noteWidgetWidth);
+    return Math.floor(Dimensions.get("window").width / noteWidgetWidth);
   };
 
   onChange = ({ window, screen }) => {
@@ -38,11 +40,27 @@ class NotesMainPanel extends React.Component {
   };
 
   componentDidMount() {
+    this.getDataFromDatabase();
     Dimensions.addEventListener("change", this.onChange);
   };
 
   componentWillUnmount() {
     Dimensions.removeEventListener("change", this.onChange);
+  };
+
+  createNotesKeys = (numberOfNotes) => {
+    let allNotesKeys = [];
+    for(id = 0; id < numberOfNotes; id++) {
+      const nextObject = {key: id};
+      allNotesKeys.push(nextObject);
+    }
+    this.setState({notes: allNotesKeys});
+  };
+
+  getDataFromDatabase = () => {
+    NativeModules.Database.getNumberOfNotes()
+      .then(result => this.createNotesKeys(result))
+      .catch(error => Alert.alert("ERROR!", `Result: ${error}`));
   };
 
   renderNote = notes => {
@@ -52,7 +70,7 @@ class NotesMainPanel extends React.Component {
   render() {
     return(
       <View style={styles.mainContainer}>
-        <FlatList numColumns={this.state.columns} key={this.state.columns} data={this.state.notes} renderItem={this.renderNote}/>
+        <FlatList key={this.state.columns} numColumns={this.state.columns} data={this.state.notes} renderItem={this.renderNote}/>
       </View>
     );
   }

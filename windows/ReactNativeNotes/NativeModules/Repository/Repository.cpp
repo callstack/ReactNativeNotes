@@ -40,4 +40,9 @@ namespace winrt::ReactNativeNotes::implementation
     {
         return notes.size();
     }
+
+    const bool Repository::Exists( const unsigned int ID ) const noexcept
+    {
+        return std::find_if( notes.cbegin(), notes.cend(), [=]( const NoteModel& n )->bool { return n.ID() == ID; } ) != notes.cend();
+    }
 }

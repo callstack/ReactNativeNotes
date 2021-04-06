@@ -26,6 +26,8 @@ namespace winrt::ReactNativeNotes::implementation
 
         unsigned int Size() const noexcept;
 
+        const bool Exists( const unsigned int ID ) const noexcept;
+
     private:
         std::vector<NoteModel> notes;
     };

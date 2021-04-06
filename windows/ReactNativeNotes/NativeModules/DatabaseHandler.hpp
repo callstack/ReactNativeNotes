@@ -41,6 +41,30 @@ namespace winrt::ReactNativeNotes::implementation
             return winrt::to_hstring( data->Read( ID ).ShortPost() );
         }
 
+        REACT_METHOD( GetNumberOfNotes, L"getNumberOfNotes" );
+        void GetNumberOfNotes( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            result.Resolve( React::JSValue( std::to_string(data->Size()) ) );
+        }
+
+        REACT_METHOD( DoesIDExists, L"doesIDExists" );
+        const bool DoesIDExists( const unsigned int ID ) noexcept
+        {
+            return data->Exists( ID );
+        }
+
+        REACT_METHOD( GetAllNotesIDs, L"getAllNotesIDs" );
+        Microsoft::ReactNative::JSValue GetAllNotesIDs() noexcept
+        {
+            Microsoft::ReactNative::JSValueArray keyArray;
+            for( unsigned int i = 0; i < data->Size(); ++i )
+            {
+                if( data->Exists( i ) )
+                    keyArray.push_back( Microsoft::ReactNative::JSValueObject{ { "key", i } } );
+            }
+            return Microsoft::ReactNative::JSValue( std::move( keyArray ) );
+        }
+
     private:
         std::unique_ptr<Repository> data;
     };
