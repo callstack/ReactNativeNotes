@@ -24,21 +24,21 @@ namespace winrt::ReactNativeNotes::implementation
         }
 
         REACT_METHOD( GetNoteTitle, L"getNoteTitle" );
-        const winrt::hstring GetNoteTitle( const unsigned int ID ) noexcept
+        void GetNoteTitle( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            return winrt::to_hstring(data->Read( ID ).Title());
+            result.Resolve( React::JSValue( data->Read( index ).Title() ) );
         }
 
         REACT_METHOD( GetNotePost, L"getNotePost" );
-        const winrt::hstring GetNotePost( const unsigned int ID ) noexcept
+        const winrt::hstring GetNotePost( const int index ) noexcept
         {
-            return winrt::to_hstring( data->Read( ID ).Post() );
+            return winrt::to_hstring( data->Read( index ).Post() );
         }
 
         REACT_METHOD( GetNoteShortPost, L"getNoteShortPost" );
-        const winrt::hstring GetNoteShortPost( const unsigned int ID ) noexcept
+        void GetNoteShortPost( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            return winrt::to_hstring( data->Read( ID ).ShortPost() );
+            result.Resolve( React::JSValue( data->Read( index ).ShortPost() ) );
         }
 
         REACT_METHOD( GetNumberOfNotes, L"getNumberOfNotes" );
