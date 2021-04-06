@@ -11,6 +11,7 @@ import {
   TouchableHighlight,
   View,
   NativeModules,
+  Alert,
 } from 'react-native';
 
 
@@ -20,12 +21,40 @@ class NoteWidget extends React.Component {
     this.state = {
       width: props.width,
       ID: Number(props.ID),
+      title: "",
+      shortMessage: "",
     }
   };
 
   enterNote = () => {
     NativeModules.NoteWidgetClickHandler.openWidget(this.state.ID);
   };
+
+  componentDidMount(){
+    this.getNoteTitle();
+    this.getNoteShortMessage();
+  };
+
+  setTitle = (newTitle) => {
+    this.setState({title: newTitle});
+  };
+
+  setMessage = (message) => {
+    this.setState({shortMessage: message});
+  };
+
+  getNoteTitle = () => {
+    NativeModules.Database.getNoteTitle(this.state.ID)
+      .then(result => this.setTitle(result))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
+  };
+
+  getNoteShortMessage = () => {
+    NativeModules.Database.getNoteShortPost(this.state.ID)
+      .then(result => this.setMessage(result))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
+  };
+
 
   render() {
     return(
@@ -35,7 +64,9 @@ class NoteWidget extends React.Component {
           <View style={styles.noteHeader}>
             <Text>{this.state.ID}</Text>
             <View style={styles.noteTitle}>
-              <Text style={{textAlign: "center"}}>Header</Text>
+              <Text style={{textAlign: "center"}}>
+                {this.state.title}
+              </Text>
             </View>
           </View>
 
@@ -43,10 +74,8 @@ class NoteWidget extends React.Component {
 
           <View style={styles.noteMainContent}>
             <Text>
-              This is the single widget
-              {'\n'}With the text written here only for the presentation purpose.
+              {this.state.shortMessage}
             </Text>
-            <Text>This note has the ID: {this.state.ID}</Text>
           </View>
 
         </View>
