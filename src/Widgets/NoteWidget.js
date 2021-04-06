@@ -3,7 +3,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -15,74 +15,60 @@ import {
 } from 'react-native';
 
 
-class NoteWidget extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: props.width,
-      ID: Number(props.ID),
-      title: "",
-      shortMessage: "",
-    }
+export default function NoteWidget(props){
+  const {width, ID} = props;
+
+  const [title, setTitle] = useState("");
+  const [shortMessage, setShortMessage] = useState("");
+
+  useEffect(() => {
+    getNoteTitle();
+    getNoteShortMessage();
+  }, []);
+
+  const enterNote = () => {
+    NativeModules.NoteWidgetClickHandler.openWidget(ID);
   };
 
-  enterNote = () => {
-    NativeModules.NoteWidgetClickHandler.openWidget(this.state.ID);
-  };
 
-  componentDidMount(){
-    this.getNoteTitle();
-    this.getNoteShortMessage();
-  };
-
-  setTitle = (newTitle) => {
-    this.setState({title: newTitle});
-  };
-
-  setMessage = (message) => {
-    this.setState({shortMessage: message});
-  };
-
-  getNoteTitle = () => {
-    NativeModules.Database.getNoteTitle(this.state.ID)
-      .then(result => this.setTitle(result))
+  const getNoteTitle = () => {
+    NativeModules.Database.getNoteTitle(ID)
+      .then(result => setTitle(result))
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
-  getNoteShortMessage = () => {
-    NativeModules.Database.getNoteShortPost(this.state.ID)
-      .then(result => this.setMessage(result))
+  const getNoteShortMessage = () => {
+    NativeModules.Database.getNoteShortPost(ID)
+      .then(result => setShortMessage(result))
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
+  return(
+    <TouchableHighlight onPress={enterNote} style={styles.noteWidget} underlayColor={'transparent'}>
+      <View style={{width: width}}>
 
-  render() {
-    return(
-      <TouchableHighlight onPress={this.enterNote} style={styles.noteWidget} underlayColor={'transparent'}>
-        <View style={{width: this.state.width}}>
-
-          <View style={styles.noteHeader}>
-            <Text>{this.state.ID}</Text>
-            <View style={styles.noteTitle}>
-              <Text style={{textAlign: "center"}}>
-                {this.state.title}
-              </Text>
-            </View>
-          </View>
-
-          <View style={styles.noteSeparator}></View>
-
-          <View style={styles.noteMainContent}>
-            <Text>
-              {this.state.shortMessage}
+        <View style={styles.noteHeader}>
+          <Text>{ID}</Text>
+          <View style={styles.noteTitle}>
+            <Text style={{textAlign: "center"}}>
+              {title}
             </Text>
           </View>
-
         </View>
-      </TouchableHighlight>
-    );
-  }
+
+        <View style={styles.noteSeparator}></View>
+
+        <View style={styles.noteMainContent}>
+          <Text>
+            {shortMessage}
+          </Text>
+        </View>
+
+      </View>
+    </TouchableHighlight>
+  );
 };
+
 
 
 const styles = StyleSheet.create({
@@ -124,4 +110,3 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent("NoteWidget", () => NoteWidget);
 
-export default NoteWidget;
