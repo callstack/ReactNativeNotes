@@ -20,6 +20,14 @@ namespace winrt::ReactNativeNotes::implementation
         return NoteModel();
     }
 
+    NoteModel Repository::Read( const int index ) const noexcept
+    {
+        if( index >= notes.size() )
+            return NoteModel();
+        else
+            return notes.at(index);
+    }
+
     void Repository::Update( const NoteModel& note ) noexcept
     {
         for( unsigned int index = 0; index < notes.size(); ++index )
@@ -36,6 +44,11 @@ namespace winrt::ReactNativeNotes::implementation
         notes.erase( it );
     }
 
+    void Repository::Delete( const int index ) noexcept
+    {
+        notes.erase( notes.cbegin() + index );
+    }
+
     unsigned int Repository::Size() const noexcept
     {
         return notes.size();
@@ -44,5 +57,9 @@ namespace winrt::ReactNativeNotes::implementation
     const bool Repository::Exists( const unsigned int ID ) const noexcept
     {
         return std::find_if( notes.cbegin(), notes.cend(), [=]( const NoteModel& n )->bool { return n.ID() == ID; } ) != notes.cend();
+    }
+    const bool Repository::Exists( const int index ) const noexcept
+    {
+        return index < notes.size();
     }
 }
