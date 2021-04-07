@@ -20,7 +20,7 @@ class UserAccountPanel extends React.Component {
         <View style={styles.panelContent}>
           <Text>UserAccountPanel</Text>
           <Text>This panel will have all the features of User's account.</Text>
-          <Text><br/>Further implementation will yet be done!</Text>
+          <Text>Further implementation will yet be done!</Text>
         </View>
       </View>
     );
