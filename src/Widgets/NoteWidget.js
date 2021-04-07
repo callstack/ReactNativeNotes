@@ -3,7 +3,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,49 +11,64 @@ import {
   TouchableHighlight,
   View,
   NativeModules,
+  Alert,
 } from 'react-native';
 
 
-class NoteWidget extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      width: props.width,
-      ID: Number(props.ID),
-    }
+export default function NoteWidget(props){
+  const {width, ID} = props;
+
+  const [title, setTitle] = useState("");
+  const [shortMessage, setShortMessage] = useState("");
+
+  useEffect(() => {
+    getNoteTitle();
+    getNoteShortMessage();
+  }, []);
+
+  const enterNote = () => {
+    NativeModules.NoteWidgetClickHandler.openWidget(ID);
   };
 
-  enterNote = () => {
-    NativeModules.NoteWidgetClickHandler.openWidget(this.state.ID);
+
+  const getNoteTitle = () => {
+    NativeModules.Database.getNoteTitle(ID)
+      .then(result => setTitle(result))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
-  render() {
-    return(
-      <TouchableHighlight onPress={this.enterNote} style={styles.noteWidget} underlayColor={'transparent'}>
-        <View style={{width: this.state.width}}>
+  const getNoteShortMessage = () => {
+    NativeModules.Database.getNoteShortPost(ID)
+      .then(result => setShortMessage(result))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
+  };
 
-          <View style={styles.noteHeader}>
-            <Text>{this.state.ID}</Text>
-            <View style={styles.noteTitle}>
-              <Text style={{textAlign: "center"}}>Header</Text>
-            </View>
-          </View>
+  return(
+    <TouchableHighlight onPress={enterNote} style={styles.noteWidget} underlayColor={'transparent'}>
+      <View style={{width: width}}>
 
-          <View style={styles.noteSeparator}></View>
-
-          <View style={styles.noteMainContent}>
-            <Text>
-              This is the single widget
-              {'\n'}With the text written here only for the presentation purpose.
+        <View style={styles.noteHeader}>
+          <Text>{ID}</Text>
+          <View style={styles.noteTitle}>
+            <Text style={{textAlign: "center"}}>
+              {title}
             </Text>
-            <Text>This note has the ID: {this.state.ID}</Text>
           </View>
-
         </View>
-      </TouchableHighlight>
-    );
-  }
+
+        <View style={styles.noteSeparator}></View>
+
+        <View style={styles.noteMainContent}>
+          <Text>
+            {shortMessage}
+          </Text>
+        </View>
+
+      </View>
+    </TouchableHighlight>
+  );
 };
+
 
 
 const styles = StyleSheet.create({
@@ -95,4 +110,3 @@ const styles = StyleSheet.create({
 
 AppRegistry.registerComponent("NoteWidget", () => NoteWidget);
 
-export default NoteWidget;

@@ -19,12 +19,17 @@ namespace winrt::ReactNativeNotes::implementation
         void Create( NoteModel& note ) noexcept;
 
         NoteModel Read( const unsigned int ID ) const noexcept;
+        NoteModel Read( const int index ) const noexcept;
 
         void Update( const NoteModel& note ) noexcept;
 
         void Delete( const unsigned int ID ) noexcept;
+        void Delete( const int index ) noexcept;
 
         unsigned int Size() const noexcept;
+
+        const bool Exists( const unsigned int ID ) const noexcept;
+        const bool Exists( const int index ) const noexcept;
 
     private:
         std::vector<NoteModel> notes;
