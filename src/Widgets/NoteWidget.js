@@ -3,7 +3,7 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -20,10 +20,15 @@ export default function NoteWidget(props){
 
   const [title, setTitle] = useState("");
   const [shortMessage, setShortMessage] = useState("");
+  const isMounted = useRef(null);
 
   useEffect(() => {
+    isMounted.current = true;
     getNoteTitle();
     getNoteShortMessage();
+    return () => {
+      isMounted.current = false;
+    }
   }, []);
 
   const enterNote = () => {
@@ -33,13 +38,13 @@ export default function NoteWidget(props){
 
   const getNoteTitle = () => {
     NativeModules.Database.getNoteTitle(ID)
-      .then(result => setTitle(result))
+      .then(result => () => {isMounted.current && setTitle(result)})
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
   const getNoteShortMessage = () => {
     NativeModules.Database.getNoteShortPost(ID)
-      .then(result => setShortMessage(result))
+      .then(result => () => {isMounted.current && setShortMessage(result)})
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
@@ -78,10 +83,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: "whitesmoke",
     borderRadius: 10,
-    shadowOffset: {x: 5, y: 50},
-    shadowColor: "black",
-    elevation: 10,
-    opacity: 0.8
+    opacity: 1,
   },
   noteHeader: {
     flex: 1,
@@ -100,7 +102,8 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     marginTop: 5,
     marginBottom: 10,
-    alignSelf: "stretch"
+    alignItems: "stretch",
+    alignContent: "stretch",
   },
   noteMainContent: {
     margin: 10
