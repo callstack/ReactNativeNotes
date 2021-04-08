@@ -8,11 +8,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="Transparent">
-    <NavigationView x:Name="TopNavigationPanel" PaneDisplayMode="Top" ItemInvoked="TopNavigationPanel_ItemInvoked" BackRequested="TopNavigationPanel_BackRequested">
+    <NavigationView x:Name="TopNavigationPanel" PaneDisplayMode="Left" OpenPaneLength="120" ItemInvoked="TopNavigationPanel_ItemInvoked" BackRequested="TopNavigationPanel_BackRequested">
         <NavigationView.MenuItems>
-            <NavigationViewItem  Content="Account" Tag="UserAccountPage" />
-            <NavigationViewItem  Content="Create" Tag="CreateNotePage" />
-            <NavigationViewItem  Content="Notes" Tag="NotesPage" />
+            <NavigationViewItem Content="Account" Tag="UserAccountPage" />
+            <NavigationViewItem Content="Create" Tag="CreateNotePage" />
+            <NavigationViewItem Content="Notes" Tag="NotesPage" />
         </NavigationView.MenuItems>
         <Frame x:Name="ApplicationContentFrame"/>
     </NavigationView>

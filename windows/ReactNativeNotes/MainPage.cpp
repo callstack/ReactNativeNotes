@@ -45,7 +45,7 @@ namespace winrt::ReactNativeNotes::implementation
         if( hasAnimation )
         {
             auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo();
-            navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromLeft );
+            navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromBottom );
             ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
         }
         else
