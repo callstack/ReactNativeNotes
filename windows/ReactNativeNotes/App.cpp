@@ -52,6 +52,10 @@ void App::OnLaunched(activation::LaunchActivatedEventArgs const& e)
 {
     super::OnLaunched(e);
 
+    auto coreTitleBar = Windows::ApplicationModel::Core::CoreApplication::GetCurrentView().TitleBar();
+    coreTitleBar.ExtendViewIntoTitleBar( true );
+    auto titleBar = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().TitleBar();
+    titleBar.ButtonBackgroundColor( Windows::UI::Colors::Transparent() );
     Frame rootFrame = Window::Current().Content().as<Frame>();
     rootFrame.Navigate(xaml_typename<ReactNativeNotes::MainPage>(), box_value(e.Arguments()));
 }

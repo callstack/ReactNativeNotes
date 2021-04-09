@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ReactNativeNotes"
     xmlns:react="using:Microsoft.ReactNative"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Background="Transparent"
@@ -12,27 +13,27 @@
         <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="White"/>
         <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="White"/>
     </Page.Resources>
-    <NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
-        <NavigationView.MenuItems>
+    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
+        <muxc:NavigationView.MenuItems>
 
-            <NavigationViewItem Tag="UserAccountPage" Content="User Account">
-                <NavigationViewItem.Icon>
+            <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account">
+                <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe13d;"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
 
-            <NavigationViewItem Content="Create" Tag="CreateNotePage">
-                <NavigationViewItem.Icon>
+            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage">
+                <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe109;"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
 
-            <NavigationViewItem Content="Notes" Tag="NotesPage">
-                <NavigationViewItem.Icon>
+            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage">
+                <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe8a9;"/>
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
-        </NavigationView.MenuItems>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+        </muxc:NavigationView.MenuItems>
         <Frame x:Name="ApplicationContentFrame"/>
-    </NavigationView>
+    </muxc:NavigationView>
 </Page>

@@ -18,7 +18,7 @@ namespace winrt::ReactNativeNotes::implementation
         Navigate( L"NotesPage", false );
     }
 
-    void MainPage::ItemInvokedEventHandler( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )
+    void MainPage::ItemInvokedEventHandler( Microsoft::UI::Xaml::Controls::NavigationView const& sender, Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )
     {
         if( args.IsSettingsInvoked() == true )
         {
@@ -31,7 +31,7 @@ namespace winrt::ReactNativeNotes::implementation
         }
     }
 
-    void MainPage::BackRequestedEventHandler( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args )
+    void MainPage::BackRequestedEventHandler( Microsoft::UI::Xaml::Controls::NavigationView const& sender, Microsoft::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args )
     {
     }
 
