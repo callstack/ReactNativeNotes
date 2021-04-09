@@ -41,14 +41,12 @@ class NotesMainPanel extends React.Component {
   };
 
   componentDidMount() {
-    this.setState({isMounted: true});
     this.getDataFromDatabase();
     Dimensions.addEventListener("change", this.onChange);
   };
 
   componentWillUnmount() {
     Dimensions.removeEventListener("change", this.onChange);
-    this.setState({isMounted: false});
   };
 
   createNotesKeys = (numberOfNotes) => {
@@ -57,7 +55,7 @@ class NotesMainPanel extends React.Component {
       const nextObject = {key: id};
       allNotesKeys.push(nextObject);
     }
-    this.state.isMounted && this.setState({notes: allNotesKeys});
+    this.setState({notes: allNotesKeys});
   };
 
   getDataFromDatabase = () => {
@@ -84,8 +82,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     flexDirection: "column",
-    margin: 10,
-    backgroundColor: "transparent",
+    backgroundColor: "rgba(245,245,245,0.8)",
   },
 });
 

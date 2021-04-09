@@ -38,13 +38,13 @@ export default function NoteWidget(props){
 
   const getNoteTitle = () => {
     NativeModules.Database.getNoteTitle(ID)
-      .then(result => () => {isMounted.current && setTitle(result)})
+      .then(result => {isMounted && setTitle(result)})
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
   const getNoteShortMessage = () => {
     NativeModules.Database.getNoteShortPost(ID)
-      .then(result => () => {isMounted.current && setShortMessage(result)})
+      .then(result => {isMounted && setShortMessage(result)})
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
@@ -78,11 +78,11 @@ export default function NoteWidget(props){
 
 const styles = StyleSheet.create({
   noteWidget: {
-    borderColor: "grey",
-    borderWidth: 1,
+    borderColor: "rgba(200,200,200,0.1)",
+    borderWidth: 5,
     margin: 20,
-    backgroundColor: "whitesmoke",
-    borderRadius: 10,
+    backgroundColor: "white",
+    borderRadius: 5,
     opacity: 1,
   },
   noteHeader: {
