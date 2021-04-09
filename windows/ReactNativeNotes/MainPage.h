@@ -10,8 +10,8 @@ namespace winrt::ReactNativeNotes::implementation
     {
     public:
         MainPage();
-        void TopNavigationPanel_ItemInvoked( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args );
-        void TopNavigationPanel_BackRequested( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args );
+        void ItemInvokedEventHandler( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args );
+        void BackRequestedEventHandler( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args );
 
     private:
         void Navigate( winrt::hstring pageName, const bool hasAnimation = true ) noexcept;

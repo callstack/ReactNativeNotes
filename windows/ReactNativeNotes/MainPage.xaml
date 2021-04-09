@@ -6,13 +6,31 @@
     xmlns:react="using:Microsoft.ReactNative"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="Transparent">
-    <NavigationView x:Name="TopNavigationPanel" PaneDisplayMode="Left" OpenPaneLength="120" ItemInvoked="TopNavigationPanel_ItemInvoked" BackRequested="TopNavigationPanel_BackRequested">
+    mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="White"/>
+    </Page.Resources>
+    <NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
         <NavigationView.MenuItems>
-            <NavigationViewItem Content="Account" Tag="UserAccountPage" />
-            <NavigationViewItem Content="Create" Tag="CreateNotePage" />
-            <NavigationViewItem Content="Notes" Tag="NotesPage" />
+
+            <NavigationViewItem Tag="UserAccountPage" Content="User Account">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe13d;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+
+            <NavigationViewItem Content="Create" Tag="CreateNotePage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe109;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+
+            <NavigationViewItem Content="Notes" Tag="NotesPage">
+                <NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe8a9;"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
         </NavigationView.MenuItems>
         <Frame x:Name="ApplicationContentFrame"/>
     </NavigationView>
