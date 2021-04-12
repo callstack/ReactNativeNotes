@@ -11,6 +11,7 @@ import {
   FlatList,
   NativeModules,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
@@ -71,6 +72,8 @@ class NotesMainPanel extends React.Component {
   render() {
     return(
       <View style={styles.mainContainer}>
+        <View style={{height: 10}}></View>
+        <Text>This is the main content of the app.</Text>
         <FlatList key={this.state.columns} numColumns={this.state.columns} data={this.state.notes} renderItem={this.renderNote}/>
       </View>
     );
@@ -82,7 +85,7 @@ const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     flexDirection: "column",
-    backgroundColor: "rgba(245,245,245,0.8)",
+    backgroundColor: "transparent",
   },
 });
 

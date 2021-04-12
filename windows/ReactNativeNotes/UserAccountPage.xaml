@@ -8,8 +8,15 @@
     xmlns:react="using:Microsoft.ReactNative"
     Background="Transparent"
     mc:Ignorable="d">
-    <react:ReactRootView
-        x:Name="ReactRootView"
-        ComponentName="UserAccountPanel"
-        MinHeight="400"/>
+    <react:ReactRootView x:Name="ReactRootView" ComponentName="UserAccountPanel" MinHeight="400">
+        <react:ReactRootView.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="Silver" Offset="0.0" />
+                <GradientStop Color="GhostWhite" Offset="0.20" />
+                <GradientStop Color="WhiteSmoke" Offset="0.40" />
+                <GradientStop Color="GhostWhite" Offset="0.60"/>
+                <GradientStop Color="Silver" Offset="0.80" />
+            </LinearGradientBrush>
+        </react:ReactRootView.Background>
+    </react:ReactRootView>
 </Page>
