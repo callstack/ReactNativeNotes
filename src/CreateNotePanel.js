@@ -12,7 +12,6 @@ import {
   TextInput,
   View,
   Dimensions,
-  ScrollView,
   Button,
 } from 'react-native';
 
@@ -64,7 +63,19 @@ class CreateNotePanel extends React.Component {
   };
 
   cancelButtonPressed = () => {
-    NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+    if(this.state.title !== "" || this.state.message !== "") {
+      Alert.alert("Are you sure?", "It looks like you still have unsaved changes, which are going to be lost.",
+      [
+        {
+          text: "No!",
+          style: "cancel"
+        },
+        { text: "Yes, cancel!", onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen() }
+      ])
+    }
+    else {
+      NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+    }
   };
 
   createButtonPressed = () => {
@@ -82,7 +93,6 @@ class CreateNotePanel extends React.Component {
             value={this.state.title}
             autoFocus={true}
             clearButtonMode={"while-editing"}
-            clearTextOnFocus={true}
             placeholder={"Title"}/>
 
           <TextInput style={[styles.noteMessageBox, { height: this.calculateMessagePanelHeight(), width: this.calculateMessageFormWidth()}]}
