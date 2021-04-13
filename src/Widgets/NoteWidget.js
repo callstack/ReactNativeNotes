@@ -35,7 +35,6 @@ export default function NoteWidget(props){
     NativeModules.NoteWidgetClickHandler.openWidget(ID);
   };
 
-
   const getNoteTitle = () => {
     NativeModules.Database.getNoteTitle(ID)
       .then(result => {isMounted && setTitle(result)})
@@ -49,22 +48,17 @@ export default function NoteWidget(props){
   };
 
   return(
-    <TouchableHighlight onPress={enterNote} style={styles.noteWidget} underlayColor={'transparent'}>
-      <View style={{width: width}}>
+    <TouchableHighlight onPress={enterNote} style={[styles.noteWidget, {width: width}]} underlayColor={'transparent'}>
+      <View style={styles.noteContent}>
 
-        <View style={styles.noteHeader}>
-          <Text>{ID}</Text>
-          <View style={styles.noteTitle}>
-            <Text style={{textAlign: "center"}}>
-              {title}
-            </Text>
-          </View>
+        <View style={styles.noteTitle}>
+          <Text style={styles.noteTitleText}>
+            {title}
+          </Text>
         </View>
 
-        <View style={styles.noteSeparator}></View>
-
-        <View style={styles.noteMainContent}>
-          <Text>
+        <View style={styles.message}>
+          <Text style={styles.messageText}>
             {shortMessage}
           </Text>
         </View>
@@ -78,35 +72,34 @@ export default function NoteWidget(props){
 
 const styles = StyleSheet.create({
   noteWidget: {
-    borderColor: "rgba(200,200,200,0.1)",
+    borderColor: "rgba(170,170,170,0.1)",
     borderWidth: 5,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 5,
     opacity: 1,
+    height: 160,
   },
-  noteHeader: {
+  noteContent: {
     flex: 1,
-    flexDirection: "row",
-    margin: 5,
+    flexDirection: "column",
+    justifyContent: "space-evenly",
+    margin: 10
   },
   noteTitle: {
-    alignSelf: "center",
-    alignContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-    marginHorizontal: 10,
-  },
-  noteSeparator: {
-    borderColor: "black",
-    borderWidth: 0.5,
-    marginTop: 5,
-    marginBottom: 10,
-    alignItems: "stretch",
-    alignContent: "stretch",
-  },
-  noteMainContent: {
     margin: 10
+  },
+  noteTitleText: {
+    color: "#6c47ff",
+    fontFamily: "Georgia",
+    fontSize: 12,
+    fontWeight: "100",
+  },
+  message: {
+    margin: 10,
+  },
+  messageText: {
+    fontSize: 12
   }
 });
 

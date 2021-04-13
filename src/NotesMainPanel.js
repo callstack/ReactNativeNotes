@@ -72,8 +72,6 @@ class NotesMainPanel extends React.Component {
   render() {
     return(
       <View style={styles.mainContainer}>
-        <View style={{height: 10}}></View>
-        <Text>This is the main content of the app.</Text>
         <FlatList key={this.state.columns} numColumns={this.state.columns} data={this.state.notes} renderItem={this.renderNote}/>
       </View>
     );
@@ -84,9 +82,15 @@ class NotesMainPanel extends React.Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    margin: 25,
     flexDirection: "column",
     backgroundColor: "transparent",
+    justifyContent: "space-around",
   },
+  welcomeText: {
+    fontSize: 25,
+    fontFamily: "Papyrus",
+  }
 });
 
 
