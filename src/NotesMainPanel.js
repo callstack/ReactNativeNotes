@@ -11,6 +11,7 @@ import {
   FlatList,
   NativeModules,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
@@ -28,6 +29,7 @@ class NotesMainPanel extends React.Component {
       notes: [],
       dimensions: {window, screen},
       columns: this.calculateColumnWidth(window),
+      isMounted: false,
     }
   };
 
@@ -80,10 +82,15 @@ class NotesMainPanel extends React.Component {
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
+    margin: 25,
     flexDirection: "column",
-    margin: 20,
     backgroundColor: "transparent",
+    justifyContent: "space-around",
   },
+  welcomeText: {
+    fontSize: 25,
+    fontFamily: "Papyrus",
+  }
 });
 
 

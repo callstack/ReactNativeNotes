@@ -18,7 +18,7 @@ namespace winrt::ReactNativeNotes::implementation
         Navigate( L"NotesPage", false );
     }
 
-    void MainPage::TopNavigationPanel_ItemInvoked( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )
+    void MainPage::ItemInvokedEventHandler( Microsoft::UI::Xaml::Controls::NavigationView const& sender, Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args )
     {
         if( args.IsSettingsInvoked() == true )
         {
@@ -31,11 +31,11 @@ namespace winrt::ReactNativeNotes::implementation
         }
     }
 
-    void MainPage::TopNavigationPanel_BackRequested( Windows::UI::Xaml::Controls::NavigationView const& sender, Windows::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args )
+    void MainPage::BackRequestedEventHandler( Microsoft::UI::Xaml::Controls::NavigationView const& sender, Microsoft::UI::Xaml::Controls::NavigationViewBackRequestedEventArgs const& args )
     {
     }
 
-    void MainPage::Navigate( winrt::hstring pageName, const bool hasAnimation ) noexcept
+    void MainPage::Navigate( hstring pageName, const bool hasAnimation ) noexcept
     {
         auto pageToNavigateTo = Windows::UI::Xaml::Interop::TypeName
         {
@@ -45,7 +45,7 @@ namespace winrt::ReactNativeNotes::implementation
         if( hasAnimation )
         {
             auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionInfo();
-            navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromLeft );
+            navigationAnimation.Effect( Windows::UI::Xaml::Media::Animation::SlideNavigationTransitionEffect::FromBottom );
             ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
         }
         else
@@ -53,9 +53,5 @@ namespace winrt::ReactNativeNotes::implementation
             auto navigationAnimation = Windows::UI::Xaml::Media::Animation::SuppressNavigationTransitionInfo();
             ApplicationContentFrame().Navigate( pageToNavigateTo, nullptr, navigationAnimation );
         }
-
     }
-} 
-
-
-
+}
