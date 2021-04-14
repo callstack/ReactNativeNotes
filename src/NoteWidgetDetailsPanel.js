@@ -114,6 +114,17 @@ class NoteWidgetDetailsPanel extends React.Component {
   };
 
   deleteButtonPressed = () => {
+    Alert.alert("Are you sure?", "Deleting the note cannot be reversed...",
+    [
+      {
+        text: "No!",
+        style: "cancel"
+      },
+      { text: "Yes, delete!", onPress: () => {
+        NativeModules.Database.deleteNote(this.state.id);
+        NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+      }}
+    ])
   };
 
 

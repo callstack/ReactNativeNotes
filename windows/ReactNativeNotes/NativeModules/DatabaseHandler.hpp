@@ -47,6 +47,12 @@ namespace winrt::ReactNativeNotes::implementation
             result.Resolve( React::JSValue( data->Read( index ).ShortPost() ) );
         }
 
+        REACT_METHOD( DeleteNote, L"deleteNote" );
+        void DeleteNote( const int index ) noexcept
+        {
+            data->Delete( index );
+        }
+
         REACT_METHOD( GetNumberOfNotes, L"getNumberOfNotes" );
         void GetNumberOfNotes( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
