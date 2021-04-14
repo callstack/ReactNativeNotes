@@ -89,7 +89,7 @@ class NoteWidgetDetailsPanel extends React.Component {
   };
 
   cancelButtonPressed = () => {
-    if(this.state.title !== "" || this.state.message !== "") {
+    if(this.state.isEditing) {
       Alert.alert("Are you sure?", "It looks like you still have unsaved changes, which are going to be lost.",
       [
         {
