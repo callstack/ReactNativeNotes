@@ -73,7 +73,7 @@ class NoteWidgetDetailsPanel extends React.Component {
   }
 
   calculateMessagePanelHeight = () => {
-    return this.state.windowHeight - styles.titlePanel.height - 100;
+    return Dimensions.get("window").height - styles.titlePanel.height - 100;
   };
 
   getNoteTitle = () => {
