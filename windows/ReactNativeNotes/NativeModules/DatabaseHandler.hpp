@@ -23,6 +23,12 @@ namespace winrt::ReactNativeNotes::implementation
             data->Create( NoteModel( noteTitle, isDone, noteFullMessage ) );
         }
 
+        REACT_METHOD( UpdateNote, L"updateNote" );
+        void UpdateNote( const std::string noteTitle, const std::string noteFullMessage, const unsigned int id ) noexcept
+        {
+            data->Update( std::move(NoteModel( noteTitle, false, noteFullMessage, id )) );
+        }
+
         REACT_METHOD( GetNoteTitle, L"getNoteTitle" );
         void GetNoteTitle( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
