@@ -3,11 +3,6 @@
  * @flow strict-local
  */
 
-/**
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   Alert,
@@ -18,7 +13,6 @@ import {
   View,
   Dimensions,
   Button,
-  Text,
 } from 'react-native';
 
 
@@ -96,7 +90,10 @@ class NoteWidgetDetailsPanel extends React.Component {
           text: "No!",
           style: "cancel"
         },
-        { text: "Yes, cancel!", onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen() }
+        {
+          text: "Yes, cancel!",
+          onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen()
+        }
       ])
     }
     else {

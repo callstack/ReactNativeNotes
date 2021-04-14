@@ -23,7 +23,6 @@ class CreateNotePanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
       title: "",
       message: "",
       windowHeight: window.height
@@ -70,7 +69,10 @@ class CreateNotePanel extends React.Component {
           text: "No!",
           style: "cancel"
         },
-        { text: "Yes, cancel!", onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen() }
+        {
+          text: "Yes, cancel!",
+          onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen()
+        }
       ])
     }
     else {
@@ -93,7 +95,8 @@ class CreateNotePanel extends React.Component {
             value={this.state.title}
             autoFocus={true}
             clearButtonMode={"while-editing"}
-            placeholder={"Title"}/>
+            placeholder={"Title"}
+          />
 
           <TextInput style={[styles.noteMessageBox, { height: this.calculateMessagePanelHeight(), width: this.calculateMessageFormWidth()}]}
             multiline={true}
@@ -103,8 +106,8 @@ class CreateNotePanel extends React.Component {
           />
 
         <View style={styles.actionsPanel}>
-          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}></Button>
-          <Button title={"Create!"} onPress={this.createButtonPressed}></Button>
+          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
+          <Button title={"Create!"} onPress={this.createButtonPressed}/>
         </View>
 
       </View>
