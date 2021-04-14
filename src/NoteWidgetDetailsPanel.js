@@ -83,7 +83,7 @@ class NoteWidgetDetailsPanel extends React.Component {
   };
 
   getNoteMessage = () => {
-    NativeModules.Database.getNoteShortPost(this.state.id)
+    NativeModules.Database.getNotePost(this.state.id)
       .then(result => {this.setState({message: result})})
       .catch(error => Alert.alert("ERROR!", `${error}`));
   };

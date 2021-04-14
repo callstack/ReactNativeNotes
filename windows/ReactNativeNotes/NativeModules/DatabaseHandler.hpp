@@ -36,9 +36,9 @@ namespace winrt::ReactNativeNotes::implementation
         }
 
         REACT_METHOD( GetNotePost, L"getNotePost" );
-        const winrt::hstring GetNotePost( const int index ) noexcept
+        void GetNotePost( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            return winrt::to_hstring( data->Read( index ).Post() );
+            result.Resolve( React::JSValue( data->Read( index ).Post() ) );
         }
 
         REACT_METHOD( GetNoteShortPost, L"getNoteShortPost" );
