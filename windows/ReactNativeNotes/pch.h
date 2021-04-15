@@ -19,6 +19,10 @@
 #include <winrt/Windows.UI.Xaml.Media.Animation.h>
 #include <winrt/Windows.ApplicationModel.Core.h>
 #include <winrt/Windows.UI.ViewManagement.h>
+#include "winrt/Windows.Storage.Pickers.h"
+#include "winrt/Windows.Storage.Pickers.Provider.h"
+#include "winrt/Windows.System.h"
+#include "winrt/Windows.UI.Core.h"
 
 #include <winrt/Microsoft.ReactNative.h>
 

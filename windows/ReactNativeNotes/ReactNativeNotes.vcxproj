@@ -98,11 +98,19 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</EnableModules>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</EnableModules>
+      <EnableModules Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</EnableModules>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -122,12 +130,13 @@
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
     <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
-    <ClInclude Include="NotesPage.h">
-      <DependentUpon>NotesPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
+    <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
     <ClInclude Include="NoteWidgetDetailsPage.h">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="NotesPage.h">
+      <DependentUpon>NotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="ReactPackageProvider.h" />

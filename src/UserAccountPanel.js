@@ -79,6 +79,9 @@ class UserAccountPanel extends React.Component {
   };
 
   setAvatar = () => {
+    NativeModules.FilePicker.openFile()
+      .then(result => {this.setState({avatarPicture: result})})
+      .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
 
@@ -88,7 +91,7 @@ class UserAccountPanel extends React.Component {
 
         <View style={styles.mainPanel}>
           <View style={styles.avatarLeftPanel}>
-            <Image on source={this.state.avatarPicture} style={styles.avatarImage}/>
+            <Image source={{uri: `${this.state.avatarPicture}`}} style={styles.avatarImage}/>
             <View style={styles.avatarButton}>
               <Button title={"Choose avatar"} onPress={this.setAvatar}/>
             </View>

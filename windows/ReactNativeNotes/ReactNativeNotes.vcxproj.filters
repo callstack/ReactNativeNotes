@@ -39,6 +39,7 @@
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
     <ClInclude Include="NativeModules\DatabaseHandler.hpp" />
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
+    <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
