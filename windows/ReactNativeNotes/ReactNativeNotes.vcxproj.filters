@@ -40,6 +40,7 @@
     <ClInclude Include="NativeModules\DatabaseHandler.hpp" />
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
     <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
+    <ClInclude Include="NativeModules\UserAccount\User.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">

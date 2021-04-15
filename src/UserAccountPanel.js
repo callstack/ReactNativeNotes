@@ -13,7 +13,6 @@ import {
   Image,
   TextInput,
   Button,
-  Dimensions,
   Text,
 } from 'react-native';
 
@@ -30,15 +29,12 @@ class UserAccountPanel extends React.Component {
   };
 
   componentDidMount() {
-    Dimensions.addEventListener("change", this.windowDimensionOnChange);
-  };
-
-  componentWillUnmount() {
-    Dimensions.removeEventListener("change", this.windowDimensionOnChange);
-  };
-
-  windowDimensionOnChange = ({window, screen}) => {
-    this.setState({windowWidth: window.width, windowHeight: window.height});
+    NativeModules.User.getName()
+      .then(result => this.setState({userName: result}))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
+    NativeModules.User.getEmail()
+      .then(result => this.setState({userEmail: result}))
+      .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
   userNameOnChange = (text) => {
@@ -70,7 +66,8 @@ class UserAccountPanel extends React.Component {
   };
 
   saveButtonPressed = () => {
-    NativeModules.Database.updateNote(this.state.title, this.state.message, this.state.id);
+    NativeModules.User.setEmail(this.state.userEmail);
+    NativeModules.User.setName(this.state.userName);
     this.setState({isEditing: false});
   }
 

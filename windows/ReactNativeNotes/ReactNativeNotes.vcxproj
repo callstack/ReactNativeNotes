@@ -131,6 +131,7 @@
     <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
     <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
+    <ClInclude Include="NativeModules\UserAccount\User.hpp" />
     <ClInclude Include="NoteWidgetDetailsPage.h">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
