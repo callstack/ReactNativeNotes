@@ -30,12 +30,10 @@ namespace winrt::ReactNativeNotes::implementation
 
     void Repository::Update( const NoteModel& note ) noexcept
     {
-        for( unsigned int index = 0; index < notes.size(); ++index )
-            if( notes.operator[]( index ).ID() == note.ID() )
-            {
-                notes[index] = note;
-                break;
-            }
+        if( note.ID() < notes.size() )
+        {
+            notes[note.ID()] = note;
+        }
     }
 
     void Repository::Delete( const unsigned int ID ) noexcept

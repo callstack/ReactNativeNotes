@@ -9,19 +9,23 @@ namespace ReactNativeNotes
     REACT_MODULE( NoteWidgetClickHandler );
     struct NoteWidgetClickHandler
     {
-        REACT_CONSTANT( ID, L"ID" );
-        const unsigned int ID;
-
         REACT_METHOD( OpenWidget, L"openWidget" );
         void OpenWidget( const unsigned int ID ) noexcept
         {
             NavigateViaMainFrame( L"ReactNativeNotes.NoteWidgetDetailsPage" );
+            openedID = ID;
         }
 
         REACT_METHOD( GoToNotesScreen, L"goToNotesScreen" );
         void GoToNotesScreen() noexcept
         {
             NavigateViaMainFrame( L"ReactNativeNotes.MainPage" );
+        }
+
+        REACT_METHOD( OpenedNoteID, L"openedNoteID" );
+        void OpenedNoteID( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            result.Resolve( React::JSValue( openedID ) );
         }
 
 
@@ -37,5 +41,7 @@ namespace ReactNativeNotes
             auto& rootFrame = winrt::Windows::UI::Xaml::Window::Current().Content().as<winrt::Windows::UI::Xaml::Controls::Frame>();
             rootFrame.Navigate( pageToNavigateTo, nullptr, navigationAnimation );
         }
+
+        unsigned int openedID = 0;
     };
 }

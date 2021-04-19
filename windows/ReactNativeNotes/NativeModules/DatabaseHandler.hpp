@@ -23,6 +23,12 @@ namespace winrt::ReactNativeNotes::implementation
             data->Create( NoteModel( noteTitle, isDone, noteFullMessage ) );
         }
 
+        REACT_METHOD( UpdateNote, L"updateNote" );
+        void UpdateNote( const std::string noteTitle, const std::string noteFullMessage, const unsigned int id ) noexcept
+        {
+            data->Update( std::move(NoteModel( noteTitle, false, noteFullMessage, id )) );
+        }
+
         REACT_METHOD( GetNoteTitle, L"getNoteTitle" );
         void GetNoteTitle( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
@@ -30,15 +36,21 @@ namespace winrt::ReactNativeNotes::implementation
         }
 
         REACT_METHOD( GetNotePost, L"getNotePost" );
-        const winrt::hstring GetNotePost( const int index ) noexcept
+        void GetNotePost( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
-            return winrt::to_hstring( data->Read( index ).Post() );
+            result.Resolve( React::JSValue( data->Read( index ).Post() ) );
         }
 
         REACT_METHOD( GetNoteShortPost, L"getNoteShortPost" );
         void GetNoteShortPost( const int index, React::ReactPromise<React::JSValue>&& result ) noexcept
         {
             result.Resolve( React::JSValue( data->Read( index ).ShortPost() ) );
+        }
+
+        REACT_METHOD( DeleteNote, L"deleteNote" );
+        void DeleteNote( const int index ) noexcept
+        {
+            data->Delete( index );
         }
 
         REACT_METHOD( GetNumberOfNotes, L"getNumberOfNotes" );

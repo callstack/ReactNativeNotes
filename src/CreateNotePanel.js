@@ -9,12 +9,10 @@ import {
   AppRegistry,
   NativeModules,
   StyleSheet,
-  Text,
   TextInput,
   View,
   Dimensions,
   Button,
-  ScrollView,
 } from 'react-native';
 
 
@@ -25,21 +23,10 @@ class CreateNotePanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 0,
       title: "",
       message: "",
-      windowWidth: window.width - 100,
-      windowHeight: window.height - 150
+      windowHeight: window.height
     }
-  };
-
-  getID = () => {
-    this.setState({id: NativeModules.Database.getNoteTitle(
-      function(result)
-      {
-        Alert.alert('test', `${result}`);
-      }
-    )});
   };
 
   componentDidMount() {
@@ -54,6 +41,14 @@ class CreateNotePanel extends React.Component {
     this.setState({windowWidth: window.width, windowHeight: window.height});
   };
 
+  calculateTitleFormWidth = () => {
+    return Dimensions.get("window").width - 100;
+  };
+
+  calculateMessageFormWidth = () => {
+    return Dimensions.get("window").width - 100;
+  };
+
   titleOnChange = (text) => {
     this.setState({title: text});
   };
@@ -63,11 +58,26 @@ class CreateNotePanel extends React.Component {
   }
 
   calculateMessagePanelHeight = () => {
-    return this.state.windowHeight - (styles.titlePanel.height + styles.actionsPanel.height);
+    return Dimensions.get("window").height - styles.titlePanel.height - 100;
   };
 
   cancelButtonPressed = () => {
-    NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+    if(this.state.title !== "" || this.state.message !== "") {
+      Alert.alert("Are you sure?", "It looks like you still have unsaved changes, which are going to be lost.",
+      [
+        {
+          text: "No!",
+          style: "cancel"
+        },
+        {
+          text: "Yes, cancel!",
+          onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen()
+        }
+      ])
+    }
+    else {
+      NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+    }
   };
 
   createButtonPressed = () => {
@@ -78,33 +88,29 @@ class CreateNotePanel extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.mainPanel}>
+      <View style={styles.mainPanel}>
 
-          <View style={styles.titlePanel}>
-            <Text>Title:</Text>
-            <TextInput style={[styles.titleBox, {width: this.state.windowWidth - 100}]} onChangeText={this.titleOnChange} value={this.state.title}/>
-          </View>
+          <TextInput style={[styles.titleBox, {width: this.calculateTitleFormWidth()}]}
+            onChangeText={this.titleOnChange}
+            value={this.state.title}
+            autoFocus={true}
+            clearButtonMode={"while-editing"}
+            placeholder={"Title"}
+          />
 
-          <View style={styles.divider}>
-          </View>
+          <TextInput style={[styles.noteMessageBox, { height: this.calculateMessagePanelHeight(), width: this.calculateMessageFormWidth()}]}
+            multiline={true}
+            onChangeText={this.messageOnChange}
+            value={this.state.message}
+            placeholder={"Note content"}
+          />
 
-          <View style={styles.noteMessagePanel}>
-            <Text>Post your note message here:</Text>
-            <TextInput style={[styles.noteMessageBox, { height: this.calculateMessagePanelHeight(), width: this.state.windowWidth - 200}]}
-              multiline={true}
-              onChangeText={this.messageOnChange}
-              value={this.state.message}
-            />
-          </View>
-
-          <View style={styles.actionsPanel}>
-            <Button title={"Cancel!"} onPress={this.cancelButtonPressed}></Button>
-            <Button title={"Create!"} onPress={this.createButtonPressed}></Button>
-          </View>
-
+        <View style={styles.actionsPanel}>
+          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
+          <Button title={"Create!"} onPress={this.createButtonPressed}/>
         </View>
-      </ScrollView>
+
+      </View>
     );
   }
 };
@@ -114,12 +120,10 @@ const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
+    margin: 30
   },
   titlePanel: {
-    flex: 1,
-    flexDirection: "row",
-    margin: 10,
     height: 60,
   },
   titleBox: {
@@ -128,21 +132,12 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 0,
-    alignContent: "center",
-    textAlignVertical: "center",
-    borderColor: "#D0D0D0"
-  },
-  divider: {
-    borderColor: "black",
-    borderWidth: 0.5,
-    height: 1,
-    alignSelf: "stretch",
-  },
-  noteMessagePanel: {
-    margin: 50,
+    borderColor: "#D0D0D0",
+    color: "blue"
   },
   noteMessageBox: {
     borderWidth: 0.2,
+    margin: 10,
     borderColor: "#D0D0D0",
     alignContent: "center",
     textAlignVertical: "center",
@@ -150,7 +145,9 @@ const styles = StyleSheet.create({
   actionsPanel: {
     flex: 1,
     flexDirection: "row",
-    height: 60,
+    justifyContent: "space-around",
+    width: 500,
+    height: 40,
   }
 });
 
