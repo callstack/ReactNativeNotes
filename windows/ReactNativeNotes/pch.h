@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #define NOMINMAX
 
@@ -16,9 +16,6 @@
 #include <winrt/Windows.UI.Xaml.Markup.h>
 #include <winrt/Windows.UI.Xaml.Navigation.h>
 #include <winrt/Windows.UI.Xaml.h>
-#include <winrt/Windows.UI.Xaml.Media.Animation.h>
-#include <winrt/Windows.ApplicationModel.Core.h>
-#include <winrt/Windows.UI.ViewManagement.h>
 
 #include <winrt/Microsoft.ReactNative.h>
 
@@ -27,3 +24,4 @@
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
 #include <winrt/Microsoft.UI.Xaml.Media.h>
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
+using namespace winrt::Windows::Foundation;
