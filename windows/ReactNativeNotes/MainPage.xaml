@@ -4,13 +4,36 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ReactNativeNotes"
     xmlns:react="using:Microsoft.ReactNative"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <react:ReactRootView 
-        x:Name="ReactRootView"
-        ComponentName="ReactNativeNotes"
-        Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        MinHeight="400"/>
+    Background="Transparent"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="White"/>
+    </Page.Resources>
+    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
+        <muxc:NavigationView.MenuItems>
+
+            <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account">
+                <muxc:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe13d;"/>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+
+            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage">
+                <muxc:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe109;"/>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+
+            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage">
+                <muxc:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xe8a9;"/>
+                </muxc:NavigationViewItem.Icon>
+            </muxc:NavigationViewItem>
+        </muxc:NavigationView.MenuItems>
+        <Frame x:Name="ApplicationContentFrame"/>
+    </muxc:NavigationView>
 </Page>

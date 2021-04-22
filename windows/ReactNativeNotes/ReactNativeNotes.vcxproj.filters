@@ -5,6 +5,11 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
+    <Midl Include="ApplicationSettingsPage.idl" />
+    <Midl Include="CreateNotePage.idl" />
+    <Midl Include="NotesPage.idl" />
+    <Midl Include="NoteWidgetDetailsPage.idl" />
+    <Midl Include="UserAccountPage.idl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -12,12 +17,28 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactPackageProvider.cpp" />
     <ClCompile Include="AutolinkedNativeModules.g.cpp" />
+    <ClCompile Include="ApplicationSettingsPage.cpp" />
+    <ClCompile Include="CreateNotePage.cpp" />
+    <ClCompile Include="NotesPage.cpp" />
+    <ClCompile Include="NoteWidgetDetailsPage.cpp" />
+    <ClCompile Include="UserAccountPage.cpp" />
+    <ClCompile Include="NativeModules\Repository\NoteModel.cpp" />
+    <ClCompile Include="NativeModules\Repository\Repository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="AutolinkedNativeModules.g.h" />
+    <ClInclude Include="ApplicationSettingsPage.h" />
+    <ClInclude Include="CreateNotePage.h" />
+    <ClInclude Include="NotesPage.h" />
+    <ClInclude Include="NoteWidgetDetailsPage.h" />
+    <ClInclude Include="UserAccountPage.h" />
+    <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
+    <ClInclude Include="NativeModules\Repository\Repository.hpp" />
+    <ClInclude Include="NativeModules\DatabaseHandler.hpp" />
+    <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -59,5 +80,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="MainPage.xaml" />
+    <Page Include="ApplicationSettingsPage.xaml" />
+    <Page Include="CreateNotePage.xaml" />
+    <Page Include="NotesPage.xaml" />
+    <Page Include="NoteWidgetDetailsPage.xaml" />
+    <Page Include="UserAccountPage.xaml" />
   </ItemGroup>
 </Project>
