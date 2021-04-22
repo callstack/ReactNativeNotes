@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="ee0789d9-a1ff-484f-b26d-3cee4548d446"
+    Name="cbbb1781-6f28-4c51-ab1e-c8cae335fee2"
     Publisher="CN=Bartosz Klonowski"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="ee0789d9-a1ff-484f-b26d-3cee4548d446" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="cbbb1781-6f28-4c51-ab1e-c8cae335fee2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>ReactNativeNotes</DisplayName>

@@ -2,8 +2,9 @@
 #include "ReactPackageProvider.h"
 #include "NativeModules.h"
 
-#include "NativeModules/NoteWidgetClickHandler.hpp"
 #include "NativeModules/DatabaseHandler.hpp"
+#include "NativeModules/NoteWidgetClickHandler.hpp"
+#include "NativeModules/Repository/Repository.hpp"
 
 using namespace winrt::Microsoft::ReactNative;
 

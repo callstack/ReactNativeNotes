@@ -24,4 +24,3 @@ namespace winrt::ReactNativeNotes::factory_implementation
     {
     };
 }
-
