@@ -11,8 +11,19 @@ namespace ReactNativeNotes
     REACT_MODULE( FilePicker );
     struct FilePicker
     {
+        REACT_INIT( Initialize );
+        void Initialize( const winrt::Microsoft::ReactNative::ReactContext& reactContext ) noexcept
+        {
+            context = reactContext;
+        }
+
         REACT_METHOD( OpenFile, L"openFile" );
-        winrt::fire_and_forget OpenFile( React::ReactPromise<React::JSValue> result ) noexcept
+        void OpenFile( React::ReactPromise<React::JSValue> result ) noexcept
+        {
+            context.UIDispatcher().Post( [this, result{ std::move( result ) }]()->void { LaunchPicker( result ); } );
+        }
+
+        winrt::fire_and_forget LaunchPicker( React::ReactPromise<React::JSValue> result ) noexcept
         {
             winrt::Windows::Storage::Pickers::FileOpenPicker openPicker;
             openPicker.ViewMode( winrt::Windows::Storage::Pickers::PickerViewMode::Thumbnail );
@@ -36,5 +47,7 @@ namespace ReactNativeNotes
                 result.Reject( e.message().c_str() );
             }
         }
+
+        winrt::Microsoft::ReactNative::ReactContext context;
     };
 }
