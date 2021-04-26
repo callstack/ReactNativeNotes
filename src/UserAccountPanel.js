@@ -21,7 +21,6 @@ class UserAccountPanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      avatarPicture: "",
       userName: "",
       userEmail: "",
       isEditing: false,
@@ -75,24 +74,12 @@ class UserAccountPanel extends React.Component {
     this.setState({isEditing: true});
   };
 
-  setAvatar = () => {
-    NativeModules.FilePicker.openFile()
-      .then(result => {this.setState({avatarPicture: result})})
-      .catch(error => Alert.alert("ERROR!", `${error}`));
-  };
-
 
   render() {
     return (
       <View style={styles.page}>
 
         <View style={styles.mainPanel}>
-          <View style={styles.avatarLeftPanel}>
-            <Image source={{uri: `${this.state.avatarPicture}`}} style={styles.avatarImage}/>
-            <View style={styles.avatarButton}>
-              <Button title={"Choose avatar"} onPress={this.setAvatar}/>
-            </View>
-          </View>
 
           <View style={styles.detailsRightPanel}>
             <Text>User's name:</Text>
