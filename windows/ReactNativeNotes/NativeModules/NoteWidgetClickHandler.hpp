@@ -9,17 +9,23 @@ namespace ReactNativeNotes
     REACT_MODULE( NoteWidgetClickHandler );
     struct NoteWidgetClickHandler
     {
+        REACT_INIT( Initialize );
+        void Initialize( const winrt::Microsoft::ReactNative::ReactContext& reactContext ) noexcept
+        {
+            context = reactContext;
+        }
+
         REACT_METHOD( OpenWidget, L"openWidget" );
         void OpenWidget( const unsigned int ID ) noexcept
         {
-            NavigateViaMainFrame( L"ReactNativeNotes.NoteWidgetDetailsPage" );
+            context.UIDispatcher().Post( [this]()->void { NavigateViaMainFrame( L"ReactNativeNotes.NoteWidgetDetailsPage" ); } );
             openedID = ID;
         }
 
         REACT_METHOD( GoToNotesScreen, L"goToNotesScreen" );
         void GoToNotesScreen() noexcept
         {
-            NavigateViaMainFrame( L"ReactNativeNotes.MainPage" );
+            context.UIDispatcher().Post( [this]()->void { NavigateViaMainFrame( L"ReactNativeNotes.MainPage" ); } );
         }
 
         REACT_METHOD( OpenedNoteID, L"openedNoteID" );
@@ -30,6 +36,8 @@ namespace ReactNativeNotes
 
 
     private:
+        winrt::Microsoft::ReactNative::ReactContext context;
+
         void NavigateViaMainFrame( const winrt::hstring pageName )
         {
             auto pageToNavigateTo = winrt::Windows::UI::Xaml::Interop::TypeName
