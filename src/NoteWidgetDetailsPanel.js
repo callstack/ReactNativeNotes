@@ -101,13 +101,28 @@ class NoteWidgetDetailsPanel extends React.Component {
     }
   };
 
-  saveButtonPressed = () => {
+  applyButtonPressed = () => {
     NativeModules.Database.updateNote(this.state.title, this.state.message, this.state.id);
     this.setState({isEditing: false});
   }
 
   editButtonPressed = () => {
     this.setState({isEditing: true});
+  };
+
+  saveButtonPressed = () => {
+    NativeModules.FilePicker.saveToFile(this.state.title, this.state.message)
+      .then(status => {Alert.alert("OK!", status)})
+      .catch(error => {Alert.alert("ERROR!", error)});
+  };
+
+  loadButtonPressed = () => {
+    NativeModules.FilePicker.loadFromFile()
+      .then(file => {
+        this.setState({title: file.name});
+        this.setState({message: file.content});
+      })
+      .catch(error => {Alert.alert("ERROR!", error)});
   };
 
   deleteButtonPressed = () => {
@@ -147,10 +162,15 @@ class NoteWidgetDetailsPanel extends React.Component {
         />
 
         <View style={styles.actionsPanel}>
-          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
-          <Button title={"Edit"} disabled={this.state.isEditing} onPress={this.editButtonPressed}/>
-          <Button title={"Save"} disabled={!this.state.isEditing} onPress={this.saveButtonPressed}/>
-          <Button title={"Delete"} onPress={this.deleteButtonPressed}/>
+          <View style={styles.noteActionsPanel}>
+            <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
+            <Button title={this.state.isEditing ? "Apply" : "Edit"} onPress={this.state.isEditing ? this.applyButtonPressed : this.editButtonPressed}/>
+            <Button title={"Delete"} onPress={this.deleteButtonPressed}/>
+          </View>
+          <View style={styles.fileActionsPanel}>
+            <Button title={"Load"} onPress={this.loadButtonPressed}/>
+            <Button title={"Save"} onPress={this.saveButtonPressed}/>
+          </View>
         </View>
 
       </View>
@@ -189,10 +209,19 @@ const styles = StyleSheet.create({
   actionsPanel: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
-    width: 500,
-    height: 40,
-  }
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  noteActionsPanel: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
+  fileActionsPanel: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
 });
 
 
