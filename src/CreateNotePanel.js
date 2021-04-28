@@ -106,10 +106,15 @@ class CreateNotePanel extends React.Component {
           />
 
         <View style={styles.actionsPanel}>
-          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
-          <Button title={"Create!"} onPress={this.createButtonPressed}/>
+          <View style={styles.noteActionsPanel}>
+            <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
+            <Button title={"Create!"} onPress={this.createButtonPressed}/>
+          </View>
+          <View style={styles.fileActionsPanel}>
+            <Button title={"Load"} onPress={this.loadButtonPressed}/>
+            <Button title={"Save"} onPress={this.saveButtonPressed}/>
+          </View>
         </View>
-
       </View>
     );
   }
@@ -145,10 +150,19 @@ const styles = StyleSheet.create({
   actionsPanel: {
     flex: 1,
     flexDirection: "row",
-    justifyContent: "space-around",
-    width: 500,
-    height: 40,
-  }
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  noteActionsPanel: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
+  fileActionsPanel: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly"
+  },
 });
 
 
