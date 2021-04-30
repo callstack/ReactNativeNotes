@@ -146,6 +146,10 @@
     <ClInclude Include="App.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="ToDoListPage.h">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="UserAccountPage.h">
       <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -202,6 +206,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="ToDoListPage.cpp">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="UserAccountPage.cpp">
       <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -231,6 +239,10 @@
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="ToDoListPage.idl">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="UserAccountPage.idl">
       <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -257,6 +269,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NoteWidgetDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToDoListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserAccountPage.xaml">
