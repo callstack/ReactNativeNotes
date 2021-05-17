@@ -70,14 +70,14 @@ workflows:
     jobs:
       - install
       - build-Application-Configuration-Platform:
-          name: build-Application-Release-ARM64
+          name: build-Application-Release-ARM
           configuration: "release"
-          platform: "ARM64"
+          platform: "ARM"
           requires:
             - install
       - build-Application-Configuration-Platform:
-          name: build-Application-Debug-ARM64
+          name: build-Application-Debug-ARM
           configuration: "debug"
-          platform: "ARM64"
+          platform: "ARM"
           requires:
             - install
