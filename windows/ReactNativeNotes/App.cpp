@@ -39,6 +39,7 @@ App::App() noexcept
 
     PackageProviders().Append(make<ReactPackageProvider>()); // Includes all modules in this project
     PackageProviders().Append( winrt::DateTimePicker::ReactPackageProvider() );
+    PackageProviders().Append( winrt::CheckboxWindows::ReactPackageProvider() );
 
     InitializeComponent();
 }

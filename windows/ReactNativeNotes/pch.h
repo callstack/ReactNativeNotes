@@ -33,5 +33,6 @@
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
 
 #include "winrt/DateTimePicker.h"
+#include "winrt/CheckboxWindows.h"
 
 using namespace winrt::Windows::Foundation;

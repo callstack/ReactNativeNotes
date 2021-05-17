@@ -279,6 +279,9 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\node_modules\@react-native-community\checkbox\windows\CheckboxWindows\CheckboxWindows.vcxproj">
+      <Project>{eaf81beb-a159-4421-9b6d-e59c37828a57}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\node_modules\@react-native-community\datetimepicker\windows\DateTimePickerWindows\DateTimePickerWindows.vcxproj">
       <Project>{0986a4db-8e72-4bb7-ae32-7d9df1758a9d}</Project>
     </ProjectReference>
