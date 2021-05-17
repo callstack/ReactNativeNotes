@@ -6,7 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:react="using:Microsoft.ReactNative"
-    Background="Transparent">
+    Background="Transparent"
+    NavigationCacheMode="Enabled">
     <react:ReactRootView x:Name="ReactRootView" ComponentName="ToDoListPanel" MinHeight="400">
         <react:ReactRootView.Background>
             <LinearGradientBrush>
