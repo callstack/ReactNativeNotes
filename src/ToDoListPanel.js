@@ -63,7 +63,7 @@ class ToDoListPanel extends React.Component {
         </View>
 
         <View style={styles.newTaskPanel}>
-          <TextInput style={styles.noteMessageBox} onChangeText={this.messageOnChange} value={this.state.message} placeholder={String(this.state.number)} />
+          <TextInput style={styles.noteMessageBox} onChangeText={this.messageOnChange} value={this.state.message} placeholder={"Task content"} />
           <View style={styles.createButtons}>
             <Button title={"Add"} onPress={this.addButtonPressed}/>
             <DateTimePicker value={this.state.selectedDate} is24Hour={true} display="default" onChange={this.onChange} />

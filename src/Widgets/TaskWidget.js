@@ -3,37 +3,34 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState} from 'react';
 import {
   AppRegistry,
   StyleSheet,
   Text,
-  TouchableHighlight,
   View,
-  NativeModules,
-  Alert,
-  TextInput,
-  Button,
 } from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
 
 export default function TaskWidget(props){
-  const {width, ID, message, dueDate} = props;
+  const {message, dueDate} = props;
 
   const [isDone, setIsDone] = useState(false);
 
   return(
     <View style={styles.taskWidget}>
+
       <Text style={styles.messageText}>{message}</Text>
+
       <View style={styles.details}>
         <Text style={[styles.dateText, {backgroundColor: isDone ? "green" : "transparent"}]}>Due date: {String(dueDate).substr(0,15)}</Text>
         <CheckBox disabled={false} value={isDone} onValueChange={(newValue) => setIsDone(newValue)}/>
       </View>
+
     </View>
   );
 };
-
 
 
 const styles = StyleSheet.create({
