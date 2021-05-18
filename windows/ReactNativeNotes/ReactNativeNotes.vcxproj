@@ -146,6 +146,10 @@
     <ClInclude Include="App.h">
       <DependentUpon>App.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="ToDoListPage.h">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="UserAccountPage.h">
       <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -202,6 +206,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="ToDoListPage.cpp">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="UserAccountPage.cpp">
       <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -229,6 +237,10 @@
     </Midl>
     <Midl Include="NoteWidgetDetailsPage.idl">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="ToDoListPage.idl">
+      <DependentUpon>ToDoListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="UserAccountPage.idl">
@@ -259,9 +271,20 @@
     <Page Include="NoteWidgetDetailsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ToDoListPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="UserAccountPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\node_modules\@react-native-community\checkbox\windows\CheckboxWindows\CheckboxWindows.vcxproj">
+      <Project>{eaf81beb-a159-4421-9b6d-e59c37828a57}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\node_modules\@react-native-community\datetimepicker\windows\DateTimePickerWindows\DateTimePickerWindows.vcxproj">
+      <Project>{0986a4db-8e72-4bb7-ae32-7d9df1758a9d}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ReactNativeWindowsTargets">

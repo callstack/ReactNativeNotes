@@ -31,4 +31,8 @@
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
 #include <winrt/Microsoft.UI.Xaml.Media.h>
 #include <winrt/Microsoft.UI.Xaml.XamlTypeInfo.h>
+
+#include "winrt/DateTimePicker.h"
+#include "winrt/CheckboxWindows.h"
+
 using namespace winrt::Windows::Foundation;

@@ -87,5 +87,6 @@
     <Page Include="NotesPage.xaml" />
     <Page Include="NoteWidgetDetailsPage.xaml" />
     <Page Include="UserAccountPage.xaml" />
+    <Page Include="ToDoListPage.xaml" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,8 @@
+namespace ReactNativeNotes
+{
+    [default_interface]
+    runtimeclass ToDoListPage : Windows.UI.Xaml.Controls.Page
+    {
+        ToDoListPage();
+    }
+}
