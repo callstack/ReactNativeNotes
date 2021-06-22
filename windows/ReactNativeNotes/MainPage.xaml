@@ -10,31 +10,35 @@
     Background="Transparent"
     mc:Ignorable="d">
     <Page.Resources>
-        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="White"/>
-        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#FF5A2D"/>
     </Page.Resources>
-    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
+    
+    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackButtonVisible="Collapsed" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler" RequestedTheme="Light">
+        <muxc:NavigationView.Resources>
+            <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+            <SolidColorBrush x:Key="NavigationBackButto" Color="White"/>
+        </muxc:NavigationView.Resources>
         <muxc:NavigationView.MenuItems>
 
-            <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account">
+            <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account" Foreground="White">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe13d;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
-            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage">
+            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage" Foreground="White">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe109;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
-            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage">
+            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage" Foreground="White">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe8a9;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
-            <muxc:NavigationViewItem Content="ToDo List" Tag="ToDoListPage">
+            <muxc:NavigationViewItem Content="ToDo List" Tag="ToDoListPage" Foreground="White">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe9d5;"/>
                 </muxc:NavigationViewItem.Icon>
