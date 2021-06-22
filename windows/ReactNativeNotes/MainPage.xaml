@@ -12,12 +12,22 @@
     <Page.Resources>
         <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#FF5A2D"/>
     </Page.Resources>
-    
+
     <muxc:NavigationView x:Name="TopNavigationPanel" IsBackButtonVisible="Collapsed" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler" RequestedTheme="Light">
         <muxc:NavigationView.Resources>
             <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
             <SolidColorBrush x:Key="NavigationBackButto" Color="White"/>
         </muxc:NavigationView.Resources>
+
+        <muxc:NavigationView.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.3" Color="#D0E7F3"/>
+                <GradientStop Offset="1.4" Color="#A6B3D9"/>
+                <GradientStop Offset="0.6" Color="#F8A878"/>
+                <GradientStop Offset="0.9" Color="#D0E7F3"/>
+            </LinearGradientBrush>
+        </muxc:NavigationView.Background>
+
         <muxc:NavigationView.MenuItems>
 
             <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account" Foreground="White">
