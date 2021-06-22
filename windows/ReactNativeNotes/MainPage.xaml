@@ -55,6 +55,16 @@
             </muxc:NavigationViewItem>
 
         </muxc:NavigationView.MenuItems>
-        <Frame x:Name="ApplicationContentFrame"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="14*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame x:Name="ApplicationContentFrame" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                <TextBlock Grid.Row="1" Text="Powered by " HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+                <TextBlock Grid.Row="1" Margin="10,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="25">{Callstack}</TextBlock>
+            </StackPanel>
+        </Grid>
     </muxc:NavigationView>
 </Page>
