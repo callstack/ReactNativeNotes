@@ -64,10 +64,9 @@ const styles = StyleSheet.create({
     margin: 10
   },
   noteTitleText: {
-    color: "#6c47ff",
+    fontWeight: "bold",
     fontFamily: "Georgia",
     fontSize: 12,
-    fontWeight: "100",
   },
   message: {
     margin: 10,

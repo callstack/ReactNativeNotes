@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "column"
   },
   flatListPanel: {
-    height: "80%",
+    height: "75%",
     margin: 30,
   },
   newTaskPanel: {
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderWidth: 1,
     borderColor: "white",
-    maxHeight: 100,
+    maxHeight: 90,
   },
   noteMessageBox: {
     borderWidth: 0.2,
@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
+    height: 10
   },
 });
 

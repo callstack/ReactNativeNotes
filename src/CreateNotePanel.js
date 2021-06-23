@@ -11,12 +11,9 @@ import {
   StyleSheet,
   TextInput,
   View,
-  Dimensions,
   Button,
 } from 'react-native';
 
-
-const window = Dimensions.get("window");
 
 
 class CreateNotePanel extends React.Component {
@@ -25,28 +22,7 @@ class CreateNotePanel extends React.Component {
     this.state = {
       title: "",
       message: "",
-      windowHeight: window.height
     }
-  };
-
-  componentDidMount() {
-    Dimensions.addEventListener("change", this.windowDimensionOnChange);
-  };
-
-  componentWillUnmount() {
-    Dimensions.removeEventListener("change", this.windowDimensionOnChange);
-  };
-
-  windowDimensionOnChange = ({window, screen}) => {
-    this.setState({windowWidth: window.width, windowHeight: window.height});
-  };
-
-  calculateTitleFormWidth = () => {
-    return Dimensions.get("window").width - 100;
-  };
-
-  calculateMessageFormWidth = () => {
-    return Dimensions.get("window").width - 100;
   };
 
   titleOnChange = (text) => {
@@ -55,10 +31,6 @@ class CreateNotePanel extends React.Component {
 
   messageOnChange = (text) => {
     this.setState({message: text});
-  }
-
-  calculateMessagePanelHeight = () => {
-    return Dimensions.get("window").height - styles.titlePanel.height - 100;
   };
 
   cancelButtonPressed = () => {
@@ -66,11 +38,11 @@ class CreateNotePanel extends React.Component {
       Alert.alert("Are you sure?", "It looks like you still have unsaved changes, which are going to be lost.",
       [
         {
-          text: "No!",
+          text: "Cancel",
           style: "cancel"
         },
         {
-          text: "Yes, cancel!",
+          text: "Discard",
           onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen()
         }
       ])
@@ -90,7 +62,7 @@ class CreateNotePanel extends React.Component {
     return (
       <View style={styles.mainPanel}>
 
-          <TextInput style={[styles.titleBox, {width: this.calculateTitleFormWidth()}]}
+          <TextInput style={styles.titleBox}
             onChangeText={this.titleOnChange}
             value={this.state.title}
             autoFocus={true}
@@ -98,7 +70,7 @@ class CreateNotePanel extends React.Component {
             placeholder={"Title"}
           />
 
-          <TextInput style={[styles.noteMessageBox, { height: this.calculateMessagePanelHeight(), width: this.calculateMessageFormWidth()}]}
+          <TextInput style={styles.noteMessageBox}
             multiline={true}
             onChangeText={this.messageOnChange}
             value={this.state.message}
@@ -106,7 +78,7 @@ class CreateNotePanel extends React.Component {
           />
 
         <View style={styles.actionsPanel}>
-          <Button title={"Cancel!"} onPress={this.cancelButtonPressed}/>
+          <Button title={"Discard"} onPress={this.cancelButtonPressed}/>
           <Button title={"Create!"} onPress={this.createButtonPressed}/>
         </View>
 
@@ -127,17 +99,19 @@ const styles = StyleSheet.create({
     height: 60,
   },
   titleBox: {
-    height: 35,
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 0,
+    width: "90%",
     borderColor: "#D0D0D0",
-    color: "blue"
+    fontWeight: "bold"
   },
   noteMessageBox: {
     borderWidth: 0.2,
     margin: 10,
+    width: "90%",
+    height: "85%",
     borderColor: "#D0D0D0",
     alignContent: "center",
     textAlignVertical: "center",
@@ -146,8 +120,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
-    width: 500,
-    height: 40,
+    width: "60%",
+    maxHeight: 35,
   }
 });
 
