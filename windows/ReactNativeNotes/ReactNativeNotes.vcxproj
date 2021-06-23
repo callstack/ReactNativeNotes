@@ -114,10 +114,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationSettingsPage.h">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
     <ClInclude Include="CreateNotePage.h">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -170,10 +166,6 @@
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationSettingsPage.cpp">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
     <ClCompile Include="CreateNotePage.cpp">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -210,10 +202,6 @@
     <Midl Include="App.idl">
       <DependentUpon>App.xaml</DependentUpon>
     </Midl>
-    <Midl Include="ApplicationSettingsPage.idl">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
     <Midl Include="CreateNotePage.idl">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -243,9 +231,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ApplicationSettingsPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CreateNotePage.xaml">
       <SubType>Designer</SubType>
     </Page>
