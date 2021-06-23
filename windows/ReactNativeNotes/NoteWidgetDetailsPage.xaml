@@ -11,12 +11,12 @@
     <react:ReactRootView x:Name="ReactRootView" ComponentName="NoteWidgetDetailsPanel" MinHeight="400">
         <react:ReactRootView.Background>
             <LinearGradientBrush>
-                <GradientStop Color="Silver" Offset="0.0" />
-                <GradientStop Color="GhostWhite" Offset="0.20" />
-                <GradientStop Color="WhiteSmoke" Offset="0.40" />
-                <GradientStop Color="GhostWhite" Offset="0.60"/>
-                <GradientStop Color="Silver" Offset="0.80" />
+                <GradientStop Offset="0.3" Color="#D0E7F3"/>
+                <GradientStop Offset="1.4" Color="#A6B3D9"/>
+                <GradientStop Offset="0.6" Color="#F8A878"/>
+                <GradientStop Offset="0.9" Color="#D0E7F3"/>
             </LinearGradientBrush>
         </react:ReactRootView.Background>
     </react:ReactRootView>
+
 </Page>
