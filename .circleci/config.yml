@@ -72,12 +72,12 @@ workflows:
       - build-Application-Configuration-Platform:
           name: build-Application-Release-ARM
           configuration: "release"
-          platform: "ARM"
+          platform: "ARM64"
           requires:
             - install
       - build-Application-Configuration-Platform:
           name: build-Application-Debug-ARM
           configuration: "debug"
-          platform: "ARM"
+          platform: "ARM64"
           requires:
             - install
