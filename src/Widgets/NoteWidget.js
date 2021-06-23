@@ -3,7 +3,7 @@
  * @flow strict-local
  */
 
-import React, {useState, useEffect, useRef} from 'react';
+import React from 'react';
 import {
   AppRegistry,
   StyleSheet,
@@ -11,40 +11,14 @@ import {
   TouchableHighlight,
   View,
   NativeModules,
-  Alert,
 } from 'react-native';
 
 
 export default function NoteWidget(props){
-  const {width, ID} = props;
-
-  const [title, setTitle] = useState("");
-  const [shortMessage, setShortMessage] = useState("");
-  const isMounted = useRef(null);
-
-  useEffect(() => {
-    isMounted.current = true;
-    getNoteTitle();
-    getNoteShortMessage();
-    return () => {
-      isMounted.current = false;
-    }
-  }, []);
+  const {width, ID, title, shortMessage} = props;
 
   const enterNote = () => {
     NativeModules.NoteWidgetClickHandler.openWidget(ID);
-  };
-
-  const getNoteTitle = () => {
-    NativeModules.Database.getNoteTitle(ID)
-      .then(result => {isMounted && setTitle(result)})
-      .catch(error => Alert.alert("ERROR!", `${error}`));
-  };
-
-  const getNoteShortMessage = () => {
-    NativeModules.Database.getNoteShortPost(ID)
-      .then(result => {isMounted && setShortMessage(result)})
-      .catch(error => Alert.alert("ERROR!", `${error}`));
   };
 
   return(

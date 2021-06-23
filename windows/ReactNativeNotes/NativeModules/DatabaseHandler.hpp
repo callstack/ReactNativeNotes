@@ -66,15 +66,15 @@ namespace winrt::ReactNativeNotes::implementation
         }
 
         REACT_METHOD( GetAllNotesIDs, L"getAllNotesIDs" );
-        Microsoft::ReactNative::JSValue GetAllNotesIDs() noexcept
+        void GetAllNotesIDs( React::ReactPromise<React::JSValue>&& result ) noexcept
         {
             Microsoft::ReactNative::JSValueArray keyArray;
             for( unsigned int i = 0; i < data->Size(); ++i )
             {
                 if( data->Exists( i ) )
-                    keyArray.push_back( Microsoft::ReactNative::JSValueObject{ { "key", i } } );
+                    keyArray.push_back( Microsoft::ReactNative::JSValueObject{ { "key", i }, { "title", data->Read( i ).Title() }, { "shortMessage", data->Read( i ).ShortPost() } } );
             }
-            return Microsoft::ReactNative::JSValue( std::move( keyArray ) );
+            result.Resolve( Microsoft::ReactNative::JSValue( std::move( keyArray ) ) );
         }
 
     private:
