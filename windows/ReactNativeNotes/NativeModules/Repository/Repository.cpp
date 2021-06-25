@@ -6,7 +6,7 @@ namespace winrt::ReactNativeNotes::implementation
 {
     void Repository::Create( NoteModel& note ) noexcept
     {
-        note.ID( static_cast<unsigned int>(notes.size() + 1) );
+        note.ID( static_cast<unsigned int>(notes.size()) );
         notes.push_back( note );
     }
 

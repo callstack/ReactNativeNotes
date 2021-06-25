@@ -5,8 +5,6 @@
 #include "NativeModules/DatabaseHandler.hpp"
 #include "NativeModules/NoteWidgetClickHandler.hpp"
 #include "NativeModules/Repository/Repository.hpp"
-#include "NativeModules/UserAccount/FilePicker.hpp"
-#include "NativeModules/UserAccount/User.hpp"
 
 
 using namespace winrt::Microsoft::ReactNative;

@@ -11,7 +11,6 @@ import {
   FlatList,
   NativeModules,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
@@ -50,23 +49,18 @@ class NotesMainPanel extends React.Component {
     Dimensions.removeEventListener("change", this.onChange);
   };
 
-  createNotesKeys = (numberOfNotes) => {
-    let allNotesKeys = [];
-    for(id = 0; id < numberOfNotes; id++) {
-      const nextObject = {key: id};
-      allNotesKeys.push(nextObject);
-    }
-    this.setState({notes: allNotesKeys});
+  createNotesKeys = (notesIDs) => {
+    this.setState({notes: notesIDs});
   };
 
   getDataFromDatabase = () => {
-    NativeModules.Database.getNumberOfNotes()
+    NativeModules.Database.getAllNotesIDs()
       .then(result => this.createNotesKeys(result))
       .catch(error => Alert.alert("ERROR!", `Result: ${error}`));
   };
 
   renderNote = notes => {
-    return <NoteWidget width={noteWidgetWidth} ID={notes.item.key}/>
+    return <NoteWidget width={noteWidgetWidth} ID={notes.item.key} title={notes.item.title} shortMessage={notes.item.shortMessage}/>
   };
 
   render() {

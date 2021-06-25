@@ -114,10 +114,6 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationSettingsPage.h">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
     <ClInclude Include="CreateNotePage.h">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -131,7 +127,6 @@
     <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
     <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
-    <ClInclude Include="NativeModules\UserAccount\User.hpp" />
     <ClInclude Include="NoteWidgetDetailsPage.h">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -148,10 +143,6 @@
     </ClInclude>
     <ClInclude Include="ToDoListPage.h">
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClInclude>
-    <ClInclude Include="UserAccountPage.h">
-      <DependentUpon>UserAccountPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
   </ItemGroup>
@@ -175,10 +166,6 @@
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ApplicationSettingsPage.cpp">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
     <ClCompile Include="CreateNotePage.cpp">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -210,18 +197,10 @@
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="UserAccountPage.cpp">
-      <DependentUpon>UserAccountPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl">
       <DependentUpon>App.xaml</DependentUpon>
-    </Midl>
-    <Midl Include="ApplicationSettingsPage.idl">
-      <DependentUpon>ApplicationSettingsPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
     </Midl>
     <Midl Include="CreateNotePage.idl">
       <DependentUpon>CreateNotePage.xaml</DependentUpon>
@@ -243,10 +222,6 @@
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="UserAccountPage.idl">
-      <DependentUpon>UserAccountPage.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Midl>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -256,9 +231,6 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ApplicationSettingsPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="CreateNotePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -272,9 +244,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ToDoListPage.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserAccountPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

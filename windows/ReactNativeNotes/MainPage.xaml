@@ -10,37 +10,55 @@
     Background="Transparent"
     mc:Ignorable="d">
     <Page.Resources>
-        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="White"/>
-        <SolidColorBrush x:Key="NavigationViewExpandedPaneBackground" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#FF5A2D"/>
     </Page.Resources>
-    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackEnabled="True" IsTitleBarAutoPaddingEnabled="False" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler" BackRequested="BackRequestedEventHandler">
+
+    <muxc:NavigationView x:Name="TopNavigationPanel" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler">
+        <muxc:NavigationView.Resources>
+            <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
+            <SolidColorBrush x:Key="NavigationBackButto" Color="White"/>
+        </muxc:NavigationView.Resources>
+
+        <muxc:NavigationView.Background>
+            <LinearGradientBrush>
+                <GradientStop Offset="0.3" Color="#D0E7F3"/>
+                <GradientStop Offset="1.4" Color="#A6B3D9"/>
+                <GradientStop Offset="0.6" Color="#F8A878"/>
+                <GradientStop Offset="0.9" Color="#D0E7F3"/>
+            </LinearGradientBrush>
+        </muxc:NavigationView.Background>
+
         <muxc:NavigationView.MenuItems>
 
-            <muxc:NavigationViewItem Tag="UserAccountPage" Content="User Account">
-                <muxc:NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xe13d;"/>
-                </muxc:NavigationViewItem.Icon>
-            </muxc:NavigationViewItem>
-
-            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage">
+            <muxc:NavigationViewItem Content="Create" Tag="CreateNotePage" Foreground="White" Margin="0,5,0,5">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe109;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
-            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage">
+            <muxc:NavigationViewItem Content="Notes" Tag="NotesPage" Foreground="White" Margin="0,5,0,5">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe8a9;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
-            <muxc:NavigationViewItem Content="ToDo List" Tag="ToDoListPage">
+            <muxc:NavigationViewItem Content="ToDo List" Tag="ToDoListPage" Foreground="White" Margin="0,5,0,5">
                 <muxc:NavigationViewItem.Icon>
                     <FontIcon Glyph="&#xe9d5;"/>
                 </muxc:NavigationViewItem.Icon>
             </muxc:NavigationViewItem>
 
         </muxc:NavigationView.MenuItems>
-        <Frame x:Name="ApplicationContentFrame"/>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="14*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Frame x:Name="ApplicationContentFrame" Grid.RowSpan="2"/>
+            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+                <TextBlock Grid.Row="1" Text="Powered by " HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+                <TextBlock Grid.Row="1" Margin="10,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="25">{callstack}</TextBlock>
+            </StackPanel>
+        </Grid>
     </muxc:NavigationView>
 </Page>

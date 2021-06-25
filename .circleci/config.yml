@@ -66,18 +66,3 @@ workflows:
           platform: "x64"
           requires:
             - install
-  build-ARM64:
-    jobs:
-      - install
-      - build-Application-Configuration-Platform:
-          name: build-Application-Release-ARM
-          configuration: "release"
-          platform: "ARM"
-          requires:
-            - install
-      - build-Application-Configuration-Platform:
-          name: build-Application-Debug-ARM
-          configuration: "debug"
-          platform: "ARM"
-          requires:
-            - install

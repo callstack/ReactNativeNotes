@@ -1,8 +1,0 @@
-namespace ReactNativeNotes
-{
-    [default_interface]
-    runtimeclass ApplicationSettingsPage : Windows.UI.Xaml.Controls.Page
-    {
-        ApplicationSettingsPage();
-    }
-}
