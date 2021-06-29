@@ -11,10 +11,14 @@ namespace winrt::ReactNativeNotes::implementation
 
     NoteModel Repository::Read( const int index ) const noexcept
     {
-        if( index >= notes.size() )
-            return NoteModel();
+        if( index < notes.size() )
+        {
+            return notes.at( index );
+        }
         else
-            return notes.at(index);
+        {
+            return NoteModel();
+        }
     }
 
     void Repository::Update( const NoteModel& note, const unsigned int& index ) noexcept

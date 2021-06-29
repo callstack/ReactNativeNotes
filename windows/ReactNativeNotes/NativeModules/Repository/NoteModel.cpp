@@ -38,9 +38,13 @@ namespace winrt::ReactNativeNotes::implementation
     {
         const unsigned int shortMessageTextLength = 97;
         if( post.size() > 100 )
+        {
             return post.substr( 0, shortMessageTextLength ).append( "..." );
+        }
         else
+        {
             return post;
+        }
     }
 
     bool NoteModel::IsDone() const noexcept
