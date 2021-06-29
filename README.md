@@ -35,7 +35,7 @@ This will start all the required tools and launch your app
 The following application is the combination of skills and features of React Native and UWP development.
 
 There are two main layers of the application:
-![](./Resources/GeneralArchitectureDiagram.PNG)
+![](./Resources/GeneralArchitectureDiagramTransparent.PNG)
 
 The first is the UWP layer contains all the XAML Pages of the application.
 Those Pages can be navigated between using the [`NavigationView`](https://docs.microsoft.com/en-us/uwp/api/windows.ui.xaml.controls.navigationview?view=winrt-20348).
@@ -44,7 +44,7 @@ Each Page can host exactly one separate `Component` implemented on the React Nat
 These components acts as a View for the application.
 
 So in more details, the architecture looks like:
-![](./Resources/DetailedDiagram.png)
+![](./Resources/DetailedDiagramTransparent.png)
 
 So comparing to original React Native Windows where whole application starts from an `index.js` and `App.js`, this solution makes the UWP being a root hosting not an `index.js`, but many `Components`.
 
