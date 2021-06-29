@@ -16,12 +16,17 @@ Please check the [Approach](#Approach) section for more details.
   
 ## Installation & Usage ##
 
-To play with this app:
-in **Debug mode**
-*
+To play with this app
+* Make sure to meet all the [System requirements](https://microsoft.github.io/react-native-windows/docs/rnw-dependencies) for React Native Windows development
+* Clone the repository
+* Launch the terminal and start the app by the following command:
+```
+npx react-native run-windows --arch x64
+```
+(or add `--release --no-launch` to the command line to use the Release version)
+This will start all the required tools and launch your app
+* alternatively you can launch your app through the Visual Studio by opening the solution file in *\<repo root>/windows/ReactNativeNotes.sln* and launching the Debug configuration.
 
-in **Release mode**
-*
 
 ---
 
