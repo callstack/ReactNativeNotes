@@ -8,15 +8,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="Transparent">
-    <react:ReactRootView x:Name="ReactRootView" ComponentName="NoteWidgetDetailsPanel" MinHeight="400">
-        <react:ReactRootView.Background>
-            <LinearGradientBrush>
-                <GradientStop Offset="0.3" Color="#D0E7F3"/>
-                <GradientStop Offset="1.4" Color="#A6B3D9"/>
-                <GradientStop Offset="0.6" Color="#F8A878"/>
-                <GradientStop Offset="0.9" Color="#D0E7F3"/>
-            </LinearGradientBrush>
-        </react:ReactRootView.Background>
-    </react:ReactRootView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="14*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <react:ReactRootView x:Name="ReactRootView" ComponentName="NoteWidgetDetailsPanel" MinHeight="400" Grid.RowSpan="2">
+            <react:ReactRootView.Background>
+                <LinearGradientBrush>
+                    <GradientStop Offset="0.3" Color="#D0E7F3"/>
+                    <GradientStop Offset="1.4" Color="#A6B3D9"/>
+                    <GradientStop Offset="0.6" Color="#F8A878"/>
+                    <GradientStop Offset="0.9" Color="#D0E7F3"/>
+                </LinearGradientBrush>
+            </react:ReactRootView.Background>
+        </react:ReactRootView>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Right">
+            <TextBlock Grid.Row="1" Text="Powered by " HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+            <TextBlock Grid.Row="1" Margin="10,0,10,5" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White" FontWeight="Bold" FontSize="25">{callstack}</TextBlock>
+        </StackPanel>
+    </Grid>
 
 </Page>

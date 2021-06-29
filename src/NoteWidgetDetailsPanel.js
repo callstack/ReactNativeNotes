@@ -139,7 +139,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
-    margin: 30
+    margin: 30,
+    backgroundColor: "transparent"
   },
   titleBox: {
     borderLeftWidth: 0,
