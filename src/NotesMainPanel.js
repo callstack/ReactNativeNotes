@@ -7,10 +7,12 @@ import React from 'react';
 import {
   Alert,
   AppRegistry,
+  Button,
   Dimensions,
   FlatList,
   NativeModules,
   StyleSheet,
+  Text,
   View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
@@ -53,6 +55,10 @@ class NotesMainPanel extends React.Component {
     this.setState({notes: notesIDs});
   };
 
+  goToNoteCreationPage = () => {
+    NativeModules.NoteWidgetClickHandler.goToCreationPage();
+  };
+
   getDataFromDatabase = () => {
     NativeModules.Database.getAllNotesIDs()
       .then(result => this.createNotesKeys(result))
@@ -63,12 +69,34 @@ class NotesMainPanel extends React.Component {
     return <NoteWidget width={noteWidgetWidth} ID={notes.item.key} title={notes.item.title} shortMessage={notes.item.shortMessage}/>
   };
 
-  render() {
+
+  renderWelcomePage = () => {
+    return(
+      <View style={styles.welcomePage}>
+        <Text style={styles.logoText}>ReactNativeNotes</Text>
+        <Text style={styles.introductionText}>Create your first note with React Native Windows application</Text>
+        <View style={styles.createYourFirstButton}>
+          <Button title={"Create"} onPress={this.goToNoteCreationPage}/>
+        </View>
+      </View>
+    )
+  };
+
+  renderNotesPage = () => {
     return(
       <View style={styles.mainContainer}>
         <FlatList key={this.state.columns} numColumns={this.state.columns} data={this.state.notes} renderItem={this.renderNote}/>
       </View>
-    );
+    )
+  }
+
+  render() {
+    if(this.state.notes.length > 0){
+      return this.renderNotesPage();
+    }
+    else {
+      return this.renderWelcomePage();
+    }
   }
 };
 
@@ -81,9 +109,24 @@ const styles = StyleSheet.create({
     backgroundColor: "transparent",
     justifyContent: "space-around",
   },
-  welcomeText: {
-    fontSize: 25,
-    fontFamily: "Papyrus",
+  welcomePage: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  logoText: {
+    fontSize: 35,
+    margin: 15,
+    color: "white"
+  },
+  createYourFirstButton: {
+    width: 100
+  },
+  introductionText: {
+    fontSize: 18,
+    margin: 15,
+    fontFamily: "Calibri",
+    color: "white"
   }
 });
 
