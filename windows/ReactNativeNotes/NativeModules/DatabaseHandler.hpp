@@ -26,7 +26,7 @@ namespace winrt::ReactNativeNotes::implementation
         REACT_METHOD( UpdateNote, L"updateNote" );
         void UpdateNote( const std::string noteTitle, const std::string noteFullMessage, const unsigned int id ) noexcept
         {
-            data->Update( std::move(NoteModel( noteTitle, false, noteFullMessage, id )) );
+            data->Update( std::move(NoteModel( noteTitle, false, noteFullMessage )), id );
         }
 
         REACT_METHOD( GetNoteTitle, L"getNoteTitle" );

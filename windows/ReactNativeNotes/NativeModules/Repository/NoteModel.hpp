@@ -10,12 +10,9 @@ namespace winrt::ReactNativeNotes::implementation
     public:
         explicit NoteModel() = default;
 
-        NoteModel( const std::string& title, const bool& isDone, const std::string& post = "", const unsigned int& ID = 0 );
+        NoteModel( const std::string& title, const bool& isDone, const std::string& post = "" );
 
         bool operator==( const NoteModel& model ) const;
-
-        unsigned int ID() const noexcept;
-        void ID( unsigned int ) noexcept;
 
         std::string Title() const noexcept;
         void Title( std::string ) noexcept;
@@ -29,7 +26,6 @@ namespace winrt::ReactNativeNotes::implementation
         void IsDone( bool ) noexcept;
 
     private:
-        unsigned int id;
         std::string title;
         std::string post;
         bool isDone;

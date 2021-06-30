@@ -4,24 +4,14 @@
 
 namespace winrt::ReactNativeNotes::implementation
 {
-    NoteModel::NoteModel( const std::string& title, const bool& isDone, const std::string& post, const unsigned int& ID )
-        : title{title}, isDone{isDone}, post{post}, id{ID}
+    NoteModel::NoteModel( const std::string& title, const bool& isDone, const std::string& post )
+        : title{title}, isDone{isDone}, post{post}
     {
     }
 
     bool NoteModel::operator==( const NoteModel& model ) const
     {
-        return this->id == model.id;
-    }
-
-    unsigned int NoteModel::ID() const noexcept
-    {
-        return id;
-    }
-
-    void NoteModel::ID( unsigned int ID ) noexcept
-    {
-        this->id = ID;
+        return this->title == model.title;
     }
 
     std::string NoteModel::Title() const noexcept
@@ -48,9 +38,13 @@ namespace winrt::ReactNativeNotes::implementation
     {
         const unsigned int shortMessageTextLength = 97;
         if( post.size() > 100 )
+        {
             return post.substr( 0, shortMessageTextLength ).append( "..." );
+        }
         else
+        {
             return post;
+        }
     }
 
     bool NoteModel::IsDone() const noexcept
