@@ -111,16 +111,17 @@ const styles = StyleSheet.create({
   },
   logoText: {
     fontSize: 35,
-    margin: 15,
+    margin: 25,
     color: "white"
   },
   plusIcon: {
     fontSize: 30,
+    fontWeight: "bold",
     color: "white"
   },
   introductionText: {
     fontSize: 18,
-    margin: 15,
+    margin: 0,
     fontFamily: "Calibri",
     color: "white"
   }
