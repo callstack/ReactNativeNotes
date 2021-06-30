@@ -55,10 +55,6 @@ class NotesMainPanel extends React.Component {
     this.setState({notes: notesIDs});
   };
 
-  goToNoteCreationPage = () => {
-    NativeModules.NoteWidgetClickHandler.goToCreationPage();
-  };
-
   getDataFromDatabase = () => {
     NativeModules.Database.getAllNotesIDs()
       .then(result => this.createNotesKeys(result))
@@ -74,10 +70,9 @@ class NotesMainPanel extends React.Component {
     return(
       <View style={styles.welcomePage}>
         <Text style={styles.logoText}>ReactNativeNotes</Text>
-        <Text style={styles.introductionText}>Create your first note with React Native Windows application</Text>
-        <View style={styles.createYourFirstButton}>
-          <Button title={"Create"} onPress={this.goToNoteCreationPage}/>
-        </View>
+        <Text style={styles.introductionText}>Create your first note by clicking</Text>
+        <Text style={styles.plusIcon}>+</Text>
+        <Text style={styles.introductionText}>on the navigation panel</Text>
       </View>
     )
   };
@@ -119,8 +114,9 @@ const styles = StyleSheet.create({
     margin: 15,
     color: "white"
   },
-  createYourFirstButton: {
-    width: 100
+  plusIcon: {
+    fontSize: 30,
+    color: "white"
   },
   introductionText: {
     fontSize: 18,
