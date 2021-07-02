@@ -2,7 +2,6 @@
  * @format
  * @flow strict-local
  */
-
 import React, {useState} from 'react';
 import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
