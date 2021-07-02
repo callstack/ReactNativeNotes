@@ -9,6 +9,7 @@ jobs:
       name: windows/default
       shell: powershell.exe
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - run:
           name: "Display environment information"
@@ -33,6 +34,7 @@ jobs:
       name: windows/default
       shell: powershell.exe
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - restore_cache:
           keys:
@@ -53,6 +55,7 @@ jobs:
         enum: ["ARM64", "x64", "ARM", "Win32"]
     executor: windows/default
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - restore_cache:
           keys:
