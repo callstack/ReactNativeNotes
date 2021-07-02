@@ -1,4 +1,7 @@
 module.exports = {
   root: true,
-  extends: "@callstack"
+  extends: "@callstack",
+  rules: {
+    "linebreak-style": 0
+  }
 };
