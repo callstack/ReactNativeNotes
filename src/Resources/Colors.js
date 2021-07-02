@@ -5,7 +5,7 @@ const Colors = {
   plusIcon: '#FFFFFF',
   introductionText: '#FFFFFF',
   noteWidgetBorder: 'rgba(170,170,170,0.1)',
-  noteWidgetBackground: 'white'
+  noteWidgetBackground: 'white',
 };
 
 export default Colors;
