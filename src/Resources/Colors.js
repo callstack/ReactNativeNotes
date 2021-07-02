@@ -1,4 +1,3 @@
-
 const Colors = {
   noteTextPanelBorder: '#D0D0D0',
   transparent: 'transparent',
