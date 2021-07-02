@@ -13,17 +13,16 @@ import {
   View,
   Button,
 } from 'react-native';
-
-
+import Colors from './Resources/Colors';
 
 class CreateNotePanel extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      message: "",
-    }
-  };
+      title: '',
+      message: '',
+    };
+  }
 
   titleOnChange = (text) => {
     this.setState({title: text});
@@ -34,98 +33,99 @@ class CreateNotePanel extends React.Component {
   };
 
   cancelButtonPressed = () => {
-    if(this.state.title !== "" || this.state.message !== "") {
-      Alert.alert("Are you sure?", "It looks like you still have unsaved changes, which are going to be lost.",
-      [
-        {
-          text: "Cancel",
-          style: "cancel"
-        },
-        {
-          text: "Discard",
-          onPress: () => NativeModules.NoteWidgetClickHandler.goToNotesScreen()
-        }
-      ])
-    }
-    else {
+    if (this.state.title !== '' || this.state.message !== '') {
+      Alert.alert(
+        'Are you sure?',
+        'It looks like you still have unsaved changes, which are going to be lost.',
+        [
+          {
+            text: 'Cancel',
+            style: 'cancel',
+          },
+          {
+            text: 'Discard',
+            onPress: () =>
+              NativeModules.NoteWidgetClickHandler.goToNotesScreen(),
+          },
+        ],
+      );
+    } else {
       NativeModules.NoteWidgetClickHandler.goToNotesScreen();
     }
   };
 
   createButtonPressed = () => {
-    NativeModules.Database.writeNote(this.state.title, false, this.state.message);
+    NativeModules.Database.writeNote(
+      this.state.title,
+      false,
+      this.state.message,
+    );
     NativeModules.NoteWidgetClickHandler.goToNotesScreen();
-  }
-
+  };
 
   render() {
     return (
       <View style={styles.mainPanel}>
+        <TextInput
+          style={styles.titleBox}
+          onChangeText={this.titleOnChange}
+          value={this.state.title}
+          autoFocus={true}
+          clearButtonMode={'while-editing'}
+          placeholder={'Title'}
+        />
 
-          <TextInput style={styles.titleBox}
-            onChangeText={this.titleOnChange}
-            value={this.state.title}
-            autoFocus={true}
-            clearButtonMode={"while-editing"}
-            placeholder={"Title"}
-          />
-
-          <TextInput style={styles.noteMessageBox}
-            multiline={true}
-            onChangeText={this.messageOnChange}
-            value={this.state.message}
-            placeholder={"Note content"}
-          />
+        <TextInput
+          style={styles.noteMessageBox}
+          multiline={true}
+          onChangeText={this.messageOnChange}
+          value={this.state.message}
+          placeholder={'Note content'}
+        />
 
         <View style={styles.actionsPanel}>
-          <Button title={"Discard"} onPress={this.cancelButtonPressed}/>
-          <Button title={"Create!"} onPress={this.createButtonPressed}/>
+          <Button title={'Discard'} onPress={this.cancelButtonPressed} />
+          <Button title={'Create!'} onPress={this.createButtonPressed} />
         </View>
-
       </View>
     );
   }
-};
-
+}
 
 const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    margin: 30
-  },
-  titlePanel: {
-    height: 60,
+    flexDirection: 'column',
+    alignItems: 'center',
+    margin: 30,
   },
   titleBox: {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 0,
-    width: "90%",
-    borderColor: "#D0D0D0",
-    fontWeight: "bold"
+    width: '90%',
+    borderColor: Colors.noteTextPanelBorder,
+    fontWeight: 'bold',
   },
   noteMessageBox: {
     borderWidth: 0.2,
     margin: 10,
-    width: "90%",
-    height: "85%",
-    borderColor: "#D0D0D0",
-    alignContent: "center",
-    textAlignVertical: "center",
+    width: '90%',
+    height: '85%',
+    borderColor: Colors.noteTextPanelBorder,
+    alignContent: 'center',
+    textAlignVertical: 'center',
   },
   actionsPanel: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    width: "60%",
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '60%',
     maxHeight: 35,
-  }
+  },
 });
 
-
-AppRegistry.registerComponent("CreateNotePanel", () => CreateNotePanel);
+AppRegistry.registerComponent('CreateNotePanel', () => CreateNotePanel);
 
 export default CreateNotePanel;

@@ -12,9 +12,9 @@ import {
   Button,
   View,
 } from 'react-native';
-import TaskWidget from './Widgets/TaskWidget';
 import DateTimePicker from '@react-native-community/datetimepicker';
-
+import TaskWidget from './Widgets/TaskWidget';
+import Colors from './Resources/Colors';
 
 class ToDoListPanel extends React.Component {
   constructor(props) {
@@ -22,10 +22,10 @@ class ToDoListPanel extends React.Component {
     this.state = {
       tasks: [],
       number: 0,
-      message: "",
-      selectedDate: new Date(0)
-    }
-  };
+      message: '',
+      selectedDate: new Date(0),
+    };
+  }
 
   onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
@@ -37,7 +37,7 @@ class ToDoListPanel extends React.Component {
   };
 
   addButtonPressed = () => {
-    this.setState(previous => ({number: previous.number + 1}));
+    this.setState((previous) => ({number: previous.number + 1}));
     this.createTask();
   };
 
@@ -45,70 +45,89 @@ class ToDoListPanel extends React.Component {
     const newTaskMessage = this.state.message;
     const newTaskDate = this.state.selectedDate;
     const newTaskID = this.state.number;
-    this.setState({tasks: [...this.state.tasks, {'key':newTaskID, 'message':newTaskMessage, 'dueDate':newTaskDate}]});
+    this.setState({
+      tasks: [
+        ...this.state.tasks,
+        {key: newTaskID, message: newTaskMessage, dueDate: newTaskDate},
+      ],
+    });
   };
 
-  renderTask = tasks => {
-    return(
-      <TaskWidget ID={tasks.item.key} message={tasks.item.message} dueDate={tasks.item.dueDate}/>
+  renderTask = (tasks) => {
+    return (
+      <TaskWidget
+        ID={tasks.item.key}
+        message={tasks.item.message}
+        dueDate={tasks.item.dueDate}
+      />
     );
   };
 
   render() {
-    return(
+    return (
       <View style={styles.mainPanel}>
-
         <View style={styles.flatListPanel}>
-          <FlatList numColumns={1} data={this.state.tasks} renderItem={this.renderTask}/>
+          <FlatList
+            numColumns={1}
+            data={this.state.tasks}
+            renderItem={this.renderTask}
+          />
         </View>
 
         <View style={styles.newTaskPanel}>
-          <TextInput style={styles.noteMessageBox} onChangeText={this.messageOnChange} value={this.state.message} placeholder={"Task content"} />
+          <TextInput
+            style={styles.noteMessageBox}
+            onChangeText={this.messageOnChange}
+            value={this.state.message}
+            placeholder={'Task content'}
+          />
           <View style={styles.createButtons}>
-            <Button title={"Add"} onPress={this.addButtonPressed}/>
-            <DateTimePicker value={this.state.selectedDate} is24Hour={true} display="default" onChange={this.onChange} />
+            <Button title={'Add'} onPress={this.addButtonPressed} />
+            <DateTimePicker
+              value={this.state.selectedDate}
+              is24Hour={true}
+              display="default"
+              onChange={this.onChange}
+            />
           </View>
         </View>
-
       </View>
     );
   }
-};
-
+}
 
 const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
-    flexDirection: "column"
+    flexDirection: 'column',
   },
   flatListPanel: {
-    height: "75%",
+    height: '75%',
     margin: 30,
   },
   newTaskPanel: {
     flex: 1,
-    flexDirection: "column",
+    flexDirection: 'column',
     marginTop: 10,
     borderWidth: 1,
-    borderColor: "white",
+    borderColor: Colors.noteTextPanelBorder,
     maxHeight: 90,
   },
   noteMessageBox: {
     borderWidth: 0.2,
     margin: 10,
-    borderColor: "#D0D0D0",
-    alignContent: "center",
-    textAlignVertical: "center",
+    borderColor: Colors.noteTextPanelBorder,
+    alignContent: 'center',
+    textAlignVertical: 'center',
   },
   createButtons: {
     flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    height: 10
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    height: 10,
   },
 });
 
-
-AppRegistry.registerComponent("ToDoListPanel", () => ToDoListPanel);
+AppRegistry.registerComponent('ToDoListPanel', () => ToDoListPanel);
 
 export default ToDoListPanel;
