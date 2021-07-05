@@ -16,30 +16,37 @@ import {
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
 
-const window = Dimensions.get('window');
-const screen = Dimensions.get('screen');
-
 const noteWidgetWidth = 300;
 
-class NotesMainPanel extends React.Component {
-  constructor(props) {
+function calculateColumnWidth() {
+  return Math.floor(Dimensions.get('window').width / noteWidgetWidth);
+}
+
+interface Props {}
+
+interface INote {
+  key: number;
+  title: string;
+  shortMessage: string;
+}
+
+interface State {
+  notes: Array<INote>;
+  columns: number;
+}
+
+class NotesMainPanel extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       notes: [],
-      dimensions: {window, screen},
-      columns: this.calculateColumnWidth(window),
-      isMounted: false,
+      columns: calculateColumnWidth(),
     };
   }
 
-  calculateColumnWidth = () => {
-    return Math.floor(Dimensions.get('window').width / noteWidgetWidth);
-  };
-
-  onChange = ({window, screen}) => {
+  onChange = () => {
     this.setState({
-      dimensions: {window, screen},
-      columns: this.calculateColumnWidth(),
+      columns: calculateColumnWidth(),
     });
   };
 
@@ -52,25 +59,16 @@ class NotesMainPanel extends React.Component {
     Dimensions.removeEventListener('change', this.onChange);
   }
 
-  createNotesKeys = async (notesIDs) => {
+  createNotesKeys = async (notesIDs: Array<INote>) => {
     this.setState({notes: notesIDs});
   };
 
   getDataFromDatabase = async () => {
     await NativeModules.Database.getAllNotesIDs()
-      .then((result) => this.createNotesKeys(result))
-      .catch((error) => Alert.alert('ERROR!', `Result: ${error}`));
-  };
-
-  renderNote = (notes) => {
-    return (
-      <NoteWidget
-        width={noteWidgetWidth}
-        ID={notes.item.key}
-        title={notes.item.title}
-        shortMessage={notes.item.shortMessage}
-      />
-    );
+      .then((result: Array<INote>) => this.createNotesKeys(result))
+      .catch((error: Error) =>
+        Alert.alert('ERROR!', `Result: ${error.message}`),
+      );
   };
 
   renderWelcomePage = () => {
@@ -89,11 +87,18 @@ class NotesMainPanel extends React.Component {
   renderNotesPage = () => {
     return (
       <View style={styles.mainContainer}>
-        <FlatList
+        <FlatList<INote>
           key={this.state.columns}
           numColumns={this.state.columns}
           data={this.state.notes}
-          renderItem={this.renderNote}
+          renderItem={({item}) => (
+            <NoteWidget
+              width={noteWidgetWidth}
+              id={item.key}
+              title={item.title}
+              shortMessage={item.shortMessage}
+            />
+          )}
         />
       </View>
     );

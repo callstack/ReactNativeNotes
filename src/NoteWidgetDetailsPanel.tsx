@@ -14,8 +14,17 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 
-class NoteWidgetDetailsPanel extends React.Component {
-  constructor(props) {
+interface Props {}
+
+interface State {
+  id: number;
+  title: string;
+  message: string;
+  isEditing: boolean;
+}
+
+class NoteWidgetDetailsPanel extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       id: 0,
@@ -27,41 +36,44 @@ class NoteWidgetDetailsPanel extends React.Component {
 
   async componentDidMount() {
     await NativeModules.NoteWidgetClickHandler.openedNoteID()
-      .then((result) => {
+      .then((result: number) => {
         this.setState({id: result});
         this.getNoteTitle();
         this.getNoteMessage();
         return 0;
       })
-      .catch((error) => {
-        Alert.alert('ERROR!', `Could not find the opened note\n${error}`);
+      .catch((error: Error) => {
+        Alert.alert(
+          'ERROR!',
+          `Could not find the opened note\n${error.message}`,
+        );
       });
   }
 
-  titleOnChange = (text) => {
+  titleOnChange = (text: string) => {
     this.setState({title: text});
   };
 
-  messageOnChange = (text) => {
+  messageOnChange = (text: string) => {
     this.setState({message: text});
   };
 
   getNoteTitle = async () => {
     await NativeModules.Database.getNoteTitle(this.state.id)
-      .then((result) => {
+      .then((result: string) => {
         this.setState({title: result});
         return 0;
       })
-      .catch((error) => Alert.alert('ERROR!', `${error}`));
+      .catch((error: Error) => Alert.alert('ERROR!', `${error.message}`));
   };
 
   getNoteMessage = async () => {
     await NativeModules.Database.getNotePost(this.state.id)
-      .then((result) => {
+      .then((result: string) => {
         this.setState({message: result});
         return 0;
       })
-      .catch((error) => Alert.alert('ERROR!', `${error}`));
+      .catch((error: Error) => Alert.alert('ERROR!', `${error.message}`));
   };
 
   cancelButtonPressed = () => {
