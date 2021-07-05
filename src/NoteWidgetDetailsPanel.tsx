@@ -14,8 +14,17 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 
-class NoteWidgetDetailsPanel extends React.Component {
-  constructor(props) {
+interface IProps {}
+
+interface IState {
+  id: number;
+  title: string;
+  message: string;
+  isEditing: boolean;
+}
+
+class NoteWidgetDetailsPanel extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       id: 0,
@@ -27,41 +36,41 @@ class NoteWidgetDetailsPanel extends React.Component {
 
   async componentDidMount() {
     await NativeModules.NoteWidgetClickHandler.openedNoteID()
-      .then((result) => {
+      .then(<T extends number>(result: T) => {
         this.setState({id: result});
         this.getNoteTitle();
         this.getNoteMessage();
         return 0;
       })
-      .catch((error) => {
+      .catch(<T extends string>(error: T) => {
         Alert.alert('ERROR!', `Could not find the opened note\n${error}`);
       });
   }
 
-  titleOnChange = (text) => {
+  titleOnChange = <T extends string>(text: T) => {
     this.setState({title: text});
   };
 
-  messageOnChange = (text) => {
+  messageOnChange = <T extends string>(text: T) => {
     this.setState({message: text});
   };
 
   getNoteTitle = async () => {
     await NativeModules.Database.getNoteTitle(this.state.id)
-      .then((result) => {
+      .then(<T extends string>(result: T) => {
         this.setState({title: result});
         return 0;
       })
-      .catch((error) => Alert.alert('ERROR!', `${error}`));
+      .catch(<T extends string>(error: T) => Alert.alert('ERROR!', `${error}`));
   };
 
   getNoteMessage = async () => {
     await NativeModules.Database.getNotePost(this.state.id)
-      .then((result) => {
+      .then(<T extends string>(result: T) => {
         this.setState({message: result});
         return 0;
       })
-      .catch((error) => Alert.alert('ERROR!', `${error}`));
+      .catch(<T extends string>(error: T) => Alert.alert('ERROR!', `${error}`));
   };
 
   cancelButtonPressed = () => {

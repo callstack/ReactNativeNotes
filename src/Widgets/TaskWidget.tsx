@@ -8,7 +8,13 @@ import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import Colors from '../Resources/Colors';
 
-export default function TaskWidget(props) {
+interface IProps {
+  ID: number;
+  message: string;
+  dueDate: Date | undefined;
+}
+
+export default function TaskWidget(props: IProps) {
   const {message, dueDate} = props;
 
   const [isDone, setIsDone] = useState(false);

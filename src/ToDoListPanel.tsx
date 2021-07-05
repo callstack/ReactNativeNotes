@@ -15,8 +15,21 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import TaskWidget from './Widgets/TaskWidget';
 import Colors from './Resources/Colors';
 
-class ToDoListPanel extends React.Component {
-  constructor(props) {
+interface IProps {}
+interface ITask {
+  key: number;
+  message: string;
+  dueDate: Date | undefined;
+}
+interface IState {
+  tasks: Array<ITask>;
+  number: number;
+  message: string;
+  selectedDate: Date | undefined;
+}
+
+class ToDoListPanel extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       tasks: [],
@@ -26,12 +39,12 @@ class ToDoListPanel extends React.Component {
     };
   }
 
-  onChange = (event, selectedDate) => {
+  onChange = <T extends Event>(event: T, selectedDate?: Date) => {
     const currentDate = selectedDate;
     this.setState({selectedDate: currentDate});
   };
 
-  messageOnChange = (text) => {
+  messageOnChange = <T extends string>(text: T) => {
     this.setState({message: text});
   };
 
@@ -52,16 +65,6 @@ class ToDoListPanel extends React.Component {
     });
   };
 
-  renderTask = (tasks) => {
-    return (
-      <TaskWidget
-        ID={tasks.item.key}
-        message={tasks.item.message}
-        dueDate={tasks.item.dueDate}
-      />
-    );
-  };
-
   render() {
     return (
       <View style={styles.mainPanel}>
@@ -69,7 +72,13 @@ class ToDoListPanel extends React.Component {
           <FlatList
             numColumns={1}
             data={this.state.tasks}
-            renderItem={this.renderTask}
+            renderItem={({item}) => (
+              <TaskWidget
+                ID={item.key}
+                message={item.message}
+                dueDate={item.dueDate}
+              />
+            )}
           />
         </View>
 
@@ -83,7 +92,7 @@ class ToDoListPanel extends React.Component {
           <View style={styles.createButtons}>
             <Button title={'Add'} onPress={this.addButtonPressed} />
             <DateTimePicker
-              value={this.state.selectedDate}
+              value={this.state.selectedDate || new Date(0)}
               is24Hour={true}
               display="default"
               onChange={this.onChange}

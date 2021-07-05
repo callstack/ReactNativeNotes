@@ -14,8 +14,15 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 
-class CreateNotePanel extends React.Component {
-  constructor(props) {
+interface IProps {}
+
+interface IState {
+  title: string;
+  message: string;
+}
+
+class CreateNotePanel extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
     super(props);
     this.state = {
       title: '',
@@ -23,11 +30,11 @@ class CreateNotePanel extends React.Component {
     };
   }
 
-  titleOnChange = (text) => {
+  titleOnChange = (text: string) => {
     this.setState({title: text});
   };
 
-  messageOnChange = (text) => {
+  messageOnChange = (text: string) => {
     this.setState({message: text});
   };
 

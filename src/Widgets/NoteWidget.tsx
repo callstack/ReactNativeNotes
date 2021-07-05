@@ -13,7 +13,14 @@ import {
 } from 'react-native';
 import Colors from '../Resources/Colors';
 
-export default function NoteWidget(props) {
+interface IProps {
+  width: number;
+  ID: number;
+  title: string;
+  shortMessage: string;
+}
+
+export default function NoteWidget(props: IProps) {
   const {width, ID, title, shortMessage} = props;
 
   const enterNote = () => {
