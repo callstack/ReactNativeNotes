@@ -1,7 +1,6 @@
 /**
  * @format
  */
-
 import {AppRegistry} from 'react-native';
 
 import NotesMainPanel from './src/NotesMainPanel';

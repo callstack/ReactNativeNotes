@@ -9,6 +9,7 @@ jobs:
       name: windows/default
       shell: powershell.exe
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - run:
           name: "Display environment information"
@@ -28,6 +29,21 @@ jobs:
             - node_modules
             - windows/packages
 
+  verify:
+    executor:
+      name: windows/default
+      shell: powershell.exe
+    steps:
+      - run: git config --global core.autocrlf false
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-
+      - run:
+          name: "Verify the standards and code quality"
+          command: npx eslint ./src/**
+
   # Application build
   build-Application-Configuration-Platform:
     parameters:
@@ -39,6 +55,7 @@ jobs:
         enum: ["ARM64", "x64", "ARM", "Win32"]
     executor: windows/default
     steps:
+      - run: git config --global core.autocrlf false
       - checkout
       - restore_cache:
           keys:
@@ -54,6 +71,9 @@ workflows:
   build-x64:
     jobs:
       - install
+      - verify:
+          requires:
+            - install
       - build-Application-Configuration-Platform:
           name: build-Application-Release-x64
           configuration: "release"
