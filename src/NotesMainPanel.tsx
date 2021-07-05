@@ -18,7 +18,11 @@ import Colors from './Resources/Colors';
 
 const noteWidgetWidth = 300;
 
-interface IProps {}
+function calculateColumnWidth() {
+  return Math.floor(Dimensions.get('window').width / noteWidgetWidth);
+}
+
+interface Props {}
 
 interface INote {
   key: number;
@@ -26,27 +30,23 @@ interface INote {
   shortMessage: string;
 }
 
-interface IState {
+interface State {
   notes: Array<INote>;
   columns: number;
 }
 
-class NotesMainPanel extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+class NotesMainPanel extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       notes: [],
-      columns: this.calculateColumnWidth(),
+      columns: calculateColumnWidth(),
     };
   }
 
-  calculateColumnWidth = () => {
-    return Math.floor(Dimensions.get('window').width / noteWidgetWidth);
-  };
-
   onChange = () => {
     this.setState({
-      columns: this.calculateColumnWidth(),
+      columns: calculateColumnWidth(),
     });
   };
 
@@ -59,15 +59,15 @@ class NotesMainPanel extends React.Component<IProps, IState> {
     Dimensions.removeEventListener('change', this.onChange);
   }
 
-  createNotesKeys = async <T extends Array<INote>>(notesIDs: T) => {
+  createNotesKeys = async (notesIDs: Array<INote>) => {
     this.setState({notes: notesIDs});
   };
 
   getDataFromDatabase = async () => {
     await NativeModules.Database.getAllNotesIDs()
-      .then(<T extends Array<INote>>(result: T) => this.createNotesKeys(result))
-      .catch(<T extends unknown>(error: T) =>
-        Alert.alert('ERROR!', `Result: ${error}`),
+      .then((result: Array<INote>) => this.createNotesKeys(result))
+      .catch((error: Error) =>
+        Alert.alert('ERROR!', `Result: ${error.message}`),
       );
   };
 
@@ -94,7 +94,7 @@ class NotesMainPanel extends React.Component<IProps, IState> {
           renderItem={({item}) => (
             <NoteWidget
               width={noteWidgetWidth}
-              ID={item.key}
+              id={item.key}
               title={item.title}
               shortMessage={item.shortMessage}
             />

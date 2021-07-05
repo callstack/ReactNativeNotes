@@ -13,18 +13,18 @@ import {
 } from 'react-native';
 import Colors from '../Resources/Colors';
 
-interface IProps {
+interface Props {
   width: number;
-  ID: number;
+  id: number;
   title: string;
   shortMessage: string;
 }
 
-export default function NoteWidget(props: IProps) {
-  const {width, ID, title, shortMessage} = props;
+export default function NoteWidget(props: Props) {
+  const {width, id, title, shortMessage} = props;
 
   const enterNote = () => {
-    NativeModules.NoteWidgetClickHandler.openWidget(ID);
+    NativeModules.NoteWidgetClickHandler.openWidget(id);
   };
 
   return (

@@ -14,15 +14,15 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 
-interface IProps {}
+interface Props {}
 
-interface IState {
+interface State {
   title: string;
   message: string;
 }
 
-class CreateNotePanel extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+class CreateNotePanel extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       title: '',

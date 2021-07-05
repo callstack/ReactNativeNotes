@@ -15,36 +15,38 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import TaskWidget from './Widgets/TaskWidget';
 import Colors from './Resources/Colors';
 
-interface IProps {}
-interface ITask {
+interface Props {}
+
+interface Task {
   key: number;
   message: string;
   dueDate: Date | undefined;
 }
-interface IState {
-  tasks: Array<ITask>;
+
+interface State {
+  tasks: Array<Task>;
   number: number;
   message: string;
   selectedDate: Date | undefined;
 }
 
-class ToDoListPanel extends React.Component<IProps, IState> {
-  constructor(props: IProps) {
+class ToDoListPanel extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       tasks: [],
       number: 0,
       message: '',
-      selectedDate: new Date(0),
+      selectedDate: new Date(),
     };
   }
 
-  onChange = <T extends Event>(event: T, selectedDate?: Date) => {
+  onChange = (event: Event, selectedDate?: Date) => {
     const currentDate = selectedDate;
     this.setState({selectedDate: currentDate});
   };
 
-  messageOnChange = <T extends string>(text: T) => {
+  messageOnChange = (text: string) => {
     this.setState({message: text});
   };
 
@@ -74,7 +76,7 @@ class ToDoListPanel extends React.Component<IProps, IState> {
             data={this.state.tasks}
             renderItem={({item}) => (
               <TaskWidget
-                ID={item.key}
+                id={item.key}
                 message={item.message}
                 dueDate={item.dueDate}
               />
@@ -92,7 +94,7 @@ class ToDoListPanel extends React.Component<IProps, IState> {
           <View style={styles.createButtons}>
             <Button title={'Add'} onPress={this.addButtonPressed} />
             <DateTimePicker
-              value={this.state.selectedDate || new Date(0)}
+              value={this.state.selectedDate || new Date()}
               is24Hour={true}
               display="default"
               onChange={this.onChange}
