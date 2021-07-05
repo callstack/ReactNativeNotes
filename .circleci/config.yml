@@ -43,6 +43,9 @@ jobs:
       - run:
           name: "Verify the standards and code quality"
           command: npx eslint ./src/**
+      - run:
+          name: "Check the TypeScript code quality"
+          command: yarn tsc --pretty
 
   # Application build
   build-Application-Configuration-Platform:
