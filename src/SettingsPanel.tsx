@@ -3,35 +3,41 @@
  * @flow strict-local
  */
 import React from 'react';
-import {AppRegistry, StyleSheet, View, Text} from 'react-native';
+import {AppRegistry, StyleSheet, View, NativeModules} from 'react-native';
 import {Picker} from 'react-native-windows';
 import Colors from './Resources/Colors';
+import Dictionary from './Resources/Dictionary';
 
-interface Props {}
+interface Properties {}
 
 interface State {
   selectedLanguage: number;
 }
 
-class SettingsPanel extends React.Component<Props, State> {
-  constructor(props: Props) {
+class SettingsPanel extends React.Component<Properties, State> {
+  constructor(props: Properties) {
     super(props);
     this.state = {
       selectedLanguage: 0,
     };
   }
 
+  languageValueChanged = (value: number) => {
+    NativeModules.Database.setLanguageValue(value);
+    this.setState({selectedLanguage: value});
+  };
+
   render() {
     return (
       <View style={styles.mainPanel}>
         <View style={styles.languageField}>
-          <Text style={styles.languageText}>Language: </Text>
+          <Dictionary
+            style={styles.languageText}
+            textLabel={'settings.languageLabel'}></Dictionary>
           <Picker
             selectedValue={this.state.selectedLanguage}
-            style={{height: 30, width: 150}}
-            onValueChange={(itemIndex) =>
-              this.setState({selectedLanguage: itemIndex})
-            }>
+            style={styles.languageSelectionBox}
+            onValueChange={this.languageValueChanged}>
             <Picker.Item label="English" value={0} />
             <Picker.Item label="Polski" value={1} />
           </Picker>
@@ -59,6 +65,10 @@ const styles = StyleSheet.create({
     margin: 20,
     width: '50%',
     alignItems: 'center',
+  },
+  languageSelectionBox: {
+    height: 30,
+    width: 150,
   },
 });
 
