@@ -5,16 +5,23 @@
   "settings.languageLabel": "Language:",
   "createNotesScreen.titlePlaceholder": "Title",
   "createNotesScreen.messagePlaceholder": "Note content",
-  "createNotesScreen.DiscardButton": "Discard",
+  "createNotesScreen.discardButton": "Discard",
   "createNotesScreen.createButton": "Create",
   "editNoteScreen.titlePlaceholder": "Title",
   "editNoteScreen.messagePlaceholder": "Note content",
-  "editNoteScreen.DiscardButton": "Discard",
+  "editNoteScreen.discardButton": "Discard",
   "editNoteScreen.saveButton": "Save",
   "editNoteScreen.editButton": "Edit",
   "editNoteScreen.deleteButton": "Delete",
   "tasksScreen.taskPlaceholder": "Task content",
   "tasksScreen.addButton": "Add",
-  "tasksScreen.dueDateLabel": "Due date:"
+  "tasksScreen.dueDateLabel": "Due date:",
+  "alert.confirmationRequired": "Are you sure?",
+  "alert.confirmationExplanation": "It looks like you still have unsaved changes, which are going to be lost.",
+  "alert.cancel": "Cancel",
+  "alert.discard": "Discard",
+  "alert.ok": "OK",
+  "alert.noteDeleteConfirmation": "Are you sure?",
+  "alert.noteDeletionConfirmExplanation": "Deleting the note cannot be reversed...",
+  "alert.delete": "Delete"
 }
-
