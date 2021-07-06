@@ -13,6 +13,7 @@ import {
   Button,
 } from 'react-native';
 import Colors from './Resources/Colors';
+import * as dictionary from './Resources/Dictionary';
 
 interface Props {}
 
@@ -79,15 +80,15 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
   cancelButtonPressed = () => {
     if (this.state.isEditing) {
       Alert.alert(
-        'Are you sure?',
-        'It looks like you still have unsaved changes, which are going to be lost.',
+        dictionary.getTextByKey('alert.confirmationRequired'),
+        dictionary.getTextByKey('alert.confirmationExplanation'),
         [
           {
-            text: 'Cancel',
+            text: dictionary.getTextByKey('alert.cancel'),
             style: 'cancel',
           },
           {
-            text: 'Discard',
+            text: dictionary.getTextByKey('alert.discard'),
             onPress: () =>
               NativeModules.NoteWidgetClickHandler.goToNotesScreen(),
           },
@@ -112,19 +113,23 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
   };
 
   deleteButtonPressed = () => {
-    Alert.alert('Are you sure?', 'Deleting the note cannot be reversed...', [
-      {
-        text: 'Cancel',
-        style: 'cancel',
-      },
-      {
-        text: 'Delete',
-        onPress: () => {
-          NativeModules.Database.deleteNote(this.state.id);
-          NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+    Alert.alert(
+      dictionary.getTextByKey('alert.noteDeletionConfirmation'),
+      dictionary.getTextByKey('alert.noteDeletionConfirmationExplanation'),
+      [
+        {
+          text: dictionary.getTextByKey('alert.cancel'),
+          style: 'cancel',
         },
-      },
-    ]);
+        {
+          text: dictionary.getTextByKey('alert.delete'),
+          onPress: () => {
+            NativeModules.Database.deleteNote(this.state.id);
+            NativeModules.NoteWidgetClickHandler.goToNotesScreen();
+          },
+        },
+      ],
+    );
   };
 
   render() {
@@ -136,7 +141,9 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
           value={this.state.title}
           autoFocus={true}
           clearButtonMode={'while-editing'}
-          placeholder={'Title'}
+          placeholder={dictionary.getTextByKey(
+            'editNoteScreen.titlePlaceholder',
+          )}
           editable={this.state.isEditing}
         />
 
@@ -145,23 +152,31 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
           multiline={true}
           onChangeText={this.messageOnChange}
           value={this.state.message}
-          placeholder={'Note content'}
+          placeholder={dictionary.getTextByKey(
+            'editNoteScreen.messagePlaceholder',
+          )}
           editable={this.state.isEditing}
         />
 
         <View style={styles.actionsPanel}>
-          <Button title={'Discard'} onPress={this.cancelButtonPressed} />
           <Button
-            title={'Edit'}
+            title={dictionary.getTextByKey('editNoteScreen.discardButton')}
+            onPress={this.cancelButtonPressed}
+          />
+          <Button
+            title={dictionary.getTextByKey('editNoteScreen.editButton')}
             disabled={this.state.isEditing}
             onPress={this.editButtonPressed}
           />
           <Button
-            title={'Save'}
+            title={dictionary.getTextByKey('editNoteScreen.saveButton')}
             disabled={!this.state.isEditing}
             onPress={this.saveButtonPressed}
           />
-          <Button title={'Delete'} onPress={this.deleteButtonPressed} />
+          <Button
+            title={dictionary.getTextByKey('editNoteScreen.deleteButton')}
+            onPress={this.deleteButtonPressed}
+          />
         </View>
       </View>
     );

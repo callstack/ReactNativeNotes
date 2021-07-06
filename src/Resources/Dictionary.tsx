@@ -8,6 +8,16 @@ export interface Props {
   style: {};
 }
 
+export const languages = [en, pl];
+export var languageNum: number;
+
+export function getTextByKey(textLabel: string): string {
+  let index = 0;
+  if (languageNum < languages.length) index = languageNum;
+  let dictionary = new Map(Object.entries(languages[index]));
+  return dictionary.get(textLabel) || '';
+}
+
 interface State {
   label: string;
   languageValue: number;
@@ -27,6 +37,7 @@ export class Dictionary extends React.Component<Props, State> {
     NativeModules.Database.getLanguageValue()
       .then((result: number) => {
         this.setState({languageValue: result});
+        languageNum = result;
         return result;
       })
       .catch((error: Error) => {

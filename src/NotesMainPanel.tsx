@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
+import Dictionary from './Resources/Dictionary';
 
 const noteWidgetWidth = 300;
 
@@ -75,11 +76,15 @@ class NotesMainPanel extends React.Component<Props, State> {
     return (
       <View style={styles.welcomePage}>
         <Text style={styles.logoText}>ReactNativeNotes</Text>
-        <Text style={styles.introductionText}>
-          Create your first note by clicking
-        </Text>
+        <Dictionary
+          textLabel={'mainAppScreen.introductionTextUpper'}
+          style={styles.introductionText}
+        />
         <Text style={styles.plusIcon}>+</Text>
-        <Text style={styles.introductionText}>on the navigation panel</Text>
+        <Dictionary
+          textLabel={'mainAppScreen.introductionTextLower'}
+          style={styles.introductionText}
+        />
       </View>
     );
   };

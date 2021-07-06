@@ -13,6 +13,7 @@ import {
   Button,
 } from 'react-native';
 import Colors from './Resources/Colors';
+import * as dict from './Resources/Dictionary';
 
 interface Props {}
 
@@ -41,15 +42,15 @@ class CreateNotePanel extends React.Component<Props, State> {
   cancelButtonPressed = () => {
     if (this.state.title !== '' || this.state.message !== '') {
       Alert.alert(
-        'Are you sure?',
-        'It looks like you still have unsaved changes, which are going to be lost.',
+        dict.getTextByKey('alert.confirmationRequired'),
+        dict.getTextByKey('alert.confirmationExplanation'),
         [
           {
-            text: 'Cancel',
+            text: dict.getTextByKey('alert.cancel'),
             style: 'cancel',
           },
           {
-            text: 'Discard',
+            text: dict.getTextByKey('alert.discard'),
             onPress: () =>
               NativeModules.NoteWidgetClickHandler.goToNotesScreen(),
           },
@@ -78,7 +79,7 @@ class CreateNotePanel extends React.Component<Props, State> {
           value={this.state.title}
           autoFocus={true}
           clearButtonMode={'while-editing'}
-          placeholder={'Title'}
+          placeholder={dict.getTextByKey('createNotesScreen.titlePlaceholder')}
         />
 
         <TextInput
@@ -86,12 +87,20 @@ class CreateNotePanel extends React.Component<Props, State> {
           multiline={true}
           onChangeText={this.messageOnChange}
           value={this.state.message}
-          placeholder={'Note content'}
+          placeholder={dict.getTextByKey(
+            'createNotesScreen.messagePlaceholder',
+          )}
         />
 
         <View style={styles.actionsPanel}>
-          <Button title={'Discard'} onPress={this.cancelButtonPressed} />
-          <Button title={'Create!'} onPress={this.createButtonPressed} />
+          <Button
+            title={dict.getTextByKey('createNotesScreen.discardButton')}
+            onPress={this.cancelButtonPressed}
+          />
+          <Button
+            title={dict.getTextByKey('createNotesScreen.createButton')}
+            onPress={this.createButtonPressed}
+          />
         </View>
       </View>
     );
