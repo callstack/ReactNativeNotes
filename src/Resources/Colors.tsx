@@ -6,6 +6,7 @@ const Colors = {
   introductionText: '#FFFFFF',
   noteWidgetBorder: 'rgba(170,170,170,0.1)',
   noteWidgetBackground: 'white',
+  settingsLabels: 'white',
 };
 
 export default Colors;
