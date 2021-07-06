@@ -22,7 +22,7 @@ namespace winrt::ReactNativeNotes::implementation
     {
         if( args.IsSettingsInvoked() == true )
         {
-            Navigate( L"ApplicationSettingsPage" );
+            Navigate( L"SettingsPage" );
         }
         else if( args.InvokedItemContainer() != nullptr )
         {

@@ -7,3 +7,4 @@ import NotesMainPanel from './src/NotesMainPanel';
 import NoteWidgetDetailsPanel from './src/NoteWidgetDetailsPanel';
 import CreateNotePanel from './src/CreateNotePanel';
 import ToDoListPanel from './src/ToDoListPanel';
+import SettingsPanel from './src/SettingsPanel';

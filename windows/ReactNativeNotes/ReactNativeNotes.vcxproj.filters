@@ -5,7 +5,6 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="App.idl" />
-    <Midl Include="ApplicationSettingsPage.idl" />
     <Midl Include="CreateNotePage.idl" />
     <Midl Include="NotesPage.idl" />
     <Midl Include="NoteWidgetDetailsPage.idl" />
@@ -16,19 +15,18 @@
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="ReactPackageProvider.cpp" />
     <ClCompile Include="AutolinkedNativeModules.g.cpp" />
-    <ClCompile Include="ApplicationSettingsPage.cpp" />
     <ClCompile Include="CreateNotePage.cpp" />
     <ClCompile Include="NotesPage.cpp" />
     <ClCompile Include="NoteWidgetDetailsPage.cpp" />
     <ClCompile Include="NativeModules\Repository\NoteModel.cpp" />
     <ClCompile Include="NativeModules\Repository\Repository.cpp" />
+    <ClCompile Include="NativeModules\Repository\SettingsModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="ReactPackageProvider.h" />
     <ClInclude Include="AutolinkedNativeModules.g.h" />
-    <ClInclude Include="ApplicationSettingsPage.h" />
     <ClInclude Include="CreateNotePage.h" />
     <ClInclude Include="NotesPage.h" />
     <ClInclude Include="NoteWidgetDetailsPage.h" />
@@ -37,6 +35,7 @@
     <ClInclude Include="NativeModules\DatabaseHandler.hpp" />
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
     <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
+    <ClInclude Include="NativeModules\Repository\SettingsModel.hpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -82,5 +81,6 @@
     <Page Include="NotesPage.xaml" />
     <Page Include="NoteWidgetDetailsPage.xaml" />
     <Page Include="ToDoListPage.xaml" />
+    <Page Include="SettingsPage.xaml" />
   </ItemGroup>
 </Project>

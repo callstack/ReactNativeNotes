@@ -126,6 +126,7 @@
     <ClInclude Include="NativeModules\NoteWidgetClickHandler.hpp" />
     <ClInclude Include="NativeModules\Repository\NoteModel.hpp" />
     <ClInclude Include="NativeModules\Repository\Repository.hpp" />
+    <ClInclude Include="NativeModules\Repository\SettingsModel.hpp" />
     <ClInclude Include="NativeModules\UserAccount\FilePicker.hpp" />
     <ClInclude Include="NoteWidgetDetailsPage.h">
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
@@ -140,6 +141,10 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="App.h">
       <DependentUpon>App.xaml</DependentUpon>
+    </ClInclude>
+    <ClInclude Include="SettingsPage.h">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="ToDoListPage.h">
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
@@ -176,6 +181,7 @@
     </ClCompile>
     <ClCompile Include="NativeModules\Repository\NoteModel.cpp" />
     <ClCompile Include="NativeModules\Repository\Repository.cpp" />
+    <ClCompile Include="NativeModules\Repository\SettingsModel.cpp" />
     <ClCompile Include="NotesPage.cpp">
       <DependentUpon>NotesPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -193,6 +199,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="SettingsPage.cpp">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="ToDoListPage.cpp">
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -218,6 +228,10 @@
       <DependentUpon>NoteWidgetDetailsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="SettingsPage.idl">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="ToDoListPage.idl">
       <DependentUpon>ToDoListPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -241,6 +255,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="NoteWidgetDetailsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ToDoListPage.xaml">

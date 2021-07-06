@@ -4,6 +4,7 @@
 #include "NativeModules.h"
 #include <string>
 #include "Repository/Repository.hpp"
+#include "Repository/SettingsModel.hpp"
 #include <memory>
 
 
@@ -79,6 +80,8 @@ namespace winrt::ReactNativeNotes::implementation
 
     private:
         std::unique_ptr<Repository> data;
+
+        std::unique_ptr<SettingsModel> settings;
     };
 }
 
