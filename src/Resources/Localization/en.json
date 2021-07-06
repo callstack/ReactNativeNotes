@@ -1,0 +1,20 @@
+{
+  "mainAppScreen.welcomeText": "React Native Notes",
+  "mainAppScreen.introductionTextUpper": "Create your first note by clicking",
+  "mainAppScreen.introductionTextLower": "on the navigation panel",
+  "settings.languageLabel": "Language:",
+  "createNotesScreen.titlePlaceholder": "Title",
+  "createNotesScreen.messagePlaceholder": "Note content",
+  "createNotesScreen.DiscardButton": "Discard",
+  "createNotesScreen.createButton": "Create",
+  "editNoteScreen.titlePlaceholder": "Title",
+  "editNoteScreen.messagePlaceholder": "Note content",
+  "editNoteScreen.DiscardButton": "Discard",
+  "editNoteScreen.saveButton": "Save",
+  "editNoteScreen.editButton": "Edit",
+  "editNoteScreen.deleteButton": "Delete",
+  "tasksScreen.taskPlaceholder": "Task content",
+  "tasksScreen.addButton": "Add",
+  "tasksScreen.dueDateLabel": "Due date:"
+}
+
