@@ -13,4 +13,14 @@ namespace winrt::ReactNativeNotes::implementation
     {
         this->lang = lang;
     }
+
+    const ThemeValue SettingsModel::Theme()
+    {
+        return this->theme;
+    }
+
+    void SettingsModel::Theme( const ThemeValue& theme )
+    {
+        this->theme = theme;
+    }
 }
