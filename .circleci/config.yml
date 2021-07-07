@@ -24,7 +24,7 @@ jobs:
           name: "Restore .NET dependencies"
           command: msbuild -t:restore .\windows\ReactNativeNotes.sln
       - save_cache:
-          key: v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+          key: v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}-{{ checksum "package.json" }}
           paths:
             - node_modules
             - windows/packages
@@ -38,7 +38,7 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}
+            - v1-deps-{{ .Branch }}-{{ checksum "windows/ReactNativeNotes.sln" }}-{{ checksum "package.json" }}
             - v1-deps-
       - run:
           name: "Verify the standards and code quality"
