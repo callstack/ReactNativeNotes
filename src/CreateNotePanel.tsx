@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 import * as dict from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 interface Props {}
 
@@ -72,7 +73,7 @@ class CreateNotePanel extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.mainPanel}>
+      <theming.ThemedView style={styles.mainPanel}>
         <TextInput
           style={styles.titleBox}
           onChangeText={this.titleOnChange}
@@ -102,7 +103,7 @@ class CreateNotePanel extends React.Component<Props, State> {
             onPress={this.createButtonPressed}
           />
         </View>
-      </View>
+      </theming.ThemedView>
     );
   }
 }
@@ -111,8 +112,7 @@ const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-    margin: 30,
+    alignItems: 'center'
   },
   titleBox: {
     borderLeftWidth: 0,
@@ -122,6 +122,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderColor: Colors.noteTextPanelBorder,
     fontWeight: 'bold',
+    marginTop: 30
   },
   noteMessageBox: {
     borderWidth: 0.2,

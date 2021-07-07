@@ -7,6 +7,7 @@ import {AppRegistry, StyleSheet, View, NativeModules} from 'react-native';
 import {Picker} from 'react-native-windows';
 import Colors from './Resources/Colors';
 import * as dictionary from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 interface Properties {}
 
@@ -36,7 +37,7 @@ class SettingsPanel extends React.Component<Properties, State> {
 
   render() {
     return (
-      <View style={styles.mainPanel}>
+      <theming.ThemedView style={styles.mainPanel}>
         <View style={styles.languageField}>
           <dictionary.Dictionary
             style={styles.languageText}
@@ -67,7 +68,7 @@ class SettingsPanel extends React.Component<Properties, State> {
             />
           </Picker>
         </View>
-      </View>
+      </theming.ThemedView>
     );
   }
 }
@@ -76,8 +77,7 @@ const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center',
-    margin: 30,
+    alignItems: 'center'
   },
   languageText: {
     fontWeight: 'bold',

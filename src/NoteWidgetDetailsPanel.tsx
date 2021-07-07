@@ -14,6 +14,7 @@ import {
 } from 'react-native';
 import Colors from './Resources/Colors';
 import * as dictionary from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 interface Props {}
 
@@ -134,7 +135,7 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.mainPanel}>
+      <theming.ThemedView style={styles.mainPanel}>
         <TextInput
           style={styles.titleBox}
           onChangeText={this.titleOnChange}
@@ -148,7 +149,7 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
         />
 
         <TextInput
-          style={styles.noteMessageBox}
+          style={theming.applyTheming(styles.noteMessageBox)}
           multiline={true}
           onChangeText={this.messageOnChange}
           value={this.state.message}
@@ -178,7 +179,7 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
             onPress={this.deleteButtonPressed}
           />
         </View>
-      </View>
+      </theming.ThemedView>
     );
   }
 }
@@ -188,7 +189,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    margin: 30,
     backgroundColor: Colors.transparent,
   },
   titleBox: {
@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 0,
+    marginTop: 40,
     width: '90%',
     borderColor: Colors.noteTextPanelBorder,
     fontWeight: 'bold',

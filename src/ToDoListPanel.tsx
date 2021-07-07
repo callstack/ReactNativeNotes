@@ -15,6 +15,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import TaskWidget from './Widgets/TaskWidget';
 import Colors from './Resources/Colors';
 import * as dictionary from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 interface Props {}
 
@@ -70,7 +71,7 @@ class ToDoListPanel extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.mainPanel}>
+      <theming.ThemedView style={styles.mainPanel}>
         <View style={styles.flatListPanel}>
           <FlatList
             numColumns={1}
@@ -105,7 +106,7 @@ class ToDoListPanel extends React.Component<Props, State> {
             />
           </View>
         </View>
-      </View>
+      </theming.ThemedView>
     );
   }
 }
