@@ -25,6 +25,7 @@
   "alert.noteDeletionConfirmExplanation": "Usunięcie notatki jest nieodwracalne...",
   "alert.delete": "Usuń",
   "theme.default": "Domyślny",
-  "theme.dark": "Ciemny"
+  "theme.dark": "Ciemny",
+  "theme.theme": "Motyw:"
 }
 

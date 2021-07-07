@@ -25,5 +25,6 @@
   "alert.noteDeletionConfirmExplanation": "Deleting the note cannot be reversed...",
   "alert.delete": "Delete",
   "theme.default": "Default",
-  "theme.dark": "Dark"
+  "theme.dark": "Dark",
+  "theme.theme": "Theme:"
 }
