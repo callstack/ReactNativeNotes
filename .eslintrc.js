@@ -3,5 +3,6 @@ module.exports = {
   extends: "@callstack",
   rules: {
     "linebreak-style": 0
-  }
+  },
+  ignorePatterns: ["*.json"]
 };

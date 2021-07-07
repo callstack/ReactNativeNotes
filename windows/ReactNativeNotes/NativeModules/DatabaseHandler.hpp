@@ -16,6 +16,7 @@ namespace winrt::ReactNativeNotes::implementation
         Database()
         {
             data = std::make_unique<Repository>();
+            settings = std::make_unique<SettingsModel>();
         }
 
         REACT_METHOD( WriteNote, L"writeNote" );
@@ -76,6 +77,18 @@ namespace winrt::ReactNativeNotes::implementation
                     keyArray.push_back( Microsoft::ReactNative::JSValueObject{ { "key", i }, { "title", data->Read( i ).Title() }, { "shortMessage", data->Read( i ).ShortPost() } } );
             }
             result.Resolve( Microsoft::ReactNative::JSValue( std::move( keyArray ) ) );
+        }
+
+        REACT_METHOD( GetLanguageValue, L"getLanguageValue" );
+        void GetLanguageValue( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            return result.Resolve(Microsoft::ReactNative::JSValue(static_cast<int>(settings->Language())));
+        }
+
+        REACT_METHOD( SetLanguageValue, L"setLanguageValue" );
+        void SetLanguageValue( const int&& value ) noexcept
+        {
+            settings->Language( (LanguageValue)value );
         }
 
     private:

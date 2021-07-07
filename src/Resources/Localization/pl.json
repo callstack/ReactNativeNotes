@@ -1,0 +1,28 @@
+{
+  "mainAppScreen.welcomeText": "React Native Notes",
+  "mainAppScreen.introductionTextUpper": "Stwórz swoją pierwszą notatkę klikając",
+  "mainAppScreen.introductionTextLower": "na panelu nawigacyjnym",
+  "settings.languageLabel": "Język:",
+  "createNotesScreen.titlePlaceholder": "Tytuł",
+  "createNotesScreen.messagePlaceholder": "Zawartość notatki",
+  "createNotesScreen.discardButton": "Odrzuć",
+  "createNotesScreen.createButton": "Stwórz",
+  "editNoteScreen.titlePlaceholder": "Tytuł",
+  "editNoteScreen.messagePlaceholder": "Zawartość notatki",
+  "editNoteScreen.discardButton": "Odrzuć",
+  "editNoteScreen.saveButton": "Zapisz",
+  "editNoteScreen.editButton": "Edytuj",
+  "editNoteScreen.deleteButton": "Usuń",
+  "tasksScreen.taskPlaceholder": "Zawartość notatki",
+  "tasksScreen.addButton": "Dodaj",
+  "tasksScreen.dueDateLabel": "Termin:",
+  "alert.confirmationRequired": "Jesteś pewien?",
+  "alert.confirmationExplanation": "Wygląda na to, że wciąż masz niezapisane zmiany, które będą utracone.",
+  "alert.cancel": "Anuluj",
+  "alert.discard": "Odrzuć",
+  "alert.ok": "OK",
+  "alert.noteDeleteConfirmation": "Jesteś pewien?",
+  "alert.noteDeletionConfirmExplanation": "Usunięcie notatki jest nieodwracalne...",
+  "alert.delete": "Usuń"
+}
+

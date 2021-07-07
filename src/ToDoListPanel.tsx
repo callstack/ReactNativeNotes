@@ -14,6 +14,7 @@ import {
 import DateTimePicker from '@react-native-community/datetimepicker';
 import TaskWidget from './Widgets/TaskWidget';
 import Colors from './Resources/Colors';
+import * as dictionary from './Resources/Dictionary';
 
 interface Props {}
 
@@ -89,10 +90,13 @@ class ToDoListPanel extends React.Component<Props, State> {
             style={styles.noteMessageBox}
             onChangeText={this.messageOnChange}
             value={this.state.message}
-            placeholder={'Task content'}
+            placeholder={dictionary.getTextByKey('tasksScreen.taskPlaceholder')}
           />
           <View style={styles.createButtons}>
-            <Button title={'Add'} onPress={this.addButtonPressed} />
+            <Button
+              title={dictionary.getTextByKey('tasksScreen.addButton')}
+              onPress={this.addButtonPressed}
+            />
             <DateTimePicker
               value={this.state.selectedDate || new Date()}
               is24Hour={true}

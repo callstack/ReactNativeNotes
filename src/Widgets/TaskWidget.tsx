@@ -7,6 +7,7 @@ import {AppRegistry, StyleSheet, Text, View} from 'react-native';
 
 import CheckBox from '@react-native-community/checkbox';
 import Colors from '../Resources/Colors';
+import * as dictionary from '../Resources/Dictionary';
 
 interface Props {
   id: number;
@@ -25,7 +26,8 @@ export default function TaskWidget(props: Props) {
 
       <View style={styles.details}>
         <Text style={styles.dateText}>
-          Due date: {String(dueDate).substr(0, 15)}
+          {dictionary.getTextByKey('tasksScreen.dueDateLabel')}{' '}
+          {String(dueDate).substr(0, 15)}
         </Text>
         <CheckBox
           disabled={false}
