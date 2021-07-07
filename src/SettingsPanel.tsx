@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   languageText: {
     fontWeight: 'bold',

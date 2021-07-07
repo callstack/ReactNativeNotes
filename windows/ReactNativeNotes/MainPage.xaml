@@ -13,7 +13,7 @@
         <SolidColorBrush x:Key="NavigationViewDefaultPaneBackground" Color="#FF5A2D"/>
     </Page.Resources>
 
-    <muxc:NavigationView x:Name="TopNavigationPanel" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler">
+    <muxc:NavigationView x:Name="TopNavigationPanel" IsTitleBarAutoPaddingEnabled="False" IsBackButtonVisible="Collapsed" PaneDisplayMode="LeftCompact" OpenPaneLength="150" ItemInvoked="ItemInvokedEventHandler">
         <muxc:NavigationView.Resources>
             <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
             <SolidColorBrush x:Key="NavigationBackButto" Color="White"/>

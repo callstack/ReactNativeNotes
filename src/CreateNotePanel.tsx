@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
   mainPanel: {
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   titleBox: {
     borderLeftWidth: 0,
@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     width: '90%',
     borderColor: Colors.noteTextPanelBorder,
     fontWeight: 'bold',
-    marginTop: 30
+    marginTop: 30,
   },
   noteMessageBox: {
     borderWidth: 0.2,

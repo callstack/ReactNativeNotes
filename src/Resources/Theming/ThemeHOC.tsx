@@ -1,5 +1,5 @@
-import React, { Children } from 'react';
-import {NativeModules, StyleSheet, View} from 'react-native';
+import React from 'react';
+import {NativeModules, View} from 'react-native';
 
 interface Props {
   style: any;
@@ -24,11 +24,11 @@ export function applyTheming(style: any) {
   };
 
   getTheme();
-  switch(theme) {
+  switch (theme) {
     case 0:
-      return {...style, backgroundColor: "transparent"};
+      return {...style, backgroundColor: 'transparent'};
     case 1:
-      return {...style, backgroundColor: "454859", color: "white"};
+      return {...style, backgroundColor: '454859', color: 'white'};
   }
 }
 
@@ -38,44 +38,38 @@ export class ThemedView extends React.Component<Props, State> {
 
     this.state = {
       themeValue: 0,
-      style: props.style
-    }
-  };
+      style: props.style,
+    };
+  }
 
   requireTheming = (style: any) => {
     const getTheme = async () => {
       await NativeModules.Database.getThemeValue()
         .then((result: number) => {
-          this.setState({themeValue: result})
+          this.setState({themeValue: result});
           return result;
         })
         .catch((error: Error) => {
           console.log(`ERROR: ${error.message}`);
         });
     };
-  
+
     getTheme();
-    switch(this.state.themeValue) {
+    switch (this.state.themeValue) {
       case 0:
-        return {...style, backgroundColor: "transparent"};
+        return {...style, backgroundColor: 'transparent'};
       case 1:
-        return {...style, backgroundColor: "#454859"};
+        return {...style, backgroundColor: '#454859'};
     }
   };
 
   render() {
-    return <View style={this.requireTheming(this.state.style)}>{this.props.children}</View>;
+    return (
+      <View style={this.requireTheming(this.state.style)}>
+        {this.props.children}
+      </View>
+    );
   }
 }
-
-
-const styles = StyleSheet.create({
-  darkTheme: {
-    backgroundColor: 'black',
-  },
-  defaultTheme: {
-    backgroundColor: 'transparent',
-  },
-});
 
 export default ThemedView;

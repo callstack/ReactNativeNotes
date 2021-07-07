@@ -11,7 +11,6 @@ import {
   NativeModules,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
