@@ -23,5 +23,7 @@
   "alert.ok": "OK",
   "alert.noteDeleteConfirmation": "Are you sure?",
   "alert.noteDeletionConfirmExplanation": "Deleting the note cannot be reversed...",
-  "alert.delete": "Delete"
+  "alert.delete": "Delete",
+  "theme.default": "Default",
+  "theme.dark": "Dark"
 }
