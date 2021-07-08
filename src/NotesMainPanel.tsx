@@ -11,11 +11,11 @@ import {
   NativeModules,
   StyleSheet,
   Text,
-  View,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
 import Dictionary from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 const noteWidgetWidth = 300;
 
@@ -74,7 +74,7 @@ class NotesMainPanel extends React.Component<Props, State> {
 
   renderWelcomePage = () => {
     return (
-      <View style={styles.welcomePage}>
+      <theming.ThemedView style={styles.welcomePage}>
         <Text style={styles.logoText}>ReactNativeNotes</Text>
         <Dictionary
           textLabel={'mainAppScreen.introductionTextUpper'}
@@ -85,13 +85,13 @@ class NotesMainPanel extends React.Component<Props, State> {
           textLabel={'mainAppScreen.introductionTextLower'}
           style={styles.introductionText}
         />
-      </View>
+      </theming.ThemedView>
     );
   };
 
   renderNotesPage = () => {
     return (
-      <View style={styles.mainContainer}>
+      <theming.ThemedView style={styles.mainContainer}>
         <FlatList<INote>
           key={this.state.columns}
           numColumns={this.state.columns}
@@ -105,7 +105,7 @@ class NotesMainPanel extends React.Component<Props, State> {
             />
           )}
         />
-      </View>
+      </theming.ThemedView>
     );
   };
 

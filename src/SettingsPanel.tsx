@@ -6,12 +6,14 @@ import React from 'react';
 import {AppRegistry, StyleSheet, View, NativeModules} from 'react-native';
 import {Picker} from 'react-native-windows';
 import Colors from './Resources/Colors';
-import Dictionary from './Resources/Dictionary';
+import * as dictionary from './Resources/Dictionary';
+import * as theming from './Resources/Theming/ThemeHOC';
 
 interface Properties {}
 
 interface State {
   selectedLanguage: number;
+  selectedTheme: number;
 }
 
 class SettingsPanel extends React.Component<Properties, State> {
@@ -19,6 +21,7 @@ class SettingsPanel extends React.Component<Properties, State> {
     super(props);
     this.state = {
       selectedLanguage: 0,
+      selectedTheme: 0,
     };
   }
 
@@ -27,13 +30,18 @@ class SettingsPanel extends React.Component<Properties, State> {
     this.setState({selectedLanguage: value});
   };
 
+  themeValueChanged = (value: number) => {
+    NativeModules.Database.setThemeValue(value);
+    this.setState({selectedTheme: value});
+  };
+
   render() {
     return (
-      <View style={styles.mainPanel}>
+      <theming.ThemedView style={styles.mainPanel}>
         <View style={styles.languageField}>
-          <Dictionary
+          <dictionary.Dictionary
             style={styles.languageText}
-            textLabel={'settings.languageLabel'}></Dictionary>
+            textLabel={'settings.languageLabel'}></dictionary.Dictionary>
           <Picker
             selectedValue={this.state.selectedLanguage}
             style={styles.languageSelectionBox}
@@ -42,7 +50,25 @@ class SettingsPanel extends React.Component<Properties, State> {
             <Picker.Item label="Polski" value={1} />
           </Picker>
         </View>
-      </View>
+        <View style={styles.themeField}>
+          <dictionary.Dictionary
+            style={styles.languageText}
+            textLabel={'theme.theme'}></dictionary.Dictionary>
+          <Picker
+            selectedValue={this.state.selectedTheme}
+            style={styles.themeSelectionBox}
+            onValueChange={this.themeValueChanged}>
+            <Picker.Item
+              label={dictionary.getTextByKey('theme.default')}
+              value={0}
+            />
+            <Picker.Item
+              label={dictionary.getTextByKey('theme.dark')}
+              value={1}
+            />
+          </Picker>
+        </View>
+      </theming.ThemedView>
     );
   }
 }
@@ -52,7 +78,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    margin: 30,
   },
   languageText: {
     fontWeight: 'bold',
@@ -66,7 +91,19 @@ const styles = StyleSheet.create({
     width: '50%',
     alignItems: 'center',
   },
+  themeField: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    margin: 20,
+    width: '50%',
+    alignItems: 'center',
+  },
   languageSelectionBox: {
+    height: 30,
+    width: 150,
+  },
+  themeSelectionBox: {
     height: 30,
     width: 150,
   },

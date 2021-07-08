@@ -91,6 +91,18 @@ namespace winrt::ReactNativeNotes::implementation
             settings->Language( (LanguageValue)value );
         }
 
+        REACT_METHOD( GetThemeValue, L"getThemeValue" );
+        void GetThemeValue( React::ReactPromise<React::JSValue>&& result ) noexcept
+        {
+            return result.Resolve( Microsoft::ReactNative::JSValue( static_cast<int>(settings->Theme()) ) );
+        }
+
+        REACT_METHOD( SetThemeValue, L"setThemeValue" );
+        void SetThemeValue( const int&& value ) noexcept
+        {
+            settings->Theme( (ThemeValue)value );
+        }
+
     private:
         std::unique_ptr<Repository> data;
 
