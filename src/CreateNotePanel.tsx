@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '60%',
     maxHeight: 35,
-    margin: 10
+    margin: 10,
   },
 });
 
