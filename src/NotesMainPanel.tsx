@@ -152,6 +152,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     textAlign: 'center',
     alignContent: 'center',
+    height: "100%"
   },
   logoText: {
     fontSize: 35,
