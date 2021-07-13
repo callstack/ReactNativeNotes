@@ -1,5 +1,5 @@
 import React from 'react';
-import {Alert, NativeModules, Text} from 'react-native';
+import {NativeModules, Text, NativeEventEmitter} from 'react-native';
 import en from './Localization/en.json';
 import pl from './Localization/pl.json';
 
@@ -10,6 +10,10 @@ export interface Props {
 
 export const languages = [en, pl];
 export var languageNum: number;
+
+const LanguageNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 export function getTextByKey(textLabel: string): string {
   let index = 0;
@@ -33,17 +37,17 @@ export class Dictionary extends React.Component<Props, State> {
     };
   }
 
-  getText = () => {
-    NativeModules.Database.getLanguageValue()
-      .then((result: number) => {
+  componentDidMount() {
+    LanguageNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
         this.setState({languageValue: result});
         languageNum = result;
-        return result;
-      })
-      .catch((error: Error) => {
-        Alert.alert(`ERROR: ${error.message}`);
-      });
+      },
+    );
+  }
 
+  getText = () => {
     switch (this.state.languageValue) {
       case 0: {
         let enDictionary = new Map(Object.entries(en));

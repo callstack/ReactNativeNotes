@@ -11,6 +11,7 @@ import {
   TextInput,
   View,
   Button,
+  NativeEventEmitter,
 } from 'react-native';
 import Colors from './Resources/Colors';
 import * as dict from './Resources/Dictionary';
@@ -21,7 +22,13 @@ interface Props {}
 interface State {
   title: string;
   message: string;
+  language: number;
+  theme: number;
 }
+
+const SettingsNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 class CreateNotePanel extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -29,6 +36,8 @@ class CreateNotePanel extends React.Component<Props, State> {
     this.state = {
       title: '',
       message: '',
+      language: 0,
+      theme: 0,
     };
   }
 
@@ -61,6 +70,21 @@ class CreateNotePanel extends React.Component<Props, State> {
       NativeModules.NoteWidgetClickHandler.goToNotesScreen();
     }
   };
+
+  componentDidMount() {
+    SettingsNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
+        this.setState({language: result});
+      },
+    );
+    SettingsNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({theme: result});
+      },
+    );
+  }
 
   createButtonPressed = () => {
     NativeModules.Database.writeNote(
