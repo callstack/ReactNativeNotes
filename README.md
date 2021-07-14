@@ -3,7 +3,7 @@
     Demo application to create and keep your notes and tasks.
 </p>
 
-This project is a demonstration application that should present the abilites and skills of [Callstack.io](https://callstack.com) company in creating React Native Windows **desktop** applications.
+This project is a demonstration application that should present the abilites and skills of [Callstack](https://callstack.com) company in creating React Native Windows **desktop** applications.
 
 The idea behind creating the Notes app was to include some features of Windows and React Native Windows [APIs](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/consume-apis) but also to create the application that will contain all the most common usage scenarios of an example desktop application.
 
