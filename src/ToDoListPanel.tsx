@@ -10,6 +10,8 @@ import {
   TextInput,
   Button,
   View,
+  NativeEventEmitter,
+  NativeModules,
 } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import TaskWidget from './Widgets/TaskWidget';
@@ -30,7 +32,13 @@ interface State {
   number: number;
   message: string;
   selectedDate: Date | undefined;
+  language: number;
+  theme: number;
 }
+
+const SettingsNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 class ToDoListPanel extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -40,7 +48,24 @@ class ToDoListPanel extends React.Component<Props, State> {
       number: 0,
       message: '',
       selectedDate: new Date(),
+      language: 0,
+      theme: 0,
     };
+  }
+
+  componentDidMount() {
+    SettingsNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
+        this.setState({language: result});
+      },
+    );
+    SettingsNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({theme: result});
+      },
+    );
   }
 
   onChange = (event: Event, selectedDate?: Date) => {

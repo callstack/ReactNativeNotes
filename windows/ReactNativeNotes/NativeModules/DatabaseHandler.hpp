@@ -89,6 +89,7 @@ namespace winrt::ReactNativeNotes::implementation
         void SetLanguageValue( const int&& value ) noexcept
         {
             settings->Language( (LanguageValue)value );
+            LanguageChanged( value );
         }
 
         REACT_METHOD( GetThemeValue, L"getThemeValue" );
@@ -101,7 +102,14 @@ namespace winrt::ReactNativeNotes::implementation
         void SetThemeValue( const int&& value ) noexcept
         {
             settings->Theme( (ThemeValue)value );
+            ThemeChanged( value );
         }
+
+        REACT_EVENT( ThemeChanged );
+        std::function<void( unsigned int )> ThemeChanged;
+
+        REACT_EVENT( LanguageChanged );
+        std::function<void( unsigned int )> LanguageChanged;
 
     private:
         std::unique_ptr<Repository> data;

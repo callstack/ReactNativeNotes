@@ -1,5 +1,5 @@
 import React from 'react';
-import {NativeModules, View} from 'react-native';
+import {NativeModules, NativeEventEmitter, View} from 'react-native';
 
 interface Props {
   style: any;
@@ -9,6 +9,10 @@ interface State {
   themeValue: number;
   style: any;
 }
+
+const ThemeNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 export function applyTheming(style: any) {
   let theme = 0;
@@ -42,19 +46,16 @@ export class ThemedView extends React.Component<Props, State> {
     };
   }
 
-  requireTheming = (style: any) => {
-    const getTheme = async () => {
-      await NativeModules.Database.getThemeValue()
-        .then((result: number) => {
-          this.setState({themeValue: result});
-          return result;
-        })
-        .catch((error: Error) => {
-          console.log(`ERROR: ${error.message}`);
-        });
-    };
+  componentDidMount() {
+    ThemeNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({themeValue: result});
+      },
+    );
+  }
 
-    getTheme();
+  requireTheming = (style: any) => {
     switch (this.state.themeValue) {
       case 0:
         return {...style, backgroundColor: 'transparent'};

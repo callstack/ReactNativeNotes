@@ -11,6 +11,7 @@ import {
   TextInput,
   View,
   Button,
+  NativeEventEmitter,
 } from 'react-native';
 import Colors from './Resources/Colors';
 import * as dict from './Resources/Dictionary';
@@ -21,7 +22,13 @@ interface Props {}
 interface State {
   title: string;
   message: string;
+  language: number;
+  theme: number;
 }
+
+const SettingsNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 class CreateNotePanel extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -29,6 +36,8 @@ class CreateNotePanel extends React.Component<Props, State> {
     this.state = {
       title: '',
       message: '',
+      language: 0,
+      theme: 0,
     };
   }
 
@@ -61,6 +70,21 @@ class CreateNotePanel extends React.Component<Props, State> {
       NativeModules.NoteWidgetClickHandler.goToNotesScreen();
     }
   };
+
+  componentDidMount() {
+    SettingsNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
+        this.setState({language: result});
+      },
+    );
+    SettingsNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({theme: result});
+      },
+    );
+  }
 
   createButtonPressed = () => {
     NativeModules.Database.writeNote(
@@ -120,6 +144,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderTopWidth: 0,
     width: '90%',
+    height: 'auto',
     borderColor: Colors.noteTextPanelBorder,
     fontWeight: 'bold',
     marginTop: 30,
@@ -128,7 +153,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.2,
     margin: 10,
     width: '90%',
-    height: '85%',
+    flexGrow: 1,
     borderColor: Colors.noteTextPanelBorder,
     alignContent: 'center',
     textAlignVertical: 'center',
@@ -139,6 +164,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '60%',
     maxHeight: 35,
+    margin: 10,
   },
 });
 

@@ -11,10 +11,15 @@ import {
   TextInput,
   View,
   Button,
+  NativeEventEmitter,
 } from 'react-native';
 import Colors from './Resources/Colors';
 import * as dictionary from './Resources/Dictionary';
 import * as theming from './Resources/Theming/ThemeHOC';
+
+const SettingsNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 interface Props {}
 
@@ -23,6 +28,8 @@ interface State {
   title: string;
   message: string;
   isEditing: boolean;
+  language: number;
+  theme: number;
 }
 
 class NoteWidgetDetailsPanel extends React.Component<Props, State> {
@@ -33,6 +40,8 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
       title: '',
       message: '',
       isEditing: false,
+      language: 0,
+      theme: 0,
     };
   }
 
@@ -50,6 +59,18 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
           `Could not find the opened note\n${error.message}`,
         );
       });
+    SettingsNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
+        this.setState({language: result});
+      },
+    );
+    SettingsNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({theme: result});
+      },
+    );
   }
 
   titleOnChange = (text: string) => {

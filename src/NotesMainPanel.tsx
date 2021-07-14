@@ -8,6 +8,7 @@ import {
   AppRegistry,
   Dimensions,
   FlatList,
+  NativeEventEmitter,
   NativeModules,
   StyleSheet,
   Text,
@@ -18,6 +19,9 @@ import Dictionary from './Resources/Dictionary';
 import * as theming from './Resources/Theming/ThemeHOC';
 
 const noteWidgetWidth = 300;
+const SettingsNotificationModuleEventEmitter = new NativeEventEmitter(
+  NativeModules.Database,
+);
 
 function calculateColumnWidth() {
   return Math.floor(Dimensions.get('window').width / noteWidgetWidth);
@@ -34,6 +38,8 @@ interface INote {
 interface State {
   notes: Array<INote>;
   columns: number;
+  language: number;
+  theme: number;
 }
 
 class NotesMainPanel extends React.Component<Props, State> {
@@ -42,6 +48,8 @@ class NotesMainPanel extends React.Component<Props, State> {
     this.state = {
       notes: [],
       columns: calculateColumnWidth(),
+      language: 0,
+      theme: 0,
     };
   }
 
@@ -54,6 +62,18 @@ class NotesMainPanel extends React.Component<Props, State> {
   componentDidMount() {
     this.getDataFromDatabase();
     Dimensions.addEventListener('change', this.onChange);
+    SettingsNotificationModuleEventEmitter.addListener(
+      'LanguageChanged',
+      (result) => {
+        this.setState({language: result});
+      },
+    );
+    SettingsNotificationModuleEventEmitter.addListener(
+      'ThemeChanged',
+      (result) => {
+        this.setState({theme: result});
+      },
+    );
   }
 
   componentWillUnmount() {
@@ -130,6 +150,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    textAlign: 'center',
+    alignContent: 'center',
+    height: '100%',
   },
   logoText: {
     fontSize: 35,
