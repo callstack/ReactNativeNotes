@@ -12,11 +12,9 @@ import {
   NativeEventEmitter,
   NativeModules,
   StyleSheet,
-  Text,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
-import Dictionary from './Resources/Dictionary';
 import * as theming from './Resources/Theming/ThemeHOC';
 
 const noteWidgetWidth = 300;
@@ -96,7 +94,11 @@ class NotesMainPanel extends React.Component<Props, State> {
   renderWelcomePage = () => {
     return (
       <theming.ThemedView style={styles.welcomePage}>
-        <Image style={styles.logoImage} source={require('../Resources/img/logo_RNN_pion_white_logotype_resized.png')}/>
+        <Image
+          style={styles.logoImage}
+          accessibilityIgnoresInvertColors
+          source={require('../Resources/img/logo_RNN_pion_white_logotype_resized.png')}
+        />
       </theming.ThemedView>
     );
   };
@@ -144,26 +146,10 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
   logoImage: {
-    resizeMode: 'stretch'
-  },
-  logoText: {
-    fontSize: 35,
-    margin: 25,
-    color: Colors.logoText,
-  },
-  plusIcon: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.plusIcon,
-  },
-  introductionText: {
-    fontSize: 18,
-    margin: 0,
-    fontFamily: 'Calibri',
-    color: Colors.introductionText,
+    resizeMode: 'stretch',
   },
 });
 
