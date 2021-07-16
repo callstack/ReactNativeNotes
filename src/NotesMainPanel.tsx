@@ -8,6 +8,7 @@ import {
   AppRegistry,
   Dimensions,
   FlatList,
+  Image,
   NativeEventEmitter,
   NativeModules,
   StyleSheet,
@@ -95,16 +96,7 @@ class NotesMainPanel extends React.Component<Props, State> {
   renderWelcomePage = () => {
     return (
       <theming.ThemedView style={styles.welcomePage}>
-        <Text style={styles.logoText}>ReactNativeNotes</Text>
-        <Dictionary
-          textLabel={'mainAppScreen.introductionTextUpper'}
-          style={styles.introductionText}
-        />
-        <Text style={styles.plusIcon}>+</Text>
-        <Dictionary
-          textLabel={'mainAppScreen.introductionTextLower'}
-          style={styles.introductionText}
-        />
+        <Image style={styles.logoImage} source={require('../Resources/img/logo_RNN_pion_white_logotype_resized.png')}/>
       </theming.ThemedView>
     );
   };
@@ -149,10 +141,13 @@ const styles = StyleSheet.create({
   welcomePage: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
     alignContent: 'center',
+    alignItems: 'center',
     height: '100%',
+    width: '100%'
+  },
+  logoImage: {
+    resizeMode: 'stretch'
   },
   logoText: {
     fontSize: 35,
