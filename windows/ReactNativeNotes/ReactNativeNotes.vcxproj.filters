@@ -57,7 +57,6 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="..\..\Resources\img\RNN_logo_icon_orange.png" />
-    <Image Include="Assets\RNN_logo_icon_orange.png" />
     <Image Include="Assets\SmallTile.scale-100.png">
       <Filter>Assets</Filter>
     </Image>
@@ -208,6 +207,8 @@
     <Image Include="Assets\BadgeLogo.scale-400.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\logo_RNN_pion_basic.scale-400.png" />
+    <Image Include="Assets\RNN_logo_icon_orange.scale-400.png" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest" />
