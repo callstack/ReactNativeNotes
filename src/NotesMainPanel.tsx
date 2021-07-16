@@ -8,14 +8,13 @@ import {
   AppRegistry,
   Dimensions,
   FlatList,
+  Image,
   NativeEventEmitter,
   NativeModules,
   StyleSheet,
-  Text,
 } from 'react-native';
 import NoteWidget from './Widgets/NoteWidget';
 import Colors from './Resources/Colors';
-import Dictionary from './Resources/Dictionary';
 import * as theming from './Resources/Theming/ThemeHOC';
 
 const noteWidgetWidth = 300;
@@ -95,15 +94,10 @@ class NotesMainPanel extends React.Component<Props, State> {
   renderWelcomePage = () => {
     return (
       <theming.ThemedView style={styles.welcomePage}>
-        <Text style={styles.logoText}>ReactNativeNotes</Text>
-        <Dictionary
-          textLabel={'mainAppScreen.introductionTextUpper'}
-          style={styles.introductionText}
-        />
-        <Text style={styles.plusIcon}>+</Text>
-        <Dictionary
-          textLabel={'mainAppScreen.introductionTextLower'}
-          style={styles.introductionText}
+        <Image
+          style={styles.logoImage}
+          accessibilityIgnoresInvertColors
+          source={require('../Resources/img/logo_RNN_pion_white_logotype_resized.png')}
         />
       </theming.ThemedView>
     );
@@ -149,26 +143,13 @@ const styles = StyleSheet.create({
   welcomePage: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
     alignContent: 'center',
+    alignItems: 'center',
     height: '100%',
+    width: '100%',
   },
-  logoText: {
-    fontSize: 35,
-    margin: 25,
-    color: Colors.logoText,
-  },
-  plusIcon: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: Colors.plusIcon,
-  },
-  introductionText: {
-    fontSize: 18,
-    margin: 0,
-    fontFamily: 'Calibri',
-    color: Colors.introductionText,
+  logoImage: {
+    resizeMode: 'stretch',
   },
 });
 
