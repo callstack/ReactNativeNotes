@@ -177,9 +177,11 @@
     <Image Include="Assets\logo_RNN_pion_basic.scale-400.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="Assets\logo_RNN_pion_basic_splash.png" />
     <Image Include="Assets\RNN_logo_icon_orange.scale-400.png">
       <DeploymentContent>true</DeploymentContent>
     </Image>
+    <Image Include="Assets\RNN_logo_icon_orange_badge.png" />
     <Image Include="Assets\SmallTile.scale-100.png" />
     <Image Include="Assets\SmallTile.scale-125.png" />
     <Image Include="Assets\SmallTile.scale-150.png" />
