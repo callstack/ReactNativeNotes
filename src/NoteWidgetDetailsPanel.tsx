@@ -136,8 +136,8 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
 
   deleteButtonPressed = () => {
     Alert.alert(
-      dictionary.getTextByKey('alert.noteDeletionConfirmation'),
-      dictionary.getTextByKey('alert.noteDeletionConfirmationExplanation'),
+      dictionary.getTextByKey('alert.noteDeleteConfirmation'),
+      dictionary.getTextByKey('alert.noteDeletionConfirmExplanation'),
       [
         {
           text: dictionary.getTextByKey('alert.cancel'),
@@ -210,23 +210,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     alignItems: 'center',
-    backgroundColor: Colors.transparent,
   },
   titleBox: {
     borderLeftWidth: 0,
     borderRightWidth: 0,
     borderBottomWidth: 1,
     borderTopWidth: 0,
-    marginTop: 40,
     width: '90%',
+    height: 'auto',
     borderColor: Colors.noteTextPanelBorder,
     fontWeight: 'bold',
+    marginTop: 30,
   },
   noteMessageBox: {
     borderWidth: 0.2,
     margin: 10,
     width: '90%',
-    height: '85%',
+    flexGrow: 1,
     borderColor: Colors.noteTextPanelBorder,
     alignContent: 'center',
     textAlignVertical: 'center',
@@ -237,6 +237,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     width: '60%',
     maxHeight: 35,
+    margin: 10,
   },
 });
 
