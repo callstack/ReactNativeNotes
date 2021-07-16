@@ -136,8 +136,8 @@ class NoteWidgetDetailsPanel extends React.Component<Props, State> {
 
   deleteButtonPressed = () => {
     Alert.alert(
-      dictionary.getTextByKey('alert.noteDeletionConfirmation'),
-      dictionary.getTextByKey('alert.noteDeletionConfirmationExplanation'),
+      dictionary.getTextByKey('alert.noteDeleteConfirmation'),
+      dictionary.getTextByKey('alert.noteDeletionConfirmExplanation'),
       [
         {
           text: dictionary.getTextByKey('alert.cancel'),
