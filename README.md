@@ -1,4 +1,7 @@
-<h1 align="center"> ReactNativeNotes </h1>
+<p align="center">
+  <img src="https://github.com/callstack/ReactNativeNotes/tree/feature-readme-update/Resources/img/RNN_README_logo_icon_orange.png">
+  <h1 align="center"> ReactNativeNotes </h1>
+</p>
 <p align="center">
     Demo application to create and keep your notes and tasks.
 </p>
