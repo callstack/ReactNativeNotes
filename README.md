@@ -54,6 +54,6 @@ The application contains two main screens:
 
 |||
 |-|-|
-|**Notes screen**<br>where all the notes are available for all the Create/Read/Update/Delete operations | ![](./Resources/README-notes-CRUD.gif) ![](./Resources/README-notes-resize.gif)|
+|**Notes screen**<br>where all the notes are available for all the Create/Read/Update/Delete operations | ![](./Resources/CRUD-presentation.gif)|
 **Tasks screen**<br>where all the tasks are available with calendar date picker for specifying the deadline of a task.|![](./Resources/README-tasks.gif)|
 
