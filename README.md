@@ -15,7 +15,7 @@
 </p>
 
 
-This project is a demonstration application that presents abilites and skills of [Callstack](https://callstack.com) company in creating React Native Windows **desktop** applications.
+This project explores possibilities of React Native Windows as a framework for building desktop apps.
 
 ### **Content** ###
 * [Description](#Description)
