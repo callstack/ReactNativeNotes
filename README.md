@@ -5,6 +5,15 @@
 <p align="center">
     Demo application to create and keep your notes and tasks.
 </p>
+<p align="center">
+    <a href="https://github.com/callstack/ReactNativeNotes/blob/main/LICENSE">
+        <img src="https://img.shields.io/github/license/callstack/ReactNativeNotes?style=plastic" alt="ReactNativeNotes is released under the MIT license." />
+    </a>
+    <a href="https://app.circleci.com/pipelines/github/callstack/ReactNativeNotes">
+        <img src="https://circleci.com/gh/callstack/ReactNativeNotes/tree/main.svg?style=shield" alt="Build on CircleCI" />
+    </a>
+</p>
+
 
 This project is a demonstration application that presents abilites and skills of [Callstack](https://callstack.com) company in creating React Native Windows **desktop** applications.
 
