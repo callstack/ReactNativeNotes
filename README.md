@@ -55,5 +55,23 @@ The application contains two main screens:
 |||
 |-|-|
 |**Notes screen**<br>where all the notes are available for all the Create/Read/Update/Delete operations | ![](./Resources/CRUD-presentation.gif)|
-**Tasks screen**<br>where all the tasks are available with calendar date picker for specifying the deadline of a task.|![](./Resources/README-tasks.gif)|
+|**Tasks screen**<br>where all the tasks are available with calendar date picker for specifying the deadline of a task.|![](./Resources/README-tasks.gif)|
+
+
+---
+
+## Conclusions and observations ##
+
+[React Native Windows](https://github.com/microsoft/react-native-windows) already is a stable framework and is well maintained. There were no issues observed during the development, which would slow down the work or prevent from achieving a goal.
+<br/>Creating the desktop app with RNW is not much different than creating an app for mobile using React Native. React Native Windows has the same environment and almost the same tools.
+
+This application was quite an experiment. It was about to check the limits of React Native Windows as a library and its abilities to cooperate with native side.
+<br/>And React Native Windows did it just great!
+
+But as this is an experiment, there are some good practices, DOs and DON'Ts that were observed:
+| DO | DON'T |
+|-|-|
+|If you plan to use the native API in your app, consider C# as it has more examples in the documentation than C++|Don't overuse the native side - it will limit the abilities of RNW, make the implementation too distributed and the more native you use, the less cross-platform your app is.|
+|When using community modules choose only those with version >= 0.64.x support|Don't spend your time on writing a native module on your own. Most probably it is already available on GitHub.|
+|If something is not working check the list of [issues reported to RNW](https://github.com/microsoft/react-native-windows/issues) for a fix or a workaround|Don't test the native side unless it's really required, focus on your JS/TS implementation tests instead.|
 
