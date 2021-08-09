@@ -41,6 +41,10 @@ Please check the [Approach](#Approach) section for more details.
 
 To play with this app
 * Make sure to meet all the [System requirements](https://microsoft.github.io/react-native-windows/docs/rnw-dependencies) for React Native Windows development
+* Download the released app from [Releases](https://github.com/orgs/callstack/packages?repo_name=ReactNativeNotes) and install it by running *Install.ps1* script with PowerShell
+
+or
+
 * Clone the repository
 * Launch the terminal and start the app by the following command:
 ```
