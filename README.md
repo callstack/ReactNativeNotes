@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/callstack/ReactNativeNotes/main/Resources/img/RNN_README_logo_icon_orange.png"/>
+  <img src="./Resources/img/RNN_README_logo_icon_orange.png"/>
   <h1 align="center"> ReactNativeNotes </h1>
 </p>
 <p align="center">
