@@ -17,6 +17,17 @@
 
 This project is a demonstration application that presents abilites and skills of [Callstack](https://callstack.com) company in creating React Native Windows **desktop** applications.
 
+### **Content** ###
+* [Description](#Description)
+* [Installation](#Installation)
+* [Approach](#Approach)
+* [Results](#Results)
+* [Conclusions](#Conclusions)
+
+---
+
+## Description ##
+
 The idea behind creating the ReactNativeNotes app was to include features of Windows and React Native Windows [APIs](https://docs.microsoft.com/en-us/windows/uwp/cpp-and-winrt-apis/consume-apis) and to mix both React Native and UWP development.
 So beside standard React Native components there is a whole UWP layer which handles all the navigation, animations, and content of a Windows desktop app.
 Please check the [Approach](#Approach) section for more details.
@@ -26,7 +37,7 @@ Please check the [Approach](#Approach) section for more details.
 
 ---
   
-## Installation & Usage ##
+## Installation ##
 
 To play with this app
 * Make sure to meet all the [System requirements](https://microsoft.github.io/react-native-windows/docs/rnw-dependencies) for React Native Windows development
@@ -69,7 +80,7 @@ The application contains two main screens:
 
 ---
 
-## Conclusions and observations ##
+## Conclusions ##
 
 [React Native Windows](https://github.com/microsoft/react-native-windows) already is a stable framework and is well maintained. There were no issues observed during the development, which would slow down the work or prevent from achieving a goal.
 <br/>Creating the desktop app with RNW is not much different than creating an app for mobile using React Native. React Native Windows has the same environment and almost the same tools.
@@ -84,3 +95,11 @@ But as this is an experiment, there are some good practices, DOs and DON'Ts that
 |When using community modules choose only those with version >= 0.64.x support|Don't spend your time on writing a native module on your own. Most probably it is already available on GitHub.|
 |If something is not working check the list of [issues reported to RNW](https://github.com/microsoft/react-native-windows/issues) for a fix or a workaround|Don't test the native side unless it's really required, focus on your JS/TS implementation tests instead.|
 
+
+---
+
+## Made with ❤️ at Callstack
+
+`@callstack/ReactNativeNotes` is an open source project and will always remain free to use. If you think it's cool, please star it 🌟. [Callstack](https://callstack.com/) is a group of React and React Native geeks, contact us at [hello@callstack.com](mailto:hello@callstack.com) if you need any help with these or just want to say hi!
+
+Like the project? ⚛️ [Join the team](https://callstack.com/careers) who does amazing stuff for clients and drives React Native Open Source! 🔥
